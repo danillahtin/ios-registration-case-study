@@ -12,6 +12,7 @@
 		8B7564FD26BDDB5A00D2F90E /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7564FC26BDDB5A00D2F90E /* RegistrationService.swift */; };
 		8B75650126BDDD8B00D2F90E /* RequestValidatingDecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75650026BDDD8B00D2F90E /* RequestValidatingDecoratorTests.swift */; };
 		8B75650426BDE72500D2F90E /* XCTestCase+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75650326BDE72500D2F90E /* XCTestCase+Helpers.swift */; };
+		8B75650626BDE82000D2F90E /* RequestValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75650526BDE82000D2F90E /* RequestValidationError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +34,7 @@
 		8B7564FC26BDDB5A00D2F90E /* RegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
 		8B75650026BDDD8B00D2F90E /* RequestValidatingDecoratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestValidatingDecoratorTests.swift; sourceTree = "<group>"; };
 		8B75650326BDE72500D2F90E /* XCTestCase+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Helpers.swift"; sourceTree = "<group>"; };
+		8B75650526BDE82000D2F90E /* RequestValidationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestValidationError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 				8B7564DB26BDDA3D00D2F90E /* Info.plist */,
 				8B7564FA26BDDB0300D2F90E /* RegistrationRequest.swift */,
 				8B7564FC26BDDB5A00D2F90E /* RegistrationService.swift */,
+				8B75650526BDE82000D2F90E /* RequestValidationError.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -208,6 +211,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B75650626BDE82000D2F90E /* RequestValidationError.swift in Sources */,
 				8B7564FD26BDDB5A00D2F90E /* RegistrationService.swift in Sources */,
 				8B7564FB26BDDB0300D2F90E /* RegistrationRequest.swift in Sources */,
 			);

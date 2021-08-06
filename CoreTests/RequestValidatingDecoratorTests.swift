@@ -8,11 +8,6 @@
 import XCTest
 import Core
 
-enum RequestValidationError: Error {
-    case emptyUsername
-    case emptyPassword
-}
-
 final class RequestValidatingDecorator {
     private let decoratee: RegistrationService
 
