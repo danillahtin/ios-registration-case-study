@@ -10,6 +10,7 @@
 		8B7564E126BDDA3D00D2F90E /* Multiplatform.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B7564D726BDDA3D00D2F90E /* Multiplatform.framework */; };
 		8B7564E626BDDA3D00D2F90E /* MultiplatformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7564E526BDDA3D00D2F90E /* MultiplatformTests.swift */; };
 		8B7564FB26BDDB0300D2F90E /* RegistrationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7564FA26BDDB0300D2F90E /* RegistrationRequest.swift */; };
+		8B7564FD26BDDB5A00D2F90E /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7564FC26BDDB5A00D2F90E /* RegistrationService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		8B7564E526BDDA3D00D2F90E /* MultiplatformTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplatformTests.swift; sourceTree = "<group>"; };
 		8B7564E726BDDA3D00D2F90E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B7564FA26BDDB0300D2F90E /* RegistrationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationRequest.swift; sourceTree = "<group>"; };
+		8B7564FC26BDDB5A00D2F90E /* RegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			children = (
 				8B7564DB26BDDA3D00D2F90E /* Info.plist */,
 				8B7564FA26BDDB0300D2F90E /* RegistrationRequest.swift */,
+				8B7564FC26BDDB5A00D2F90E /* RegistrationService.swift */,
 			);
 			path = Multiplatform;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B7564FD26BDDB5A00D2F90E /* RegistrationService.swift in Sources */,
 				8B7564FB26BDDB0300D2F90E /* RegistrationRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
