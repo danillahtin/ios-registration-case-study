@@ -5,7 +5,7 @@
 //  Created by Danil Lahtin on 07.08.2021.
 //
 
-public final class RequestValidatingDecorator {
+public final class RequestValidatingDecorator: RegistrationService {
     private let decoratee: RegistrationService
 
     public init(_ decoratee: RegistrationService) {
