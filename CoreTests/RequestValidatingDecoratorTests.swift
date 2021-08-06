@@ -63,9 +63,13 @@ final class RequestValidatingDecoratorTests: XCTestCase {
         decoratee.stub(result: .success)
         XCTAssertEqual(sut.register(with: makeRequest()).toEquatable(), .success)
 
-        decoratee.stub(result: .failure(RequestValidationError.emptyUsername))
+        decoratee.stub(result: .failure(makeError("some error")))
         XCTAssertEqual(sut.register(with: makeRequest()).toEquatable(),
-                       .failure(RequestValidationError.emptyUsername as NSError))
+                       .failure(makeError("some error")))
+
+        decoratee.stub(result: .failure(makeError("another error")))
+        XCTAssertEqual(sut.register(with: makeRequest()).toEquatable(),
+                       .failure(makeError("another error")))
     }
 
     // MARK: - Helpers
