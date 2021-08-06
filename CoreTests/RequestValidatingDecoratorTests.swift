@@ -29,29 +29,11 @@ final class RequestValidatingDecorator {
 
 final class RequestValidatingDecoratorTests: XCTestCase {
     func test_givenRequestWithNilUsername_whenRegisterCalled_thenReturnsError() {
-        let sut = makeSut()
-
-        let result = sut.register(with: makeRequest(username: nil))
-
-        switch result {
-        case .success:
-            XCTFail()
-        case .failure(let error):
-            XCTAssertEqual(error as? RequestValidationError, .emptyUsername)
-        }
+        assert(request: makeRequest(username: nil), returns: .failure(.emptyUsername))
     }
 
     func test_givenRequestWithNilPassword_whenRegisterCalled_thenReturnsError() {
-        let sut = makeSut()
-
-        let result = sut.register(with: makeRequest(password: nil))
-
-        switch result {
-        case .success:
-            XCTFail()
-        case .failure(let error):
-            XCTAssertEqual(error as? RequestValidationError, .emptyPassword)
-        }
+        assert(request: makeRequest(password: nil), returns: .failure(.emptyPassword))
     }
 
     // MARK: - Helpers
@@ -67,5 +49,30 @@ final class RequestValidatingDecoratorTests: XCTestCase {
         password: String? = "any"
     ) -> RegistrationRequest {
         RegistrationRequest(username: username, password: password)
+    }
+
+    private func assert(
+        request: RegistrationRequest,
+        returns expectedResult: Result<Void, RequestValidationError>,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        let sut = makeSut()
+        let result = sut.register(with: request)
+
+        switch (result, expectedResult) {
+        case (.success, .failure), (.failure, .success):
+            XCTFail("Expected to return \(expectedResult), got \(result) instead", file: file, line: line)
+        case (.success, .success):
+            break
+        case (.failure(let error), .failure(let expectedError)):
+            XCTAssertEqual(
+                error as NSError,
+                expectedError as NSError,
+                "Expected to fail with error \(expectedError), got \(error) instead",
+                file: file,
+                line: line
+            )
+        }
     }
 }
