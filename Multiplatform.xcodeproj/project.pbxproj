@@ -56,7 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				8B7564D926BDDA3D00D2F90E /* Core */,
-				8B7564E426BDDA3D00D2F90E /* MultiplatformTests */,
+				8B7564E426BDDA3D00D2F90E /* CoreTests */,
 				8B7564D826BDDA3D00D2F90E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -80,13 +80,13 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
-		8B7564E426BDDA3D00D2F90E /* MultiplatformTests */ = {
+		8B7564E426BDDA3D00D2F90E /* CoreTests */ = {
 			isa = PBXGroup;
 			children = (
 				8B7564E526BDDA3D00D2F90E /* MultiplatformTests.swift */,
 				8B7564E726BDDA3D00D2F90E /* Info.plist */,
 			);
-			path = MultiplatformTests;
+			path = CoreTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,7 +361,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.danillakhtin.registration.Multiplatform;
+				PRODUCT_BUNDLE_IDENTIFIER = com.danillakhtin.registration.multiplatform.Core;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -386,7 +386,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.danillakhtin.registration.Multiplatform;
+				PRODUCT_BUNDLE_IDENTIFIER = com.danillakhtin.registration.multiplatform.Core;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -399,13 +399,13 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = MultiplatformTests/Info.plist;
+				INFOPLIST_FILE = CoreTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.danillakhtin.registration.MultiplatformTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.danillakhtin.registration.CoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -417,13 +417,13 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = MultiplatformTests/Info.plist;
+				INFOPLIST_FILE = CoreTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.danillakhtin.registration.MultiplatformTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.danillakhtin.registration.CoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
