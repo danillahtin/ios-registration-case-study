@@ -14,6 +14,12 @@ enum RequestValidationError: Error {
 }
 
 final class RequestValidatingDecorator {
+    private let decoratee: RegistrationService
+
+    init(_ decoratee: RegistrationService) {
+        self.decoratee = decoratee
+    }
+
     func register(with request: RegistrationRequest) -> Result<Void, Error> {
         if request.username?.isEmpty ?? true {
             return .failure(RequestValidationError.emptyUsername)
@@ -22,6 +28,8 @@ final class RequestValidatingDecorator {
         if request.password?.isEmpty ?? true {
             return .failure(RequestValidationError.emptyPassword)
         }
+
+        _ = decoratee.register(with: request)
 
         return .success(())
     }
@@ -38,12 +46,26 @@ final class RequestValidatingDecoratorTests: XCTestCase {
         assert(request: makeRequest(password: ""), returns: .failure(.emptyPassword))
     }
 
+    func test_givenRequestWithNonEmptyUsernameAndPassword_whenRegisterCalledWithCorrectRequest_thenDecorateeIsCalled() {
+        let (sut, decoratee) = makeSut()
+
+        _ = sut.register(with: makeRequest(username: "some username", password: "some password"))
+        XCTAssertEqual(decoratee.requests, [makeRequest(username: "some username", password: "some password")])
+
+        _ = sut.register(with: makeRequest(username: "another username", password: "another password"))
+        XCTAssertEqual(decoratee.requests, [
+            makeRequest(username: "some username", password: "some password"),
+            makeRequest(username: "another username", password: "another password")
+        ])
+    }
+
     // MARK: - Helpers
 
-    private func makeSut() -> RequestValidatingDecorator {
-        let sut = RequestValidatingDecorator()
+    private func makeSut() -> (sut: RequestValidatingDecorator, decoratee: RegistrationServiceMock) {
+        let decoratee = RegistrationServiceMock()
+        let sut = RequestValidatingDecorator(decoratee)
 
-        return sut
+        return (sut, decoratee)
     }
 
     private func makeRequest(
@@ -59,7 +81,7 @@ final class RequestValidatingDecoratorTests: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) {
-        let sut = makeSut()
+        let (sut, _) = makeSut()
         let result = sut.register(with: request)
 
         switch (result, expectedResult) {
