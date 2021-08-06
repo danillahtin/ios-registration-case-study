@@ -8,7 +8,7 @@
 import XCTest
 
 final class RegistrationPresenter {
-    
+
 }
 
 final class RegistrationPresenterTests: XCTestCase {
