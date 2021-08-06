@@ -8,13 +8,22 @@
 import XCTest
 import Core
 
-final class RequestValidatingDecorator {
-    enum Error: Swift.Error {
-        case emptyUsername
-    }
+enum RequestValidationError: Error {
+    case emptyUsername
+    case emptyPassword
+}
 
-    func register(with request: RegistrationRequest) -> Result<Void, Swift.Error> {
-        return .failure(Error.emptyUsername)
+final class RequestValidatingDecorator {
+    func register(with request: RegistrationRequest) -> Result<Void, Error> {
+        guard request.username != nil else {
+            return .failure(RequestValidationError.emptyUsername)
+        }
+
+        guard request.password != nil else {
+            return .failure(RequestValidationError.emptyPassword)
+        }
+
+        return .success(())
     }
 }
 
@@ -24,7 +33,25 @@ final class RequestValidatingDecoratorTests: XCTestCase {
 
         let result = sut.register(with: makeRequest(username: nil))
 
-        XCTAssertThrowsError(try result.get())
+        switch result {
+        case .success:
+            XCTFail()
+        case .failure(let error):
+            XCTAssertEqual(error as? RequestValidationError, .emptyUsername)
+        }
+    }
+
+    func test_givenRequestWithNilPassword_whenRegisterCalled_thenReturnsError() {
+        let sut = makeSut()
+
+        let result = sut.register(with: makeRequest(password: nil))
+
+        switch result {
+        case .success:
+            XCTFail()
+        case .failure(let error):
+            XCTAssertEqual(error as? RequestValidationError, .emptyPassword)
+        }
     }
 
     // MARK: - Helpers
