@@ -29,9 +29,7 @@ final class RequestValidatingDecorator {
             return .failure(RequestValidationError.emptyPassword)
         }
 
-        _ = decoratee.register(with: request)
-
-        return .success(())
+        return decoratee.register(with: request)
     }
 }
 
@@ -46,7 +44,7 @@ final class RequestValidatingDecoratorTests: XCTestCase {
         assert(request: makeRequest(password: ""), returns: .failure(.emptyPassword))
     }
 
-    func test_givenRequestWithNonEmptyUsernameAndPassword_whenRegisterCalledWithCorrectRequest_thenDecorateeIsCalled() {
+    func test_givenRequestWithNonEmptyUsernameAndPassword_whenRegisterCalled_thenDecorateeIsCalled() {
         let (sut, decoratee) = makeSut()
 
         _ = sut.register(with: makeRequest(username: "some username", password: "some password"))
@@ -57,6 +55,17 @@ final class RequestValidatingDecoratorTests: XCTestCase {
             makeRequest(username: "some username", password: "some password"),
             makeRequest(username: "another username", password: "another password")
         ])
+    }
+
+    func test_givenCorrectRequest_whenRegisterCalled_thenReturnsDecorateeResult() {
+        let (sut, decoratee) = makeSut()
+
+        decoratee.stub(result: .success)
+        XCTAssertEqual(sut.register(with: makeRequest()).toEquatable(), .success)
+
+        decoratee.stub(result: .failure(RequestValidationError.emptyUsername))
+        XCTAssertEqual(sut.register(with: makeRequest()).toEquatable(),
+                       .failure(RequestValidationError.emptyUsername as NSError))
     }
 
     // MARK: - Helpers
@@ -101,17 +110,32 @@ final class RequestValidatingDecoratorTests: XCTestCase {
     }
 
     private final class RegistrationServiceMock: RegistrationService {
-        private let stub: Result<Void, Error>
+        private var stub: Result<Void, Error>?
         private(set) var requests: [RegistrationRequest] = []
 
-        init(_ stub: Result<Void, Error> = .success(())) {
-            self.stub = stub
+        func stub(result: Result<Void, Error>) {
+            stub = result
         }
 
         func register(with request: RegistrationRequest) -> Result<Void, Error> {
             requests.append(request)
 
-            return stub
+            return stub ?? .success(())
         }
     }
+}
+
+private struct EquatableVoid: Equatable {}
+
+private extension Result where Success == Void {
+    static var success: Self { .success(()) }
+
+    func toEquatable() -> Result<EquatableVoid, NSError> {
+        map({ _ in EquatableVoid() })
+            .mapError({ $0 as NSError })
+    }
+}
+
+private extension Result where Success == EquatableVoid {
+    static var success: Self { .success(.init()) }
 }
