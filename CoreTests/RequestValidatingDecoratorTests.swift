@@ -15,11 +15,11 @@ enum RequestValidationError: Error {
 
 final class RequestValidatingDecorator {
     func register(with request: RegistrationRequest) -> Result<Void, Error> {
-        guard request.username != nil else {
+        if request.username?.isEmpty ?? true {
             return .failure(RequestValidationError.emptyUsername)
         }
 
-        guard request.password != nil else {
+        if request.password?.isEmpty ?? true {
             return .failure(RequestValidationError.emptyPassword)
         }
 
@@ -28,12 +28,14 @@ final class RequestValidatingDecorator {
 }
 
 final class RequestValidatingDecoratorTests: XCTestCase {
-    func test_givenRequestWithNilUsername_whenRegisterCalled_thenReturnsError() {
+    func test_givenRequestWithEmptyUsername_whenRegisterCalled_thenReturnsError() {
         assert(request: makeRequest(username: nil), returns: .failure(.emptyUsername))
+        assert(request: makeRequest(username: ""), returns: .failure(.emptyUsername))
     }
 
-    func test_givenRequestWithNilPassword_whenRegisterCalled_thenReturnsError() {
+    func test_givenRequestWithEmptyPassword_whenRegisterCalled_thenReturnsError() {
         assert(request: makeRequest(password: nil), returns: .failure(.emptyPassword))
+        assert(request: makeRequest(password: ""), returns: .failure(.emptyPassword))
     }
 
     // MARK: - Helpers
