@@ -6,6 +6,14 @@
 //
 
 public struct RegistrationRequest {
-    let username: String?
-    let password: String?
+    public let username: String?
+    public let password: String?
+
+    public init(
+        username: String?,
+        password: String?
+    ) {
+        self.username = username
+        self.password = password
+    }
 }
