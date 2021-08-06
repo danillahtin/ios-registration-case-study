@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8B7564E126BDDA3D00D2F90E /* Multiplatform.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B7564D726BDDA3D00D2F90E /* Multiplatform.framework */; };
+		8B7564E126BDDA3D00D2F90E /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B7564D726BDDA3D00D2F90E /* Core.framework */; };
 		8B7564E626BDDA3D00D2F90E /* MultiplatformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7564E526BDDA3D00D2F90E /* MultiplatformTests.swift */; };
 		8B7564FB26BDDB0300D2F90E /* RegistrationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7564FA26BDDB0300D2F90E /* RegistrationRequest.swift */; };
 		8B7564FD26BDDB5A00D2F90E /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7564FC26BDDB5A00D2F90E /* RegistrationService.swift */; };
@@ -24,7 +24,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8B7564D726BDDA3D00D2F90E /* Multiplatform.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Multiplatform.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B7564D726BDDA3D00D2F90E /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B7564DB26BDDA3D00D2F90E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B7564E026BDDA3D00D2F90E /* MultiplatformTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MultiplatformTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B7564E526BDDA3D00D2F90E /* MultiplatformTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplatformTests.swift; sourceTree = "<group>"; };
@@ -45,7 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B7564E126BDDA3D00D2F90E /* Multiplatform.framework in Frameworks */,
+				8B7564E126BDDA3D00D2F90E /* Core.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,7 +64,7 @@
 		8B7564D826BDDA3D00D2F90E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8B7564D726BDDA3D00D2F90E /* Multiplatform.framework */,
+				8B7564D726BDDA3D00D2F90E /* Core.framework */,
 				8B7564E026BDDA3D00D2F90E /* MultiplatformTests.xctest */,
 			);
 			name = Products;
@@ -102,9 +102,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		8B7564D626BDDA3D00D2F90E /* Multiplatform */ = {
+		8B7564D626BDDA3D00D2F90E /* Core */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8B7564EB26BDDA3D00D2F90E /* Build configuration list for PBXNativeTarget "Multiplatform" */;
+			buildConfigurationList = 8B7564EB26BDDA3D00D2F90E /* Build configuration list for PBXNativeTarget "Core" */;
 			buildPhases = (
 				8B7564D226BDDA3D00D2F90E /* Headers */,
 				8B7564D326BDDA3D00D2F90E /* Sources */,
@@ -115,9 +115,9 @@
 			);
 			dependencies = (
 			);
-			name = Multiplatform;
+			name = Core;
 			productName = Multiplatform;
-			productReference = 8B7564D726BDDA3D00D2F90E /* Multiplatform.framework */;
+			productReference = 8B7564D726BDDA3D00D2F90E /* Core.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		8B7564DF26BDDA3D00D2F90E /* MultiplatformTests */ = {
@@ -169,7 +169,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8B7564D626BDDA3D00D2F90E /* Multiplatform */,
+				8B7564D626BDDA3D00D2F90E /* Core */,
 				8B7564DF26BDDA3D00D2F90E /* MultiplatformTests */,
 			);
 		};
@@ -215,7 +215,7 @@
 /* Begin PBXTargetDependency section */
 		8B7564E326BDDA3D00D2F90E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8B7564D626BDDA3D00D2F90E /* Multiplatform */;
+			target = 8B7564D626BDDA3D00D2F90E /* Core */;
 			targetProxy = 8B7564E226BDDA3D00D2F90E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -441,7 +441,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8B7564EB26BDDA3D00D2F90E /* Build configuration list for PBXNativeTarget "Multiplatform" */ = {
+		8B7564EB26BDDA3D00D2F90E /* Build configuration list for PBXNativeTarget "Core" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8B7564EC26BDDA3D00D2F90E /* Debug */,
