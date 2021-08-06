@@ -8,26 +8,6 @@
 import XCTest
 import Core
 
-final class RequestValidatingDecorator {
-    private let decoratee: RegistrationService
-
-    init(_ decoratee: RegistrationService) {
-        self.decoratee = decoratee
-    }
-
-    func register(with request: RegistrationRequest) -> Result<Void, Error> {
-        if request.username?.isEmpty ?? true {
-            return .failure(RequestValidationError.emptyUsername)
-        }
-
-        if request.password?.isEmpty ?? true {
-            return .failure(RequestValidationError.emptyPassword)
-        }
-
-        return decoratee.register(with: request)
-    }
-}
-
 final class RequestValidatingDecoratorTests: XCTestCase {
     func test_givenRequestWithEmptyUsername_whenRegisterCalled_thenReturnsError() {
         assert(request: makeRequest(username: nil), returns: .failure(.emptyUsername))
