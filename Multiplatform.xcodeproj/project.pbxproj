@@ -55,7 +55,7 @@
 		8B7564CD26BDDA3D00D2F90E = {
 			isa = PBXGroup;
 			children = (
-				8B7564D926BDDA3D00D2F90E /* Multiplatform */,
+				8B7564D926BDDA3D00D2F90E /* Core */,
 				8B7564E426BDDA3D00D2F90E /* MultiplatformTests */,
 				8B7564D826BDDA3D00D2F90E /* Products */,
 			);
@@ -70,14 +70,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8B7564D926BDDA3D00D2F90E /* Multiplatform */ = {
+		8B7564D926BDDA3D00D2F90E /* Core */ = {
 			isa = PBXGroup;
 			children = (
 				8B7564DB26BDDA3D00D2F90E /* Info.plist */,
 				8B7564FA26BDDB0300D2F90E /* RegistrationRequest.swift */,
 				8B7564FC26BDDB5A00D2F90E /* RegistrationService.swift */,
 			);
-			path = Multiplatform;
+			path = Core;
 			sourceTree = "<group>";
 		};
 		8B7564E426BDDA3D00D2F90E /* MultiplatformTests */ = {
@@ -354,7 +354,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Multiplatform/Info.plist;
+				INFOPLIST_FILE = Core/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -379,7 +379,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Multiplatform/Info.plist;
+				INFOPLIST_FILE = Core/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

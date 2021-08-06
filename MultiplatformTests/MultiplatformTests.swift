@@ -6,9 +6,9 @@
 //
 
 import XCTest
-@testable import Multiplatform
+@testable import Core
 
-class MultiplatformTests: XCTestCase {
+class CoreTests: XCTestCase {
     func testExample() throws {
     }
 }
