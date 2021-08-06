@@ -77,4 +77,19 @@ final class RequestValidatingDecoratorTests: XCTestCase {
             )
         }
     }
+
+    private final class RegistrationServiceMock: RegistrationService {
+        private let stub: Result<Void, Error>
+        private(set) var requests: [RegistrationRequest] = []
+
+        init(_ stub: Result<Void, Error> = .success(())) {
+            self.stub = stub
+        }
+
+        func register(with request: RegistrationRequest) -> Result<Void, Error> {
+            requests.append(request)
+
+            return stub
+        }
+    }
 }
