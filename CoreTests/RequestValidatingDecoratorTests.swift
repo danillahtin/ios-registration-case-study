@@ -78,6 +78,9 @@ final class RequestValidatingDecoratorTests: XCTestCase {
         let decoratee = RegistrationServiceMock()
         let sut = RequestValidatingDecorator(decoratee)
 
+        trackForMemoryLeaks(sut)
+        trackForMemoryLeaks(decoratee)
+
         return (sut, decoratee)
     }
 
