@@ -172,9 +172,14 @@ final class RegistrationViewController: UIViewController {
         )
 
         serviceScheduler.schedule { [weak self] in
-            _ = self?.registrationService.register(with: request)
-
-            self?.onRegister()
+            switch self?.registrationService.register(with: request) {
+            case .success:
+                self?.onRegister()
+            case .failure:
+                break
+            case .none:
+                break
+            }
 
             self?.uiScheduler.schedule {
                 self?.registerButton.isHidden = false
@@ -457,6 +462,17 @@ final class IntegrationTests: XCTestCase {
 
         services.performUIWorks()
         XCTAssertEqual(sut.isRegisterActivityIndicatorHidden, true)
+    }
+
+    func test_whenRegistrationCompletesWithFailure_thenOnRegisterIsNotCalled() {
+        let (sut, services) = makeSut()
+
+        sut.simulateRegistration()
+
+        XCTAssertEqual(services.onRegisterCallCount, 0)
+        services.completeRegistration(with: .failure(makeError()))
+
+        XCTAssertEqual(services.onRegisterCallCount, 0)
     }
 
     func test_whenRegistrationCompletesWithSuccess_thenRegistrationButtonIsNotHiddenIsScheduledOnUI() {
