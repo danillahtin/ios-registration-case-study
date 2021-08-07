@@ -138,6 +138,12 @@ final class IntegrationTests: XCTestCase {
         XCTAssertEqual(sut.usernameTextField.toolbarItems?.first?.title, "Cancel")
     }
 
+    func test_loadView_displaysCorrectUsernameLastButtonTitle() {
+        let sut = makeSut()
+
+        XCTAssertEqual(sut.usernameTextField.toolbarItems?.last?.title, "Next")
+    }
+
     func test_passwordInput_isSecure() {
         let sut = makeSut()
 
