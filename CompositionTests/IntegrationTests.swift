@@ -10,15 +10,21 @@ import UIKit
 
 final class RegistrationViewController: UIViewController {
     typealias TextFieldFactory = () -> UITextField
+    typealias TapGestureRecognizerFactory = (_ target: Any?, _ action: Selector?) -> UITapGestureRecognizer
 
     weak var usernameTextField: UITextField!
     weak var passwordTextField: UITextField!
     weak var registerButton: UIButton!
 
     private let textFieldFactory: TextFieldFactory
+    private let tapGestureRecognizerFactory: TapGestureRecognizerFactory
 
-    init(textFieldFactory: @escaping TextFieldFactory = UITextField.init) {
+    init(
+        textFieldFactory: @escaping TextFieldFactory = UITextField.init,
+        tapGestureRecognizerFactory: @escaping TapGestureRecognizerFactory = UITapGestureRecognizer.init
+    ) {
         self.textFieldFactory = textFieldFactory
+        self.tapGestureRecognizerFactory = tapGestureRecognizerFactory
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -34,10 +40,12 @@ final class RegistrationViewController: UIViewController {
         let usernameTextField = makeUsernameTextField()
         let passwordTextField = makePasswordTextField()
         let registerButton = makeRegisterButton()
+        let cancelInputTapRecognizer = tapGestureRecognizerFactory(self, #selector(onCancelButtonTapped))
 
         view.addSubview(usernameTextField)
         view.addSubview(passwordTextField)
         view.addSubview(registerButton)
+        view.addGestureRecognizer(cancelInputTapRecognizer)
 
         self.usernameTextField = usernameTextField
         self.passwordTextField = passwordTextField
@@ -291,9 +299,21 @@ final class IntegrationTests: XCTestCase {
         XCTAssertEqual(sut.isPasswordActiveInput, false)
     }
 
+    func test_givenUsernameIsActive_whenViewTapped_thenUsernameIsNotActiveInput() {
+        let sut = makeSut()
+
+        sut.simulateUsernameIsActiveInput()
+        sut.simulateViewTapped()
+
+        XCTAssertEqual(sut.isUsernameActiveInput, false)
+    }
+
     // MARK: - Helpers
     private func makeSut() -> RegistrationViewController {
-        let sut = RegistrationViewController(textFieldFactory: TextFieldMock.init)
+        let sut = RegistrationViewController(
+            textFieldFactory: TextFieldMock.init,
+            tapGestureRecognizerFactory: TapGestureRecognizerMock.init
+        )
 
         sut.loadViewIfNeeded()
 
@@ -324,6 +344,24 @@ private final class TextFieldMock: UITextField {
         _isFirstResponder = false
 
         return true
+    }
+}
+
+private final class TapGestureRecognizerMock: UITapGestureRecognizer {
+    private let target: NSObject?
+    private let action: Selector?
+
+    override init(target: Any?, action: Selector?) {
+        self.target = target as? NSObject
+        self.action = action
+
+        super.init(target: target, action: action)
+    }
+
+    func simulateTap() {
+        guard let action = action else { return }
+
+        target?.perform(action)
     }
 }
 
@@ -412,6 +450,12 @@ private extension RegistrationViewController {
 
     func simulatePasswordToolbarNextButtonTapped() {
         passwordTextFieldDoneButton.simulateTap()
+    }
+
+    func simulateViewTapped() {
+        view.gestureRecognizers?
+            .compactMap({ $0 as? TapGestureRecognizerMock })
+            .forEach { $0.simulateTap() }
     }
 }
 
