@@ -375,6 +375,14 @@ final class IntegrationTests: XCTestCase {
         XCTAssertEqual(sut.isRegisterActivityIndicatorHidden, false)
     }
 
+    func test_givenRegisterButtonTapped_thenRegisterActivityIndicatorIsAnimating() {
+        let (sut, _) = makeSut()
+
+        sut.simulateRegisterButtonTapped()
+
+        XCTAssertEqual(sut.registerActivityIndicator.isAnimating, true)
+    }
+
     func test_givenRegisterButtonTapped_thenRegistrationIsRequestedWithUsernameAndPassword() {
         let (sut, services) = makeSut()
 
