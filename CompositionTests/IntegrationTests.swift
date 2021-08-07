@@ -31,17 +31,20 @@ final class RegistrationViewController: UIViewController {
     private let textFieldFactory: TextFieldFactory
     private let tapGestureRecognizerFactory: TapGestureRecognizerFactory
     private let registrationService: RegistrationService
+    private let uiScheduler: Scheduler
     private let serviceScheduler: Scheduler
 
     init(
         textFieldFactory: @escaping TextFieldFactory = UITextField.init,
         tapGestureRecognizerFactory: @escaping TapGestureRecognizerFactory = UITapGestureRecognizer.init,
         registrationService: RegistrationService,
+        uiScheduler: Scheduler,
         serviceScheduler: Scheduler
     ) {
         self.textFieldFactory = textFieldFactory
         self.tapGestureRecognizerFactory = tapGestureRecognizerFactory
         self.registrationService = registrationService
+        self.uiScheduler = uiScheduler
         self.serviceScheduler = serviceScheduler
 
         super.init(nibName: nil, bundle: nil)
@@ -166,6 +169,10 @@ final class RegistrationViewController: UIViewController {
 
         serviceScheduler.schedule { [weak self] in
             _ = self?.registrationService.register(with: request)
+
+            self?.uiScheduler.schedule {
+                self?.registerButton.isHidden = false
+            }
         }
 
     }
@@ -388,13 +395,13 @@ final class IntegrationTests: XCTestCase {
         let (sut, services) = makeSut()
 
         sut.simulateRegisterButtonTapped()
-        services.performScheduledWorks()
+        services.performServiceWorks()
         XCTAssertEqual(services.requests, [makeRequest(username: "", password: "")])
 
         sut.simulateUsernameInput("some username")
         sut.simulatePasswordInput("some password")
         sut.simulateRegisterButtonTapped()
-        services.performScheduledWorks()
+        services.performServiceWorks()
         XCTAssertEqual(services.requests, [
             makeRequest(username: "", password: ""),
             makeRequest(username: "some username", password: "some password"),
@@ -404,13 +411,11 @@ final class IntegrationTests: XCTestCase {
     func test_givenRegisterButtonTapped_thenRegistrationIsScheduled() {
         let (sut, services) = makeSut()
 
-        sut.simulateUsernameInput("some username")
-        sut.simulatePasswordInput("some password")
-        sut.simulateRegisterButtonTapped()
+        sut.simulateRegistration()
         XCTAssertEqual(services.requests, [])
 
-        services.performScheduledWorks()
-        XCTAssertEqual(services.requests, [makeRequest(username: "some username", password: "some password")])
+        services.performServiceWorks()
+        XCTAssertEqual(services.requests, [makeRequest()])
     }
 
     func test_givenPasswordIsActive_whenToolbarDoneButtonTapped_thenRegistrationIsRequestedWithUsernameAndPassword() {
@@ -420,9 +425,20 @@ final class IntegrationTests: XCTestCase {
         sut.simulatePasswordInput("some password")
         sut.simulatePasswordIsActiveInput()
         sut.simulatePasswordToolbarDoneButtonTapped()
-        services.performScheduledWorks()
+        services.performServiceWorks()
 
         XCTAssertEqual(services.requests, [makeRequest(username: "some username", password: "some password")])
+    }
+
+    func test_whenRegistrationCompletesWithFailure_thenRegistrationButtonIsNotHiddenIsScheduledOnUI() {
+        let (sut, services) = makeSut()
+
+        sut.simulateRegistration()
+        services.completeRegistration(with: .failure(makeError()))
+        XCTAssertEqual(sut.isRegisterButtonHidden, true)
+
+        services.performUIWorks()
+        XCTAssertEqual(sut.isRegisterButtonHidden, false)
     }
 
     // MARK: - Helpers
@@ -435,7 +451,8 @@ final class IntegrationTests: XCTestCase {
             textFieldFactory: TextFieldMock.init,
             tapGestureRecognizerFactory: TapGestureRecognizerMock.init,
             registrationService: services,
-            serviceScheduler: services
+            uiScheduler: services.uiScheduler,
+            serviceScheduler: services.servicesScheduler
         )
 
         sut.loadViewIfNeeded()
@@ -446,7 +463,7 @@ final class IntegrationTests: XCTestCase {
         return (sut, services)
     }
 
-    private func makeRequest(username: String?, password: String?) -> RegistrationRequest {
+    private func makeRequest(username: String? = "any", password: String? = "any") -> RegistrationRequest {
         .init(username: username, password: password)
     }
 }
@@ -551,25 +568,50 @@ private extension RegistrationViewController {
     func simulateRegisterButtonTapped() {
         registerButton.simulateTap()
     }
+
+    func simulateRegistration(username: String = "any", password: String = "any") {
+        simulateUsernameInput(username)
+        simulatePasswordInput(password)
+        simulateRegisterButtonTapped()
+    }
 }
 
-private final class Services: RegistrationService, Scheduler {
+private final class Services: RegistrationService {
+    final class SchedulerSpy: Scheduler {
+        private var works: [() -> ()] = []
+
+        func schedule(_ work: @escaping () -> ()) {
+            works.append(work)
+        }
+
+        func performWorks() {
+            works.forEach({ $0() })
+            works = []
+        }
+    }
+
     private(set) var requests: [RegistrationRequest] = []
+    private var registrationResultStub: Result<Void, Error>?
 
     func register(with request: RegistrationRequest) -> Result<Void, Error> {
         requests.append(request)
 
-        return .success(())
+        return registrationResultStub ?? .success(())
     }
 
-    private var works: [() -> ()] = []
+    let servicesScheduler = SchedulerSpy()
+    let uiScheduler = SchedulerSpy()
 
-    func schedule(_ work: @escaping () -> ()) {
-        works.append(work)
+    func performServiceWorks() {
+        servicesScheduler.performWorks()
     }
 
-    func performScheduledWorks() {
-        works.forEach({ $0() })
-        works = []
+    func performUIWorks() {
+        uiScheduler.performWorks()
+    }
+
+    func completeRegistration(with result: Result<Void, Error>) {
+        registrationResultStub = result
+        performServiceWorks()
     }
 }
