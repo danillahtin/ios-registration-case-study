@@ -19,7 +19,215 @@ extension DispatchQueue: Scheduler {
     }
 }
 
+final class Weak<Object: AnyObject> {
+    weak var object: Object?
+
+    init(_ object: Object? = nil) {
+        self.object = object
+    }
+}
+
+struct LoadingViewModel {
+    let isLoading: Bool
+}
+
+protocol LoadingView {
+    func display(viewModel: LoadingViewModel)
+}
+
+struct ButtonViewModel {
+    let title: String?
+    let isEnabled: Bool
+}
+
+protocol ButtonView {
+    func display(viewModel: ButtonViewModel)
+}
+
+struct TitleViewModel {
+    let title: String
+}
+
+protocol TitleView {
+    func display(viewModel: TitleViewModel)
+}
+
+struct RegistrationViewModel {
+    let cancelTitle: String
+    let nextTitle: String
+    let doneTitle: String
+}
+
+protocol RegistrationView {
+    func display(viewModel: RegistrationViewModel)
+}
+
+extension Weak: LoadingView where Object: LoadingView {
+    func display(viewModel: LoadingViewModel) {
+        object?.display(viewModel: viewModel)
+    }
+}
+
+extension Weak: ButtonView where Object: ButtonView {
+    func display(viewModel: ButtonViewModel) {
+        object?.display(viewModel: viewModel)
+    }
+}
+
+extension Weak: TitleView where Object: TitleView {
+    func display(viewModel: TitleViewModel) {
+        object?.display(viewModel: viewModel)
+    }
+}
+
+extension Weak: RegistrationView where Object: RegistrationView {
+    func display(viewModel: RegistrationViewModel) {
+        object?.display(viewModel: viewModel)
+    }
+}
+
+final class RegistrationViewPresenter {
+    private let loadingView: LoadingView
+    private let buttonView: ButtonView
+    private let titleView: TitleView
+    private let registrationView: RegistrationView
+
+    var buttonTitle: String { "Register" }
+
+    init(
+        loadingView: LoadingView,
+        buttonView: ButtonView,
+        titleView: TitleView,
+        registrationView: RegistrationView
+    ) {
+        self.loadingView = loadingView
+        self.buttonView = buttonView
+        self.titleView = titleView
+        self.registrationView = registrationView
+    }
+
+    func didLoadView() {
+        loadingView.display(viewModel: .init(isLoading: false))
+        titleView.display(viewModel: .init(title: "Registration"))
+        registrationView.display(viewModel: .init(cancelTitle: "Cancel", nextTitle: "Next", doneTitle: "Done"))
+    }
+
+    func didUpdate(username: String?, password: String?) {
+        let isUsernameEmpty = username?.isEmpty ?? true
+        let isPasswordEmpty = password?.isEmpty ?? true
+
+        buttonView.display(
+            viewModel: .init(
+                title: buttonTitle,
+                isEnabled: !isUsernameEmpty && !isPasswordEmpty
+            )
+        )
+    }
+
+    func didStartRegistration() {
+        loadingView.display(viewModel: .init(isLoading: true))
+    }
+
+    func didFinishRegistration() {
+        loadingView.display(viewModel: .init(isLoading: false))
+    }
+}
+
+extension RegistrationViewController: LoadingView {
+    func display(viewModel: LoadingViewModel) {
+        if viewModel.isLoading {
+            registerActivityIndicator.startAnimating()
+            registerButton.isHidden = true
+        } else {
+            registerActivityIndicator.stopAnimating()
+            registerButton.isHidden = false
+        }
+    }
+}
+
+extension RegistrationViewController: ButtonView {
+    func display(viewModel: ButtonViewModel) {
+        registerButton.setTitle(viewModel.title, for: .normal)
+        registerButton.isEnabled = viewModel.isEnabled
+    }
+}
+
+extension RegistrationViewController: TitleView {
+    func display(viewModel: TitleViewModel) {
+        title = viewModel.title
+    }
+}
+
+extension RegistrationViewController: RegistrationView {
+    func display(viewModel: RegistrationViewModel) {
+        usernameTextField.inputAccessoryView = makeToolbar(items: [
+            UIBarButtonItem(title: viewModel.cancelTitle, style: .plain, target: self, action: #selector(onCancelButtonTapped)),
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+            UIBarButtonItem(title: viewModel.nextTitle, style: .plain, target: self, action: #selector(onUsernameNextButtonTapped)),
+        ])
+
+        passwordTextField.inputAccessoryView = makeToolbar(items: [
+            UIBarButtonItem(title: viewModel.cancelTitle, style: .plain, target: self, action: #selector(onCancelButtonTapped)),
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+            UIBarButtonItem(title: viewModel.doneTitle, style: .plain, target: self, action: #selector(onPasswordDoneButtonTapped)),
+        ])
+    }
+}
+
 enum RegistrationViewComposer {
+    private final class Adapter: RegistrationViewControllerDelegate {
+        private let registrationService: RegistrationService
+        private let uiScheduler: Scheduler
+        private let serviceScheduler: Scheduler
+        private let onRegister: () -> ()
+        private let onError: (Error) -> ()
+
+        var presenter: RegistrationViewPresenter?
+        var request: RegistrationRequest = .init(username: nil, password: nil)
+
+        init(
+            registrationService: RegistrationService,
+            uiScheduler: Scheduler,
+            serviceScheduler: Scheduler,
+            onRegister: @escaping () -> (),
+            onError: @escaping (Error) -> ()
+        ) {
+            self.registrationService = registrationService
+            self.uiScheduler = uiScheduler
+            self.serviceScheduler = serviceScheduler
+            self.onRegister = onRegister
+            self.onError = onError
+        }
+
+        func onViewDidLoad() {
+            presenter?.didLoadView()
+        }
+
+        func didUpdate(username: String?, password: String?) {
+            presenter?.didUpdate(username: username, password: password)
+            request = RegistrationRequest(username: username, password: password)
+        }
+
+        func onRegisterButtonTapped() {
+            presenter?.didStartRegistration()
+
+            serviceScheduler.schedule { [weak self, request] in
+                switch self?.registrationService.register(with: request) {
+                case .success:
+                    self?.onRegister()
+                case .failure(let error):
+                    self?.onError(error)
+                case .none:
+                    break
+                }
+
+                self?.uiScheduler.schedule {
+                    self?.presenter?.didFinishRegistration()
+                }
+            }
+        }
+    }
+
     static func composed(
         textFieldFactory: @escaping RegistrationViewController.TextFieldFactory = UITextField.init,
         tapGestureRecognizerFactory: @escaping RegistrationViewController.TapGestureRecognizerFactory = UITapGestureRecognizer.init,
@@ -29,9 +237,7 @@ enum RegistrationViewComposer {
         onRegister: @escaping RegistrationViewController.OnRegisterBlock,
         onError: @escaping RegistrationViewController.OnErrorBlock
     ) -> RegistrationViewController {
-        let vc = RegistrationViewController(
-            textFieldFactory: textFieldFactory,
-            tapGestureRecognizerFactory: tapGestureRecognizerFactory,
+        let adapter = Adapter(
             registrationService: registrationService,
             uiScheduler: uiScheduler,
             serviceScheduler: serviceScheduler,
@@ -39,8 +245,27 @@ enum RegistrationViewComposer {
             onError: onError
         )
 
+        let vc = RegistrationViewController(
+            textFieldFactory: textFieldFactory,
+            tapGestureRecognizerFactory: tapGestureRecognizerFactory,
+            delegate: adapter
+        )
+
+        adapter.presenter = RegistrationViewPresenter(
+            loadingView: Weak(vc),
+            buttonView: Weak(vc),
+            titleView: Weak(vc),
+            registrationView: Weak(vc)
+        )
+
         return vc
     }
+}
+
+protocol RegistrationViewControllerDelegate {
+    func onViewDidLoad()
+    func onRegisterButtonTapped()
+    func didUpdate(username: String?, password: String?)
 }
 
 final class RegistrationViewController: UIViewController {
@@ -56,28 +281,16 @@ final class RegistrationViewController: UIViewController {
 
     private let textFieldFactory: TextFieldFactory
     private let tapGestureRecognizerFactory: TapGestureRecognizerFactory
-    private let registrationService: RegistrationService
-    private let uiScheduler: Scheduler
-    private let serviceScheduler: Scheduler
-    private let onRegister: OnRegisterBlock
-    private let onError: OnErrorBlock
+    private let delegate: RegistrationViewControllerDelegate?
 
     init(
         textFieldFactory: @escaping TextFieldFactory = UITextField.init,
         tapGestureRecognizerFactory: @escaping TapGestureRecognizerFactory = UITapGestureRecognizer.init,
-        registrationService: RegistrationService,
-        uiScheduler: Scheduler,
-        serviceScheduler: Scheduler,
-        onRegister: @escaping OnRegisterBlock,
-        onError: @escaping OnErrorBlock
+        delegate: RegistrationViewControllerDelegate
     ) {
         self.textFieldFactory = textFieldFactory
         self.tapGestureRecognizerFactory = tapGestureRecognizerFactory
-        self.registrationService = registrationService
-        self.uiScheduler = uiScheduler
-        self.serviceScheduler = serviceScheduler
-        self.onRegister = onRegister
-        self.onError = onError
+        self.delegate = delegate
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -107,19 +320,19 @@ final class RegistrationViewController: UIViewController {
         self.registerButton = registerButton
         self.registerActivityIndicator = registerActivityIndicator
         self.view = view
+    }
 
-        self.title = "Registration"
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        delegate?.onViewDidLoad()
+        notifyTextFieldUpdated()
     }
 
     private func makeUsernameTextField() -> UITextField {
         let textField = textFieldFactory()
         textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         textField.delegate = self
-        textField.inputAccessoryView = makeToolbar(items: [
-            UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(onCancelButtonTapped)),
-            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(onUsernameNextButtonTapped)),
-        ])
         textField.returnKeyType = .next
 
         return textField
@@ -128,11 +341,6 @@ final class RegistrationViewController: UIViewController {
     private func makePasswordTextField() -> UITextField {
         let textField = textFieldFactory()
         textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        textField.inputAccessoryView = makeToolbar(items: [
-            UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(onCancelButtonTapped)),
-            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(onPasswordDoneButtonTapped)),
-        ])
         textField.isSecureTextEntry = true
         textField.returnKeyType = .done
 
@@ -141,8 +349,6 @@ final class RegistrationViewController: UIViewController {
 
     private func makeRegisterButton() -> UIButton {
         let button = UIButton()
-        button.setTitle("Register", for: .normal)
-        button.isEnabled = false
         button.addTarget(self, action: #selector(onRegisterButtonTapped), for: .touchUpInside)
 
         return button
@@ -165,10 +371,11 @@ final class RegistrationViewController: UIViewController {
 
     @objc
     private func textFieldDidChange(_ textField: UITextField) {
-        let isUsernameEmpty = usernameTextField.text?.isEmpty ?? true
-        let isPasswordEmpty = passwordTextField.text?.isEmpty ?? true
+        notifyTextFieldUpdated()
+    }
 
-        registerButton.isEnabled = !isUsernameEmpty && !isPasswordEmpty
+    private func notifyTextFieldUpdated() {
+        delegate?.didUpdate(username: usernameTextField.text, password: passwordTextField.text)
     }
 
     @objc
@@ -191,29 +398,7 @@ final class RegistrationViewController: UIViewController {
 
     @objc
     private func onRegisterButtonTapped() {
-        registerButton.isHidden = true
-        registerActivityIndicator.startAnimating()
-
-        let request = RegistrationRequest(
-            username: usernameTextField.text,
-            password: passwordTextField.text
-        )
-
-        serviceScheduler.schedule { [weak self] in
-            switch self?.registrationService.register(with: request) {
-            case .success:
-                self?.onRegister()
-            case .failure(let error):
-                self?.onError(error)
-            case .none:
-                break
-            }
-
-            self?.uiScheduler.schedule {
-                self?.registerButton.isHidden = false
-                self?.registerActivityIndicator.stopAnimating()
-            }
-        }
+        delegate?.onRegisterButtonTapped()
     }
 }
 
