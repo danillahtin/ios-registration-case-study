@@ -22,6 +22,7 @@ extension DispatchQueue: Scheduler {
 final class RegistrationViewController: UIViewController {
     typealias TextFieldFactory = () -> UITextField
     typealias TapGestureRecognizerFactory = (_ target: Any?, _ action: Selector?) -> UITapGestureRecognizer
+    typealias OnRegisterBlock = () -> ()
 
     weak var usernameTextField: UITextField!
     weak var passwordTextField: UITextField!
@@ -33,19 +34,22 @@ final class RegistrationViewController: UIViewController {
     private let registrationService: RegistrationService
     private let uiScheduler: Scheduler
     private let serviceScheduler: Scheduler
+    private let onRegister: OnRegisterBlock
 
     init(
         textFieldFactory: @escaping TextFieldFactory = UITextField.init,
         tapGestureRecognizerFactory: @escaping TapGestureRecognizerFactory = UITapGestureRecognizer.init,
         registrationService: RegistrationService,
         uiScheduler: Scheduler,
-        serviceScheduler: Scheduler
+        serviceScheduler: Scheduler,
+        onRegister: @escaping OnRegisterBlock
     ) {
         self.textFieldFactory = textFieldFactory
         self.tapGestureRecognizerFactory = tapGestureRecognizerFactory
         self.registrationService = registrationService
         self.uiScheduler = uiScheduler
         self.serviceScheduler = serviceScheduler
+        self.onRegister = onRegister
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -169,6 +173,8 @@ final class RegistrationViewController: UIViewController {
 
         serviceScheduler.schedule { [weak self] in
             _ = self?.registrationService.register(with: request)
+
+            self?.onRegister()
 
             self?.uiScheduler.schedule {
                 self?.registerButton.isHidden = false
@@ -475,6 +481,17 @@ final class IntegrationTests: XCTestCase {
         XCTAssertEqual(sut.isRegisterActivityIndicatorHidden, true)
     }
 
+    func test_whenRegistrationCompletesWithSuccess_thenOnRegisterIsCalled() {
+        let (sut, services) = makeSut()
+
+        sut.simulateRegistration()
+
+        XCTAssertEqual(services.onRegisterCallCount, 0)
+        services.completeRegistration(with: .success(()))
+
+        XCTAssertEqual(services.onRegisterCallCount, 1)
+    }
+
     // MARK: - Helpers
     private func makeSut(
         file: StaticString = #file,
@@ -486,7 +503,8 @@ final class IntegrationTests: XCTestCase {
             tapGestureRecognizerFactory: TapGestureRecognizerMock.init,
             registrationService: services,
             uiScheduler: services.uiScheduler,
-            serviceScheduler: services.servicesScheduler
+            serviceScheduler: services.servicesScheduler,
+            onRegister: services.onRegister
         )
 
         sut.loadViewIfNeeded()
@@ -647,5 +665,11 @@ private final class Services: RegistrationService {
     func completeRegistration(with result: Result<Void, Error>) {
         registrationResultStub = result
         performServiceWorks()
+    }
+
+    var onRegisterCallCount: Int = 0
+
+    func onRegister() {
+        onRegisterCallCount += 1
     }
 }
