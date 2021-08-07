@@ -84,6 +84,7 @@ final class RegistrationViewController: UIViewController {
     @objc
     func onCancelButtonTapped() {
         usernameTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
     }
 
     @objc
@@ -247,6 +248,16 @@ final class IntegrationTests: XCTestCase {
         XCTAssertEqual(sut.isPasswordActiveInput, true)
     }
 
+    func test_givenPasswordIsActive_whenToolbarCancelButtonTapped_thenPasswordIsNotActiveInput() {
+        let sut = makeSut()
+
+        sut.simulatePasswordIsActiveInput()
+        XCTAssertEqual(sut.isPasswordActiveInput, true)
+
+        sut.simulatePasswordToolbarCancelButtonTapped()
+        XCTAssertEqual(sut.isPasswordActiveInput, false)
+    }
+
     // MARK: - Helpers
     private func makeSut() -> RegistrationViewController {
         let sut = RegistrationViewController(textFieldFactory: TextFieldMock.init)
@@ -317,11 +328,15 @@ private extension RegistrationViewController {
     }
 
     var usernameTextFieldCancelButton: UIBarButtonItem! {
-        usernameTextField.toolbarItems?.first(where: { $0.title?.lowercased() == "cancel" })
+        usernameTextField.toolbarItems?.first
     }
 
     var usernameTextFieldNextButton: UIBarButtonItem! {
-        usernameTextField.toolbarItems?.first(where: { $0.title?.lowercased() == "next" })
+        usernameTextField.toolbarItems?.last
+    }
+
+    var passwordTextFieldCancelButton: UIBarButtonItem! {
+        passwordTextField.toolbarItems?.first
     }
 
     func simulateUsernameInput(_ username: String) {
@@ -348,6 +363,14 @@ private extension RegistrationViewController {
 
     func simulateUsernameToolbarNextButtonTapped() {
         usernameTextFieldNextButton.simulateTap()
+    }
+
+    func simulatePasswordIsActiveInput() {
+        passwordTextField.becomeFirstResponder()
+    }
+
+    func simulatePasswordToolbarCancelButtonTapped() {
+        passwordTextFieldCancelButton.simulateTap()
     }
 }
 
