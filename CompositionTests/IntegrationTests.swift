@@ -151,6 +151,7 @@ final class RegistrationViewController: UIViewController {
     @objc
     private func onPasswordDoneButtonTapped() {
         passwordTextField.resignFirstResponder()
+        onRegisterButtonTapped()
     }
 
     @objc
@@ -346,7 +347,7 @@ final class IntegrationTests: XCTestCase {
         sut.simulatePasswordIsActiveInput()
         XCTAssertEqual(sut.isPasswordActiveInput, true)
 
-        sut.simulatePasswordToolbarNextButtonTapped()
+        sut.simulatePasswordToolbarDoneButtonTapped()
         XCTAssertEqual(sut.isPasswordActiveInput, false)
     }
 
@@ -409,6 +410,18 @@ final class IntegrationTests: XCTestCase {
         XCTAssertEqual(services.requests, [])
 
         services.performScheduledWorks()
+        XCTAssertEqual(services.requests, [makeRequest(username: "some username", password: "some password")])
+    }
+
+    func test_givenPasswordIsActive_whenToolbarDoneButtonTapped_thenRegistrationIsRequestedWithUsernameAndPassword() {
+        let (sut, services) = makeSut()
+
+        sut.simulateUsernameInput("some username")
+        sut.simulatePasswordInput("some password")
+        sut.simulatePasswordIsActiveInput()
+        sut.simulatePasswordToolbarDoneButtonTapped()
+        services.performScheduledWorks()
+
         XCTAssertEqual(services.requests, [makeRequest(username: "some username", password: "some password")])
     }
 
@@ -525,7 +538,7 @@ private extension RegistrationViewController {
         passwordTextFieldCancelButton.simulateTap()
     }
 
-    func simulatePasswordToolbarNextButtonTapped() {
+    func simulatePasswordToolbarDoneButtonTapped() {
         passwordTextFieldDoneButton.simulateTap()
     }
 
