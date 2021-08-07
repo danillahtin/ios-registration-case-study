@@ -8,6 +8,7 @@
 import XCTest
 import UIKit
 import Core
+import Presentation
 import Composition
 
 final class Weak<Object: AnyObject> {
@@ -16,41 +17,6 @@ final class Weak<Object: AnyObject> {
     init(_ object: Object? = nil) {
         self.object = object
     }
-}
-
-struct LoadingViewModel {
-    let isLoading: Bool
-}
-
-protocol LoadingView {
-    func display(viewModel: LoadingViewModel)
-}
-
-struct ButtonViewModel {
-    let title: String?
-    let isEnabled: Bool
-}
-
-protocol ButtonView {
-    func display(viewModel: ButtonViewModel)
-}
-
-struct TitleViewModel {
-    let title: String
-}
-
-protocol TitleView {
-    func display(viewModel: TitleViewModel)
-}
-
-struct RegistrationViewModel {
-    let cancelTitle: String
-    let nextTitle: String
-    let doneTitle: String
-}
-
-protocol RegistrationView {
-    func display(viewModel: RegistrationViewModel)
 }
 
 extension Weak: LoadingView where Object: LoadingView {
@@ -74,53 +40,6 @@ extension Weak: TitleView where Object: TitleView {
 extension Weak: RegistrationView where Object: RegistrationView {
     func display(viewModel: RegistrationViewModel) {
         object?.display(viewModel: viewModel)
-    }
-}
-
-final class RegistrationViewPresenter {
-    private let loadingView: LoadingView
-    private let buttonView: ButtonView
-    private let titleView: TitleView
-    private let registrationView: RegistrationView
-
-    var buttonTitle: String { "Register" }
-
-    init(
-        loadingView: LoadingView,
-        buttonView: ButtonView,
-        titleView: TitleView,
-        registrationView: RegistrationView
-    ) {
-        self.loadingView = loadingView
-        self.buttonView = buttonView
-        self.titleView = titleView
-        self.registrationView = registrationView
-    }
-
-    func didLoadView() {
-        loadingView.display(viewModel: .init(isLoading: false))
-        titleView.display(viewModel: .init(title: "Registration"))
-        registrationView.display(viewModel: .init(cancelTitle: "Cancel", nextTitle: "Next", doneTitle: "Done"))
-    }
-
-    func didUpdate(username: String?, password: String?) {
-        let isUsernameEmpty = username?.isEmpty ?? true
-        let isPasswordEmpty = password?.isEmpty ?? true
-
-        buttonView.display(
-            viewModel: .init(
-                title: buttonTitle,
-                isEnabled: !isUsernameEmpty && !isPasswordEmpty
-            )
-        )
-    }
-
-    func didStartRegistration() {
-        loadingView.display(viewModel: .init(isLoading: true))
-    }
-
-    func didFinishRegistration() {
-        loadingView.display(viewModel: .init(isLoading: false))
     }
 }
 

@@ -20,6 +20,7 @@
 		8BD163C226BF2BA000C2E126 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD163BE26BF2B6100C2E126 /* Core.framework */; };
 		8BD163C826BF2CF500C2E126 /* XCTestCase+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163C726BF2CF500C2E126 /* XCTestCase+Helpers.swift */; };
 		8BD163CA26BF4D3900C2E126 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163C926BF4D3900C2E126 /* Scheduler.swift */; };
+		8BD163DE26BF4EAF00C2E126 /* Presentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD163DD26BF4EAF00C2E126 /* Presentation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,8 @@
 		8BD163C526BF2BE800C2E126 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BD163C726BF2CF500C2E126 /* XCTestCase+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Helpers.swift"; sourceTree = "<group>"; };
 		8BD163C926BF4D3900C2E126 /* Scheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
+		8BD163DB26BF4EA200C2E126 /* Presentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Presentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BD163DD26BF4EAF00C2E126 /* Presentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Presentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BD163DE26BF4EAF00C2E126 /* Presentation.framework in Frameworks */,
 				8BD163C226BF2BA000C2E126 /* Core.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -173,6 +177,8 @@
 		8BD163BD26BF2B6100C2E126 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8BD163DD26BF4EAF00C2E126 /* Presentation.framework */,
+				8BD163DB26BF4EA200C2E126 /* Presentation.framework */,
 				8BD163C526BF2BE800C2E126 /* Core.framework */,
 				8BD163BE26BF2B6100C2E126 /* Core.framework */,
 			);
