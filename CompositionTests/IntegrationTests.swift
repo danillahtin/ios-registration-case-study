@@ -87,6 +87,7 @@ final class RegistrationViewController: UIViewController {
         let button = UIButton()
         button.setTitle("Register", for: .normal)
         button.isEnabled = false
+        button.addTarget(self, action: #selector(onRegisterButtonTapped), for: .touchUpInside)
 
         return button
     }
@@ -122,6 +123,11 @@ final class RegistrationViewController: UIViewController {
     @objc
     func onPasswordDoneButtonTapped() {
         passwordTextField.resignFirstResponder()
+    }
+
+    @objc
+    func onRegisterButtonTapped() {
+        registerButton.isHidden = true
     }
 }
 
@@ -308,6 +314,14 @@ final class IntegrationTests: XCTestCase {
         XCTAssertEqual(sut.isUsernameActiveInput, false)
     }
 
+    func test_givenRegisterButtonTapped_thenRegisterButtonIsHidden() {
+        let sut = makeSut()
+
+        sut.simulateRegisterButtonTapped()
+
+        XCTAssertEqual(sut.isRegisterButtonHidden, true)
+    }
+
     // MARK: - Helpers
     private func makeSut() -> RegistrationViewController {
         let sut = RegistrationViewController(
@@ -412,5 +426,9 @@ private extension RegistrationViewController {
         view.gestureRecognizers?
             .compactMap({ $0 as? TapGestureRecognizerMock })
             .forEach { $0.simulateTap() }
+    }
+
+    func simulateRegisterButtonTapped() {
+        registerButton.simulateTap()
     }
 }

@@ -26,3 +26,9 @@ extension UIControl {
         perform(for: event) { $0.perform($1) }
     }
 }
+
+extension UIButton {
+    func simulateTap() {
+        simulate(event: .touchUpInside)
+    }
+}
