@@ -39,6 +39,7 @@ final class RegistrationViewController: UIViewController {
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
             UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(onUsernameNextButtonTapped)),
         ])
+        usernameTextField.returnKeyType = .next
         let passwordTextField = textFieldFactory()
         passwordTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         passwordTextField.isSecureTextEntry = true
@@ -123,6 +124,12 @@ final class IntegrationTests: XCTestCase {
         let sut = makeSut()
 
         XCTAssertEqual(sut.registerButtonTitle, "Register")
+    }
+
+    func test_loadView_displaysCorrectUsernameReturnButton() {
+        let sut = makeSut()
+
+        XCTAssertEqual(sut.usernameTextField.returnKeyType, .next)
     }
 
     func test_passwordInput_isSecure() {
