@@ -233,13 +233,16 @@ private extension RegistrationViewController {
     }
 
     var usernameTextFieldCancelButton: UIBarButtonItem! {
-        let toolbar = usernameTextField.inputAccessoryView as? UIToolbar
-        return toolbar?.items?.first(where: { $0.title?.lowercased() == "cancel" })
+        toolbarItem(for: usernameTextField) { $0.title?.lowercased() == "cancel" }
     }
 
     var usernameTextFieldNextButton: UIBarButtonItem! {
-        let toolbar = usernameTextField.inputAccessoryView as? UIToolbar
-        return toolbar?.items?.first(where: { $0.title?.lowercased() == "next" })
+        toolbarItem(for: usernameTextField) { $0.title?.lowercased() == "next" }
+    }
+
+    private func toolbarItem(for view: UIView, where predicate: (UIBarButtonItem) -> Bool) -> UIBarButtonItem? {
+        let toolbar = view.inputAccessoryView as? UIToolbar
+        return toolbar?.items?.first(where: predicate)
     }
 
     func simulateUsernameInput(_ username: String) {
