@@ -132,6 +132,12 @@ final class IntegrationTests: XCTestCase {
         XCTAssertEqual(sut.usernameTextField.returnKeyType, .next)
     }
 
+    func test_loadView_displaysCorrectUsernameFirstButtonTitle() {
+        let sut = makeSut()
+
+        XCTAssertEqual(sut.usernameTextField.toolbarItems?.first?.title, "Cancel")
+    }
+
     func test_passwordInput_isSecure() {
         let sut = makeSut()
 
@@ -281,16 +287,11 @@ private extension RegistrationViewController {
     }
 
     var usernameTextFieldCancelButton: UIBarButtonItem! {
-        toolbarItem(for: usernameTextField) { $0.title?.lowercased() == "cancel" }
+        usernameTextField.toolbarItems?.first(where: { $0.title?.lowercased() == "cancel" })
     }
 
     var usernameTextFieldNextButton: UIBarButtonItem! {
-        toolbarItem(for: usernameTextField) { $0.title?.lowercased() == "next" }
-    }
-
-    private func toolbarItem(for view: UIView, where predicate: (UIBarButtonItem) -> Bool) -> UIBarButtonItem? {
-        let toolbar = view.inputAccessoryView as? UIToolbar
-        return toolbar?.items?.first(where: predicate)
+        usernameTextField.toolbarItems?.first(where: { $0.title?.lowercased() == "next" })
     }
 
     func simulateUsernameInput(_ username: String) {
@@ -317,6 +318,13 @@ private extension RegistrationViewController {
 
     func simulateUsernameToolbarNextButtonTapped() {
         usernameTextFieldNextButton.simulateTap()
+    }
+}
+
+extension UIView {
+    var toolbarItems: [UIBarButtonItem]? {
+        let toolbar = inputAccessoryView as? UIToolbar
+        return toolbar?.items
     }
 }
 
