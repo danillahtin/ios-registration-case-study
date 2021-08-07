@@ -529,6 +529,16 @@ final class IntegrationTests: XCTestCase {
         XCTAssertEqual(services.onRegisterCallCount, 1)
     }
 
+    func test_whenRegistrationCompletesWithSuccess_thenOnErrorIsNotCalled() {
+        let (sut, services) = makeSut()
+
+        sut.simulateRegistration()
+        XCTAssertEqual(services.retrievedErrors, [])
+
+        services.completeRegistration(with: .success(()))
+        XCTAssertEqual(services.retrievedErrors, [])
+    }
+
     // MARK: - Helpers
     private func makeSut(
         file: StaticString = #file,
