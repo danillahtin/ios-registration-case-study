@@ -9,6 +9,7 @@ import XCTest
 import UIKit
 import Core
 import Presentation
+import UI
 import Composition
 
 final class Weak<Object: AnyObject> {
@@ -43,48 +44,10 @@ extension Weak: RegistrationView where Object: RegistrationView {
     }
 }
 
-extension RegistrationViewController: LoadingView {
-    func display(viewModel: LoadingViewModel) {
-        if viewModel.isLoading {
-            registerActivityIndicator.startAnimating()
-            registerButton.isHidden = true
-        } else {
-            registerActivityIndicator.stopAnimating()
-            registerButton.isHidden = false
-        }
-    }
-}
-
-extension RegistrationViewController: ButtonView {
-    func display(viewModel: ButtonViewModel) {
-        registerButton.setTitle(viewModel.title, for: .normal)
-        registerButton.isEnabled = viewModel.isEnabled
-    }
-}
-
-extension RegistrationViewController: TitleView {
-    func display(viewModel: TitleViewModel) {
-        title = viewModel.title
-    }
-}
-
-extension RegistrationViewController: RegistrationView {
-    func display(viewModel: RegistrationViewModel) {
-        usernameTextField.inputAccessoryView = makeToolbar(items: [
-            UIBarButtonItem(title: viewModel.cancelTitle, style: .plain, target: self, action: #selector(onCancelButtonTapped)),
-            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            UIBarButtonItem(title: viewModel.nextTitle, style: .plain, target: self, action: #selector(onUsernameNextButtonTapped)),
-        ])
-
-        passwordTextField.inputAccessoryView = makeToolbar(items: [
-            UIBarButtonItem(title: viewModel.cancelTitle, style: .plain, target: self, action: #selector(onCancelButtonTapped)),
-            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            UIBarButtonItem(title: viewModel.doneTitle, style: .plain, target: self, action: #selector(onPasswordDoneButtonTapped)),
-        ])
-    }
-}
-
 enum RegistrationViewComposer {
+    typealias OnRegisterBlock = () -> ()
+    typealias OnErrorBlock = (Error) -> ()
+
     private final class Adapter: RegistrationViewControllerDelegate {
         private let registrationService: RegistrationService
         private let uiScheduler: Scheduler
@@ -144,8 +107,8 @@ enum RegistrationViewComposer {
         registrationService: RegistrationService,
         uiScheduler: Scheduler = DispatchQueue.main,
         serviceScheduler: Scheduler,
-        onRegister: @escaping RegistrationViewController.OnRegisterBlock,
-        onError: @escaping RegistrationViewController.OnErrorBlock
+        onRegister: @escaping OnRegisterBlock,
+        onError: @escaping OnErrorBlock
     ) -> RegistrationViewController {
         let adapter = Adapter(
             registrationService: registrationService,
@@ -169,154 +132,6 @@ enum RegistrationViewComposer {
         )
 
         return vc
-    }
-}
-
-protocol RegistrationViewControllerDelegate {
-    func onViewDidLoad()
-    func onRegisterButtonTapped()
-    func didUpdate(username: String?, password: String?)
-}
-
-final class RegistrationViewController: UIViewController {
-    typealias TextFieldFactory = () -> UITextField
-    typealias TapGestureRecognizerFactory = (_ target: Any?, _ action: Selector?) -> UITapGestureRecognizer
-    typealias OnRegisterBlock = () -> ()
-    typealias OnErrorBlock = (Error) -> ()
-
-    weak var usernameTextField: UITextField!
-    weak var passwordTextField: UITextField!
-    weak var registerButton: UIButton!
-    weak var registerActivityIndicator: UIActivityIndicatorView!
-
-    private let textFieldFactory: TextFieldFactory
-    private let tapGestureRecognizerFactory: TapGestureRecognizerFactory
-    private let delegate: RegistrationViewControllerDelegate?
-
-    init(
-        textFieldFactory: @escaping TextFieldFactory = UITextField.init,
-        tapGestureRecognizerFactory: @escaping TapGestureRecognizerFactory = UITapGestureRecognizer.init,
-        delegate: RegistrationViewControllerDelegate
-    ) {
-        self.textFieldFactory = textFieldFactory
-        self.tapGestureRecognizerFactory = tapGestureRecognizerFactory
-        self.delegate = delegate
-
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    override func loadView() {
-        let view = UIView()
-
-        let usernameTextField = makeUsernameTextField()
-        let passwordTextField = makePasswordTextField()
-        let registerButton = makeRegisterButton()
-        let registerActivityIndicator = makeRegisterActivityIndicator()
-        let cancelInputTapRecognizer = tapGestureRecognizerFactory(self, #selector(onCancelButtonTapped))
-
-        view.addSubview(usernameTextField)
-        view.addSubview(passwordTextField)
-        view.addSubview(registerButton)
-        view.addSubview(registerActivityIndicator)
-        view.addGestureRecognizer(cancelInputTapRecognizer)
-
-        self.usernameTextField = usernameTextField
-        self.passwordTextField = passwordTextField
-        self.registerButton = registerButton
-        self.registerActivityIndicator = registerActivityIndicator
-        self.view = view
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        delegate?.onViewDidLoad()
-        notifyTextFieldUpdated()
-    }
-
-    private func makeUsernameTextField() -> UITextField {
-        let textField = textFieldFactory()
-        textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        textField.delegate = self
-        textField.returnKeyType = .next
-
-        return textField
-    }
-
-    private func makePasswordTextField() -> UITextField {
-        let textField = textFieldFactory()
-        textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        textField.isSecureTextEntry = true
-        textField.returnKeyType = .done
-
-        return textField
-    }
-
-    private func makeRegisterButton() -> UIButton {
-        let button = UIButton()
-        button.addTarget(self, action: #selector(onRegisterButtonTapped), for: .touchUpInside)
-
-        return button
-    }
-
-    private func makeRegisterActivityIndicator() -> UIActivityIndicatorView {
-        let activityIndicator = UIActivityIndicatorView(style: .medium)
-        activityIndicator.hidesWhenStopped = true
-
-        return activityIndicator
-    }
-
-    private func makeToolbar(items: [UIBarButtonItem]) -> UIToolbar {
-        let toolbar = UIToolbar()
-        toolbar.items = items
-        toolbar.sizeToFit()
-
-        return toolbar
-    }
-
-    @objc
-    private func textFieldDidChange(_ textField: UITextField) {
-        notifyTextFieldUpdated()
-    }
-
-    private func notifyTextFieldUpdated() {
-        delegate?.didUpdate(username: usernameTextField.text, password: passwordTextField.text)
-    }
-
-    @objc
-    private func onCancelButtonTapped() {
-        usernameTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
-    }
-
-    @objc
-    private func onUsernameNextButtonTapped() {
-        usernameTextField.resignFirstResponder()
-        passwordTextField.becomeFirstResponder()
-    }
-
-    @objc
-    private func onPasswordDoneButtonTapped() {
-        passwordTextField.resignFirstResponder()
-        onRegisterButtonTapped()
-    }
-
-    @objc
-    private func onRegisterButtonTapped() {
-        delegate?.onRegisterButtonTapped()
-    }
-}
-
-extension RegistrationViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-
-        return true
     }
 }
 
