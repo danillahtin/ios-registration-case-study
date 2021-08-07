@@ -8,16 +8,7 @@
 import XCTest
 import UIKit
 import Core
-
-protocol Scheduler {
-    func schedule(_ work: @escaping () -> ())
-}
-
-extension DispatchQueue: Scheduler {
-    func schedule(_ work: @escaping () -> ()) {
-        async(execute: work)
-    }
-}
+import Composition
 
 final class Weak<Object: AnyObject> {
     weak var object: Object?
