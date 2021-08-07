@@ -156,6 +156,7 @@ final class RegistrationViewController: UIViewController {
     @objc
     private func onRegisterButtonTapped() {
         registerButton.isHidden = true
+        registerActivityIndicator.startAnimating()
 
         let request = RegistrationRequest(
             username: usernameTextField.text,
@@ -364,6 +365,14 @@ final class IntegrationTests: XCTestCase {
         sut.simulateRegisterButtonTapped()
 
         XCTAssertEqual(sut.isRegisterButtonHidden, true)
+    }
+
+    func test_givenRegisterButtonTapped_thenRegisterActivityIndicatorIsNotHidden() {
+        let (sut, _) = makeSut()
+
+        sut.simulateRegisterButtonTapped()
+
+        XCTAssertEqual(sut.isRegisterActivityIndicatorHidden, false)
     }
 
     func test_givenRegisterButtonTapped_thenRegistrationIsRequestedWithUsernameAndPassword() {
