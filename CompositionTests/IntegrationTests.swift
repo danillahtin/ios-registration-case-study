@@ -464,6 +464,17 @@ final class IntegrationTests: XCTestCase {
         XCTAssertEqual(sut.isRegisterButtonHidden, false)
     }
 
+    func test_whenRegistrationCompletesWithSuccess_thenRegistrationActivityIndicatorIsHiddenIsScheduledOnUI() {
+        let (sut, services) = makeSut()
+
+        sut.simulateRegistration()
+        services.completeRegistration(with: .success(()))
+        XCTAssertEqual(sut.isRegisterActivityIndicatorHidden, false)
+
+        services.performUIWorks()
+        XCTAssertEqual(sut.isRegisterActivityIndicatorHidden, true)
+    }
+
     // MARK: - Helpers
     private func makeSut(
         file: StaticString = #file,
