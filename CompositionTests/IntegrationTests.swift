@@ -24,10 +24,18 @@ final class RegistrationViewController: UIViewController {
         self.usernameTextField = usernameTextField
         self.passwordTextField = passwordTextField
         self.view = view
+
+        self.title = "Registration"
     }
 }
 
 final class IntegrationTests: XCTestCase {
+    func test_loadView_setsCorrectTitle() {
+        let sut = makeSut()
+
+        XCTAssertEqual(sut.title, "Registration")
+    }
+
     func test_loadView_displaysEmptyUsername() {
         let sut = makeSut()
 
