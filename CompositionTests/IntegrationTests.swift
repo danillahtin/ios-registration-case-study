@@ -321,50 +321,6 @@ final class IntegrationTests: XCTestCase {
     }
 }
 
-private final class TextFieldMock: UITextField {
-    private var _isFirstResponder: Bool = false
-
-    override var isFirstResponder: Bool {
-        _isFirstResponder
-    }
-
-    @discardableResult
-    override func becomeFirstResponder() -> Bool {
-        guard canBecomeFirstResponder else { return false }
-
-        _isFirstResponder = true
-
-        return true
-    }
-
-    @discardableResult
-    override func resignFirstResponder() -> Bool {
-        guard isFirstResponder else { return false }
-
-        _isFirstResponder = false
-
-        return true
-    }
-}
-
-private final class TapGestureRecognizerMock: UITapGestureRecognizer {
-    private let target: NSObject?
-    private let action: Selector?
-
-    override init(target: Any?, action: Selector?) {
-        self.target = target as? NSObject
-        self.action = action
-
-        super.init(target: target, action: action)
-    }
-
-    func simulateTap() {
-        guard let action = action else { return }
-
-        target?.perform(action)
-    }
-}
-
 private extension RegistrationViewController {
     var username: String? {
         usernameTextField.text
@@ -456,38 +412,5 @@ private extension RegistrationViewController {
         view.gestureRecognizers?
             .compactMap({ $0 as? TapGestureRecognizerMock })
             .forEach { $0.simulateTap() }
-    }
-}
-
-extension UIView {
-    var toolbarItems: [UIBarButtonItem]? {
-        let toolbar = inputAccessoryView as? UIToolbar
-        return toolbar?.items
-    }
-}
-
-extension UIControl {
-    private func perform(for event: UIControl.Event, _ block: (NSObject, Selector) -> ()) {
-        allTargets.forEach { target in
-            actions(forTarget: target, forControlEvent: event)?.forEach { action in
-                block(target as NSObject, Selector(action))
-            }
-        }
-    }
-
-    func simulate(event: UIControl.Event, with argument: Any!) {
-        perform(for: event) {
-            $0.perform($1, with: argument)
-        }
-    }
-
-    func simulate(event: UIControl.Event) {
-        perform(for: event) { $0.perform($1) }
-    }
-}
-
-extension UIBarButtonItem {
-    func simulateTap() {
-        (target as! NSObject).perform(action!)
     }
 }
