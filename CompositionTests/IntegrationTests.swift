@@ -101,7 +101,7 @@ final class RegistrationViewController: UIViewController {
     }
 
     @objc
-    func textFieldDidChange(_ textField: UITextField) {
+    private func textFieldDidChange(_ textField: UITextField) {
         let isUsernameEmpty = usernameTextField.text?.isEmpty ?? true
         let isPasswordEmpty = passwordTextField.text?.isEmpty ?? true
 
@@ -109,24 +109,24 @@ final class RegistrationViewController: UIViewController {
     }
 
     @objc
-    func onCancelButtonTapped() {
+    private func onCancelButtonTapped() {
         usernameTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
     }
 
     @objc
-    func onUsernameNextButtonTapped() {
+    private func onUsernameNextButtonTapped() {
         usernameTextField.resignFirstResponder()
         passwordTextField.becomeFirstResponder()
     }
 
     @objc
-    func onPasswordDoneButtonTapped() {
+    private func onPasswordDoneButtonTapped() {
         passwordTextField.resignFirstResponder()
     }
 
     @objc
-    func onRegisterButtonTapped() {
+    private func onRegisterButtonTapped() {
         registerButton.isHidden = true
     }
 }
