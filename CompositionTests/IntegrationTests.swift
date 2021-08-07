@@ -172,6 +172,7 @@ final class RegistrationViewController: UIViewController {
 
             self?.uiScheduler.schedule {
                 self?.registerButton.isHidden = false
+                self?.registerActivityIndicator.stopAnimating()
             }
         }
 
@@ -439,6 +440,17 @@ final class IntegrationTests: XCTestCase {
 
         services.performUIWorks()
         XCTAssertEqual(sut.isRegisterButtonHidden, false)
+    }
+
+    func test_whenRegistrationCompletesWithFailure_thenRegistrationActivityIndicatorIsHiddenIsScheduledOnUI() {
+        let (sut, services) = makeSut()
+
+        sut.simulateRegistration()
+        services.completeRegistration(with: .failure(makeError()))
+        XCTAssertEqual(sut.isRegisterActivityIndicatorHidden, false)
+
+        services.performUIWorks()
+        XCTAssertEqual(sut.isRegisterActivityIndicatorHidden, true)
     }
 
     // MARK: - Helpers
