@@ -11,18 +11,22 @@ import UIKit
 final class RegistrationViewController: UIViewController {
     weak var usernameTextField: UITextField!
     weak var passwordTextField: UITextField!
+    weak var registerButton: UIButton!
 
     override func loadView() {
         let view = UIView()
 
         let usernameTextField = UITextField()
         let passwordTextField = UITextField()
+        let registerButton = UIButton()
 
         view.addSubview(usernameTextField)
         view.addSubview(passwordTextField)
+        view.addSubview(registerButton)
 
         self.usernameTextField = usernameTextField
         self.passwordTextField = passwordTextField
+        self.registerButton = registerButton
         self.view = view
 
         self.title = "Registration"
@@ -48,6 +52,12 @@ final class IntegrationTests: XCTestCase {
         XCTAssertEqual(sut.password, "")
     }
 
+    func test_loadView_displaysRegisterButton() {
+        let sut = makeSut()
+
+        XCTAssertEqual(sut.isRegisterButtonHidden, false)
+    }
+
     // MARK: - Helpers
     private func makeSut() -> RegistrationViewController {
         let sut = RegistrationViewController()
@@ -65,5 +75,9 @@ private extension RegistrationViewController {
 
     var password: String? {
         passwordTextField.text
+    }
+
+    var isRegisterButtonHidden: Bool {
+        registerButton.isHidden
     }
 }
