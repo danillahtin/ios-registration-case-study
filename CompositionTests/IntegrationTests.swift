@@ -9,6 +9,16 @@ import XCTest
 import UIKit
 import Core
 
+protocol Scheduler {
+    func schedule(_ work: @escaping () -> ())
+}
+
+extension DispatchQueue: Scheduler {
+    func schedule(_ work: @escaping () -> ()) {
+        async(execute: work)
+    }
+}
+
 final class RegistrationViewController: UIViewController {
     typealias TextFieldFactory = () -> UITextField
     typealias TapGestureRecognizerFactory = (_ target: Any?, _ action: Selector?) -> UITapGestureRecognizer
@@ -20,15 +30,18 @@ final class RegistrationViewController: UIViewController {
     private let textFieldFactory: TextFieldFactory
     private let tapGestureRecognizerFactory: TapGestureRecognizerFactory
     private let registrationService: RegistrationService
+    private let serviceScheduler: Scheduler
 
     init(
         textFieldFactory: @escaping TextFieldFactory = UITextField.init,
         tapGestureRecognizerFactory: @escaping TapGestureRecognizerFactory = UITapGestureRecognizer.init,
-        registrationService: RegistrationService
+        registrationService: RegistrationService,
+        serviceScheduler: Scheduler
     ) {
         self.textFieldFactory = textFieldFactory
         self.tapGestureRecognizerFactory = tapGestureRecognizerFactory
         self.registrationService = registrationService
+        self.serviceScheduler = serviceScheduler
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -138,7 +151,10 @@ final class RegistrationViewController: UIViewController {
             password: passwordTextField.text
         )
 
-        _ = registrationService.register(with: request)
+        serviceScheduler.schedule { [weak self] in
+            _ = self?.registrationService.register(with: request)
+        }
+
     }
 }
 
@@ -337,15 +353,29 @@ final class IntegrationTests: XCTestCase {
         let (sut, services) = makeSut()
 
         sut.simulateRegisterButtonTapped()
+        services.performScheduledWorks()
         XCTAssertEqual(services.requests, [makeRequest(username: "", password: "")])
 
         sut.simulateUsernameInput("some username")
         sut.simulatePasswordInput("some password")
         sut.simulateRegisterButtonTapped()
+        services.performScheduledWorks()
         XCTAssertEqual(services.requests, [
             makeRequest(username: "", password: ""),
             makeRequest(username: "some username", password: "some password"),
         ])
+    }
+
+    func test_givenRegisterButtonTapped_thenRegistrationIsScheduled() {
+        let (sut, services) = makeSut()
+
+        sut.simulateUsernameInput("some username")
+        sut.simulatePasswordInput("some password")
+        sut.simulateRegisterButtonTapped()
+        XCTAssertEqual(services.requests, [])
+
+        services.performScheduledWorks()
+        XCTAssertEqual(services.requests, [makeRequest(username: "some username", password: "some password")])
     }
 
     // MARK: - Helpers
@@ -357,7 +387,8 @@ final class IntegrationTests: XCTestCase {
         let sut = RegistrationViewController(
             textFieldFactory: TextFieldMock.init,
             tapGestureRecognizerFactory: TapGestureRecognizerMock.init,
-            registrationService: services
+            registrationService: services,
+            serviceScheduler: services
         )
 
         sut.loadViewIfNeeded()
@@ -471,12 +502,23 @@ private extension RegistrationViewController {
     }
 }
 
-private final class Services: RegistrationService {
+private final class Services: RegistrationService, Scheduler {
     private(set) var requests: [RegistrationRequest] = []
 
     func register(with request: RegistrationRequest) -> Result<Void, Error> {
         requests.append(request)
 
         return .success(())
+    }
+
+    private var works: [() -> ()] = []
+
+    func schedule(_ work: @escaping () -> ()) {
+        works.append(work)
+    }
+
+    func performScheduledWorks() {
+        works.forEach({ $0() })
+        works = []
     }
 }
