@@ -19,13 +19,16 @@ final class RegistrationViewController: UIViewController {
 
     private let textFieldFactory: TextFieldFactory
     private let tapGestureRecognizerFactory: TapGestureRecognizerFactory
+    private let registrationService: RegistrationService
 
     init(
         textFieldFactory: @escaping TextFieldFactory = UITextField.init,
-        tapGestureRecognizerFactory: @escaping TapGestureRecognizerFactory = UITapGestureRecognizer.init
+        tapGestureRecognizerFactory: @escaping TapGestureRecognizerFactory = UITapGestureRecognizer.init,
+        registrationService: RegistrationService
     ) {
         self.textFieldFactory = textFieldFactory
         self.tapGestureRecognizerFactory = tapGestureRecognizerFactory
+        self.registrationService = registrationService
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -129,6 +132,13 @@ final class RegistrationViewController: UIViewController {
     @objc
     private func onRegisterButtonTapped() {
         registerButton.isHidden = true
+
+        let request = RegistrationRequest(
+            username: usernameTextField.text,
+            password: passwordTextField.text
+        )
+
+        _ = registrationService.register(with: request)
     }
 }
 
@@ -323,6 +333,21 @@ final class IntegrationTests: XCTestCase {
         XCTAssertEqual(sut.isRegisterButtonHidden, true)
     }
 
+    func test_givenRegisterButtonTapped_thenRegistrationIsRequestedWithUsernameAndPassword() {
+        let (sut, services) = makeSut()
+
+        sut.simulateRegisterButtonTapped()
+        XCTAssertEqual(services.requests, [makeRequest(username: "", password: "")])
+
+        sut.simulateUsernameInput("some username")
+        sut.simulatePasswordInput("some password")
+        sut.simulateRegisterButtonTapped()
+        XCTAssertEqual(services.requests, [
+            makeRequest(username: "", password: ""),
+            makeRequest(username: "some username", password: "some password"),
+        ])
+    }
+
     // MARK: - Helpers
     private func makeSut(
         file: StaticString = #file,
@@ -331,7 +356,8 @@ final class IntegrationTests: XCTestCase {
         let services = Services()
         let sut = RegistrationViewController(
             textFieldFactory: TextFieldMock.init,
-            tapGestureRecognizerFactory: TapGestureRecognizerMock.init
+            tapGestureRecognizerFactory: TapGestureRecognizerMock.init,
+            registrationService: services
         )
 
         sut.loadViewIfNeeded()
@@ -340,6 +366,10 @@ final class IntegrationTests: XCTestCase {
         trackForMemoryLeaks(services, file: file, line: line)
 
         return (sut, services)
+    }
+
+    private func makeRequest(username: String?, password: String?) -> RegistrationRequest {
+        .init(username: username, password: password)
     }
 }
 
