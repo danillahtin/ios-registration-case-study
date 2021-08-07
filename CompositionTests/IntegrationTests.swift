@@ -26,6 +26,7 @@ final class RegistrationViewController: UIViewController {
     weak var usernameTextField: UITextField!
     weak var passwordTextField: UITextField!
     weak var registerButton: UIButton!
+    weak var registerActivityIndicator: UIActivityIndicatorView!
 
     private let textFieldFactory: TextFieldFactory
     private let tapGestureRecognizerFactory: TapGestureRecognizerFactory
@@ -57,16 +58,19 @@ final class RegistrationViewController: UIViewController {
         let usernameTextField = makeUsernameTextField()
         let passwordTextField = makePasswordTextField()
         let registerButton = makeRegisterButton()
+        let registerActivityIndicator = makeRegisterActivityIndicator()
         let cancelInputTapRecognizer = tapGestureRecognizerFactory(self, #selector(onCancelButtonTapped))
 
         view.addSubview(usernameTextField)
         view.addSubview(passwordTextField)
         view.addSubview(registerButton)
+        view.addSubview(registerActivityIndicator)
         view.addGestureRecognizer(cancelInputTapRecognizer)
 
         self.usernameTextField = usernameTextField
         self.passwordTextField = passwordTextField
         self.registerButton = registerButton
+        self.registerActivityIndicator = registerActivityIndicator
         self.view = view
 
         self.title = "Registration"
@@ -107,6 +111,13 @@ final class RegistrationViewController: UIViewController {
         button.addTarget(self, action: #selector(onRegisterButtonTapped), for: .touchUpInside)
 
         return button
+    }
+
+    private func makeRegisterActivityIndicator() -> UIActivityIndicatorView {
+        let activityIndicator = UIActivityIndicatorView(style: .medium)
+        activityIndicator.hidesWhenStopped = true
+
+        return activityIndicator
     }
 
     private func makeToolbar(items: [UIBarButtonItem]) -> UIToolbar {
@@ -231,6 +242,12 @@ final class IntegrationTests: XCTestCase {
         let (sut, _) = makeSut()
 
         XCTAssertEqual(sut.passwordTextField.toolbarItems?.last?.title, "Done")
+    }
+
+    func test_loadView_hidesRegisterActivityIndicator() {
+        let (sut, _) = makeSut()
+
+        XCTAssertEqual(sut.isRegisterActivityIndicatorHidden, true)
     }
 
     func test_passwordInput_isSecure() {
@@ -451,6 +468,10 @@ private extension RegistrationViewController {
 
     var passwordTextFieldDoneButton: UIBarButtonItem! {
         passwordTextField.toolbarItems?.last
+    }
+
+    var isRegisterActivityIndicatorHidden: Bool {
+        registerActivityIndicator.isHidden
     }
 
     func simulateUsernameInput(_ username: String) {
