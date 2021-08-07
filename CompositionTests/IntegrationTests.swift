@@ -7,6 +7,7 @@
 
 import XCTest
 import UIKit
+import Core
 
 final class RegistrationViewController: UIViewController {
     typealias TextFieldFactory = () -> UITextField
@@ -141,79 +142,79 @@ extension RegistrationViewController: UITextFieldDelegate {
 
 final class IntegrationTests: XCTestCase {
     func test_loadView_setsCorrectTitle() {
-        let sut = makeSut()
+        let (sut, _) = makeSut()
 
         XCTAssertEqual(sut.title, "Registration")
     }
 
     func test_loadView_displaysEmptyUsername() {
-        let sut = makeSut()
+        let (sut, _) = makeSut()
 
         XCTAssertEqual(sut.username, "")
     }
 
     func test_loadView_displaysEmptyPassword() {
-        let sut = makeSut()
+        let (sut, _) = makeSut()
 
         XCTAssertEqual(sut.password, "")
     }
 
     func test_loadView_displaysRegisterButton() {
-        let sut = makeSut()
+        let (sut, _) = makeSut()
 
         XCTAssertEqual(sut.isRegisterButtonHidden, false)
     }
 
     func test_loadView_displaysCorrectRegisterButtonTitle() {
-        let sut = makeSut()
+        let (sut, _) = makeSut()
 
         XCTAssertEqual(sut.registerButtonTitle, "Register")
     }
 
     func test_loadView_displaysCorrectUsernameReturnButton() {
-        let sut = makeSut()
+        let (sut, _) = makeSut()
 
         XCTAssertEqual(sut.usernameTextField.returnKeyType, .next)
     }
 
     func test_loadView_displaysCorrectUsernameFirstButtonTitle() {
-        let sut = makeSut()
+        let (sut, _) = makeSut()
 
         XCTAssertEqual(sut.usernameTextField.toolbarItems?.first?.title, "Cancel")
     }
 
     func test_loadView_displaysCorrectUsernameLastButtonTitle() {
-        let sut = makeSut()
+        let (sut, _) = makeSut()
 
         XCTAssertEqual(sut.usernameTextField.toolbarItems?.last?.title, "Next")
     }
 
     func test_loadView_displaysCorrectPasswordReturnButton() {
-        let sut = makeSut()
+        let (sut, _) = makeSut()
 
         XCTAssertEqual(sut.passwordTextField.returnKeyType, .done)
     }
 
     func test_loadView_displaysCorrectPasswordFirstButtonTitle() {
-        let sut = makeSut()
+        let (sut, _) = makeSut()
 
         XCTAssertEqual(sut.passwordTextField.toolbarItems?.first?.title, "Cancel")
     }
 
     func test_loadView_displaysCorrectPasswordLastButtonTitle() {
-        let sut = makeSut()
+        let (sut, _) = makeSut()
 
         XCTAssertEqual(sut.passwordTextField.toolbarItems?.last?.title, "Done")
     }
 
     func test_passwordInput_isSecure() {
-        let sut = makeSut()
+        let (sut, _) = makeSut()
 
         XCTAssertEqual(sut.isPasswordInputSecure, true)
     }
 
     func test_givenUsernameIsEmpty_thenRegisterButtonIsDisabled() {
-        let sut = makeSut()
+        let (sut, _) = makeSut()
 
         sut.simulateUsernameInput("")
 
@@ -221,7 +222,7 @@ final class IntegrationTests: XCTestCase {
     }
 
     func test_givenPasswordIsEmpty_thenRegisterButtonIsDisabled() {
-        let sut = makeSut()
+        let (sut, _) = makeSut()
 
         sut.simulatePasswordInput("")
 
@@ -229,7 +230,7 @@ final class IntegrationTests: XCTestCase {
     }
 
     func test_registerButtonEnabling() {
-        let sut = makeSut()
+        let (sut, _) = makeSut()
 
         XCTAssertEqual(sut.isRegisterButtonEnabled, false, "Expected register button to be disabled when both fields are empty")
 
@@ -247,7 +248,7 @@ final class IntegrationTests: XCTestCase {
     }
 
     func test_givenUsernameIsActive_whenReturnButtonTapped_thenUsernameIsNotActiveInput() {
-        let sut = makeSut()
+        let (sut, _) = makeSut()
 
         sut.simulateUsernameIsActiveInput()
         XCTAssertEqual(sut.isUsernameActiveInput, true)
@@ -257,7 +258,7 @@ final class IntegrationTests: XCTestCase {
     }
 
     func test_givenUsernameIsActive_whenToolbarCancelButtonTapped_thenUsernameIsNotActiveInput() {
-        let sut = makeSut()
+        let (sut, _) = makeSut()
 
         sut.simulateUsernameIsActiveInput()
         XCTAssertEqual(sut.isUsernameActiveInput, true)
@@ -267,7 +268,7 @@ final class IntegrationTests: XCTestCase {
     }
 
     func test_givenUsernameIsActive_whenToolbarNextButtonTapped_thenUsernameIsNotActiveInput() {
-        let sut = makeSut()
+        let (sut, _) = makeSut()
 
         sut.simulateUsernameIsActiveInput()
         XCTAssertEqual(sut.isUsernameActiveInput, true)
@@ -277,7 +278,7 @@ final class IntegrationTests: XCTestCase {
     }
 
     func test_givenUsernameIsActive_whenToolbarNextButtonTapped_thenPasswordIsActiveInput() {
-        let sut = makeSut()
+        let (sut, _) = makeSut()
 
         sut.simulateUsernameIsActiveInput()
         sut.simulateUsernameToolbarNextButtonTapped()
@@ -286,7 +287,7 @@ final class IntegrationTests: XCTestCase {
     }
 
     func test_givenPasswordIsActive_whenToolbarCancelButtonTapped_thenPasswordIsNotActiveInput() {
-        let sut = makeSut()
+        let (sut, _) = makeSut()
 
         sut.simulatePasswordIsActiveInput()
         XCTAssertEqual(sut.isPasswordActiveInput, true)
@@ -296,7 +297,7 @@ final class IntegrationTests: XCTestCase {
     }
 
     func test_givenPasswordIsActive_whenToolbarDoneButtonTapped_thenPasswordIsNotActiveInput() {
-        let sut = makeSut()
+        let (sut, _) = makeSut()
 
         sut.simulatePasswordIsActiveInput()
         XCTAssertEqual(sut.isPasswordActiveInput, true)
@@ -306,7 +307,7 @@ final class IntegrationTests: XCTestCase {
     }
 
     func test_givenUsernameIsActive_whenViewTapped_thenUsernameIsNotActiveInput() {
-        let sut = makeSut()
+        let (sut, _) = makeSut()
 
         sut.simulateUsernameIsActiveInput()
         sut.simulateViewTapped()
@@ -315,7 +316,7 @@ final class IntegrationTests: XCTestCase {
     }
 
     func test_givenRegisterButtonTapped_thenRegisterButtonIsHidden() {
-        let sut = makeSut()
+        let (sut, _) = makeSut()
 
         sut.simulateRegisterButtonTapped()
 
@@ -323,7 +324,8 @@ final class IntegrationTests: XCTestCase {
     }
 
     // MARK: - Helpers
-    private func makeSut() -> RegistrationViewController {
+    private func makeSut() -> (sut: RegistrationViewController, services: Services) {
+        let services = Services()
         let sut = RegistrationViewController(
             textFieldFactory: TextFieldMock.init,
             tapGestureRecognizerFactory: TapGestureRecognizerMock.init
@@ -331,7 +333,7 @@ final class IntegrationTests: XCTestCase {
 
         sut.loadViewIfNeeded()
 
-        return sut
+        return (sut, services)
     }
 }
 
@@ -430,5 +432,15 @@ private extension RegistrationViewController {
 
     func simulateRegisterButtonTapped() {
         registerButton.simulateTap()
+    }
+}
+
+private final class Services: RegistrationService {
+    private(set) var requests: [RegistrationRequest] = []
+
+    func register(with request: RegistrationRequest) -> Result<Void, Error> {
+        requests.append(request)
+
+        return .success(())
     }
 }
