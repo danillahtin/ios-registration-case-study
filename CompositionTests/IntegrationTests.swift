@@ -17,7 +17,9 @@ final class RegistrationViewController: UIViewController {
         let view = UIView()
 
         let usernameTextField = UITextField()
+        usernameTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         let passwordTextField = UITextField()
+        passwordTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         passwordTextField.isSecureTextEntry = true
         let registerButton = UIButton()
         registerButton.setTitle("Register", for: .normal)
@@ -33,6 +35,14 @@ final class RegistrationViewController: UIViewController {
         self.view = view
 
         self.title = "Registration"
+    }
+
+    @objc
+    func textFieldDidChange(_ textField: UITextField) {
+        let isUsernameEmpty = usernameTextField.text?.isEmpty ?? true
+        let isPasswordEmpty = passwordTextField.text?.isEmpty ?? true
+
+        registerButton.isEnabled = !isUsernameEmpty && !isPasswordEmpty
     }
 }
 
@@ -89,6 +99,24 @@ final class IntegrationTests: XCTestCase {
         XCTAssertEqual(sut.isRegisterButtonEnabled, false)
     }
 
+    func test_registerButtonEnabling() {
+        let sut = makeSut()
+
+        XCTAssertEqual(sut.isRegisterButtonEnabled, false, "Expected register button to be disabled when both fields are empty")
+
+        sut.simulatePasswordInput("some password")
+        XCTAssertEqual(sut.isRegisterButtonEnabled, false, "Expected register button to be disabled when username is empty")
+
+        sut.simulateUsernameInput("some username")
+        XCTAssertEqual(sut.isRegisterButtonEnabled, true, "Expected register button to be enabled when both fields are non empty")
+
+        sut.simulatePasswordInput("")
+        XCTAssertEqual(sut.isRegisterButtonEnabled, false, "Expected register button to be disabled when password is empty")
+
+        sut.simulatePasswordInput("another password")
+        XCTAssertEqual(sut.isRegisterButtonEnabled, true, "Expected register button to be enabled when both fields become non empty again")
+    }
+
     // MARK: - Helpers
     private func makeSut() -> RegistrationViewController {
         let sut = RegistrationViewController()
@@ -126,9 +154,31 @@ private extension RegistrationViewController {
 
     func simulateUsernameInput(_ username: String) {
         usernameTextField.text = username
+        usernameTextField.simulate(event: .editingChanged, with: usernameTextField)
     }
 
     func simulatePasswordInput(_ password: String) {
         passwordTextField.text = password
+        passwordTextField.simulate(event: .editingChanged, with: passwordTextField)
+    }
+}
+
+private extension UIControl {
+    private func perform(for event: UIControl.Event, _ block: (NSObject, Selector) -> ()) {
+        allTargets.forEach { target in
+            actions(forTarget: target, forControlEvent: event)?.forEach { action in
+                block(target as NSObject, Selector(action))
+            }
+        }
+    }
+
+    func simulate(event: UIControl.Event, with argument: Any!) {
+        perform(for: event) {
+            $0.perform($1, with: argument)
+        }
+    }
+
+    func simulate(event: UIControl.Event) {
+        perform(for: event) { $0.perform($1) }
     }
 }
