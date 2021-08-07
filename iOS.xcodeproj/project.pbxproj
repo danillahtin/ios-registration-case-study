@@ -10,7 +10,7 @@
 		8B75653B26BDEBEE00D2F90E /* UI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B75653126BDEBED00D2F90E /* UI.framework */; };
 		8B75654026BDEBEE00D2F90E /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75653F26BDEBEE00D2F90E /* UITests.swift */; };
 		8B75655926BDED0900D2F90E /* Composition.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B75655026BDED0900D2F90E /* Composition.framework */; };
-		8B75656826BDED2F00D2F90E /* IntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75656726BDED2F00D2F90E /* IntegrationTests.swift */; };
+		8B75656826BDED2F00D2F90E /* RegistrationViewComposerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75656726BDED2F00D2F90E /* RegistrationViewComposerTests.swift */; };
 		8BD163B426BF293800C2E126 /* UIBarButtonItem+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163B326BF293800C2E126 /* UIBarButtonItem+Helpers.swift */; };
 		8BD163B626BF294B00C2E126 /* UIControl+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163B526BF294B00C2E126 /* UIControl+Helpers.swift */; };
 		8BD163B826BF296800C2E126 /* UIView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163B726BF296800C2E126 /* UIView+Helpers.swift */; };
@@ -76,7 +76,7 @@
 		8B75655326BDED0900D2F90E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B75655826BDED0900D2F90E /* CompositionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CompositionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B75655F26BDED0900D2F90E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8B75656726BDED2F00D2F90E /* IntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationTests.swift; sourceTree = "<group>"; };
+		8B75656726BDED2F00D2F90E /* RegistrationViewComposerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewComposerTests.swift; sourceTree = "<group>"; };
 		8BD163B326BF293800C2E126 /* UIBarButtonItem+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Helpers.swift"; sourceTree = "<group>"; };
 		8BD163B526BF294B00C2E126 /* UIControl+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+Helpers.swift"; sourceTree = "<group>"; };
 		8BD163B726BF296800C2E126 /* UIView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Helpers.swift"; sourceTree = "<group>"; };
@@ -189,7 +189,7 @@
 			children = (
 				8BD163B226BF292000C2E126 /* Helpers */,
 				8B75655F26BDED0900D2F90E /* Info.plist */,
-				8B75656726BDED2F00D2F90E /* IntegrationTests.swift */,
+				8B75656726BDED2F00D2F90E /* RegistrationViewComposerTests.swift */,
 			);
 			path = CompositionTests;
 			sourceTree = "<group>";
@@ -422,7 +422,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BD163B426BF293800C2E126 /* UIBarButtonItem+Helpers.swift in Sources */,
-				8B75656826BDED2F00D2F90E /* IntegrationTests.swift in Sources */,
+				8B75656826BDED2F00D2F90E /* RegistrationViewComposerTests.swift in Sources */,
 				8BD163BA26BF298100C2E126 /* TapGestureRecognizerMock.swift in Sources */,
 				8BD163B826BF296800C2E126 /* UIView+Helpers.swift in Sources */,
 				8BD163B626BF294B00C2E126 /* UIControl+Helpers.swift in Sources */,

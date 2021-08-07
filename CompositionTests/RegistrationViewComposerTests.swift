@@ -1,5 +1,5 @@
 //
-//  IntegrationTests.swift
+//  RegistrationViewComposerTests.swift
 //  CompositionTests
 //
 //  Created by Danil Lahtin on 07.08.2021.
@@ -10,7 +10,7 @@ import Core
 import UI
 import Composition
 
-final class IntegrationTests: XCTestCase {
+final class RegistrationViewComposerTests: XCTestCase {
     func test_loadView_setsCorrectTitle() {
         let (sut, _) = makeSut()
 
