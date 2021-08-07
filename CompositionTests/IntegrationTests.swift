@@ -23,6 +23,7 @@ final class RegistrationViewController: UIViewController {
     typealias TextFieldFactory = () -> UITextField
     typealias TapGestureRecognizerFactory = (_ target: Any?, _ action: Selector?) -> UITapGestureRecognizer
     typealias OnRegisterBlock = () -> ()
+    typealias OnErrorBlock = (Error) -> ()
 
     weak var usernameTextField: UITextField!
     weak var passwordTextField: UITextField!
@@ -35,6 +36,7 @@ final class RegistrationViewController: UIViewController {
     private let uiScheduler: Scheduler
     private let serviceScheduler: Scheduler
     private let onRegister: OnRegisterBlock
+    private let onError: OnErrorBlock
 
     init(
         textFieldFactory: @escaping TextFieldFactory = UITextField.init,
@@ -42,7 +44,8 @@ final class RegistrationViewController: UIViewController {
         registrationService: RegistrationService,
         uiScheduler: Scheduler,
         serviceScheduler: Scheduler,
-        onRegister: @escaping OnRegisterBlock
+        onRegister: @escaping OnRegisterBlock,
+        onError: @escaping OnErrorBlock
     ) {
         self.textFieldFactory = textFieldFactory
         self.tapGestureRecognizerFactory = tapGestureRecognizerFactory
@@ -50,6 +53,7 @@ final class RegistrationViewController: UIViewController {
         self.uiScheduler = uiScheduler
         self.serviceScheduler = serviceScheduler
         self.onRegister = onRegister
+        self.onError = onError
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -175,8 +179,8 @@ final class RegistrationViewController: UIViewController {
             switch self?.registrationService.register(with: request) {
             case .success:
                 self?.onRegister()
-            case .failure:
-                break
+            case .failure(let error):
+                self?.onError(error)
             case .none:
                 break
             }
@@ -475,6 +479,23 @@ final class IntegrationTests: XCTestCase {
         XCTAssertEqual(services.onRegisterCallCount, 0)
     }
 
+    func test_whenRegistrationCompletesWithFailure_thenOnErrorIsCalled() {
+        let (sut, services) = makeSut()
+
+        sut.simulateRegistration()
+        XCTAssertEqual(services.retrievedErrors, [])
+
+        services.completeRegistration(with: .failure(makeError("some error")))
+        XCTAssertEqual(services.retrievedErrors, [makeError("some error")])
+
+        sut.simulateRegistration()
+        services.completeRegistration(with: .failure(makeError("another error")))
+        XCTAssertEqual(services.retrievedErrors, [
+            makeError("some error"),
+            makeError("another error")
+        ])
+    }
+
     func test_whenRegistrationCompletesWithSuccess_thenRegistrationButtonIsNotHiddenIsScheduledOnUI() {
         let (sut, services) = makeSut()
 
@@ -520,7 +541,8 @@ final class IntegrationTests: XCTestCase {
             registrationService: services,
             uiScheduler: services.uiScheduler,
             serviceScheduler: services.servicesScheduler,
-            onRegister: services.onRegister
+            onRegister: services.onRegister,
+            onError: services.onError
         )
 
         sut.loadViewIfNeeded()
@@ -687,5 +709,11 @@ private final class Services: RegistrationService {
 
     func onRegister() {
         onRegisterCallCount += 1
+    }
+
+    var retrievedErrors: [NSError] = []
+
+    func onError(_ error: Error) {
+        retrievedErrors.append(error as NSError)
     }
 }
