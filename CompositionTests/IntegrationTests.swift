@@ -33,10 +33,7 @@ final class RegistrationViewController: UIViewController {
 
         let usernameTextField = makeUsernameTextField()
         let passwordTextField = makePasswordTextField()
-
-        let registerButton = UIButton()
-        registerButton.setTitle("Register", for: .normal)
-        registerButton.isEnabled = false
+        let registerButton = makeRegisterButton()
 
         view.addSubview(usernameTextField)
         view.addSubview(passwordTextField)
@@ -76,6 +73,14 @@ final class RegistrationViewController: UIViewController {
         textField.returnKeyType = .done
 
         return textField
+    }
+
+    private func makeRegisterButton() -> UIButton {
+        let button = UIButton()
+        button.setTitle("Register", for: .normal)
+        button.isEnabled = false
+
+        return button
     }
 
     private func makeToolbar(items: [UIBarButtonItem]) -> UIToolbar {
