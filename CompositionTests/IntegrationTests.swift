@@ -13,11 +13,14 @@ final class RegistrationViewController: UIViewController {
     weak var passwordTextField: UITextField!
     weak var registerButton: UIButton!
 
+    private(set) var currentInput: UITextField?
+
     override func loadView() {
         let view = UIView()
 
         let usernameTextField = UITextField()
         usernameTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        usernameTextField.delegate = self
         let passwordTextField = UITextField()
         passwordTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         passwordTextField.isSecureTextEntry = true
@@ -43,6 +46,14 @@ final class RegistrationViewController: UIViewController {
         let isPasswordEmpty = passwordTextField.text?.isEmpty ?? true
 
         registerButton.isEnabled = !isUsernameEmpty && !isPasswordEmpty
+    }
+}
+
+extension RegistrationViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+
+        return true
     }
 }
 
@@ -117,6 +128,16 @@ final class IntegrationTests: XCTestCase {
         XCTAssertEqual(sut.isRegisterButtonEnabled, true, "Expected register button to be enabled when both fields become non empty again")
     }
 
+    func test_givenUsernameIsActive_whenReturnButtonTapped_thenUsernameIsNotCurrentInput() {
+        let sut = makeSut()
+
+        sut.simulateUsernameIsActiveInput()
+        XCTAssertEqual(sut.isUsernameActiveInput, true)
+
+        sut.simulateUsernameReturnButtonTapped()
+        XCTAssertEqual(sut.isUsernameActiveInput, false)
+    }
+
     // MARK: - Helpers
     private func makeSut() -> RegistrationViewController {
         let sut = RegistrationViewController()
@@ -152,6 +173,10 @@ private extension RegistrationViewController {
         registerButton.isEnabled
     }
 
+    var isUsernameActiveInput: Bool {
+        usernameTextField.isFirstResponder
+    }
+
     func simulateUsernameInput(_ username: String) {
         usernameTextField.text = username
         usernameTextField.simulate(event: .editingChanged, with: usernameTextField)
@@ -161,9 +186,50 @@ private extension RegistrationViewController {
         passwordTextField.text = password
         passwordTextField.simulate(event: .editingChanged, with: passwordTextField)
     }
+
+    func simulateUsernameIsActiveInput() {
+        usernameTextField.becomeFirstResponder()
+    }
+
+    func simulateUsernameReturnButtonTapped() {
+        _ = usernameTextField.delegate?.textFieldShouldReturn?(usernameTextField)
+    }
 }
 
-private extension UIControl {
+extension UIControl {
+    static var isFirstResponderAssociatedKey: Void?
+    
+    private var _isFirstResponder: Bool {
+        get {
+            objc_getAssociatedObject(self, &UIControl.isFirstResponderAssociatedKey) as? Bool ?? false
+        }
+        set {
+            objc_setAssociatedObject(self, &UIControl.isFirstResponderAssociatedKey, newValue, .OBJC_ASSOCIATION_RETAIN)
+        }
+    }
+
+    open override var isFirstResponder: Bool {
+        _isFirstResponder
+    }
+
+    @discardableResult
+    open override func becomeFirstResponder() -> Bool {
+        guard canBecomeFirstResponder else { return false }
+
+        _isFirstResponder = true
+
+        return true
+    }
+
+    @discardableResult
+    open override func resignFirstResponder() -> Bool {
+        guard isFirstResponder else { return false }
+
+        _isFirstResponder = false
+
+        return true
+    }
+
     private func perform(for event: UIControl.Event, _ block: (NSObject, Selector) -> ()) {
         allTargets.forEach { target in
             actions(forTarget: target, forControlEvent: event)?.forEach { action in
