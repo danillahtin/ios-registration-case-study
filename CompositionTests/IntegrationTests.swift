@@ -19,6 +19,30 @@ extension DispatchQueue: Scheduler {
     }
 }
 
+enum RegistrationViewComposer {
+    static func composed(
+        textFieldFactory: @escaping RegistrationViewController.TextFieldFactory = UITextField.init,
+        tapGestureRecognizerFactory: @escaping RegistrationViewController.TapGestureRecognizerFactory = UITapGestureRecognizer.init,
+        registrationService: RegistrationService,
+        uiScheduler: Scheduler = DispatchQueue.main,
+        serviceScheduler: Scheduler,
+        onRegister: @escaping RegistrationViewController.OnRegisterBlock,
+        onError: @escaping RegistrationViewController.OnErrorBlock
+    ) -> RegistrationViewController {
+        let vc = RegistrationViewController(
+            textFieldFactory: textFieldFactory,
+            tapGestureRecognizerFactory: tapGestureRecognizerFactory,
+            registrationService: registrationService,
+            uiScheduler: uiScheduler,
+            serviceScheduler: serviceScheduler,
+            onRegister: onRegister,
+            onError: onError
+        )
+
+        return vc
+    }
+}
+
 final class RegistrationViewController: UIViewController {
     typealias TextFieldFactory = () -> UITextField
     typealias TapGestureRecognizerFactory = (_ target: Any?, _ action: Selector?) -> UITapGestureRecognizer
@@ -190,7 +214,6 @@ final class RegistrationViewController: UIViewController {
                 self?.registerActivityIndicator.stopAnimating()
             }
         }
-
     }
 }
 
@@ -545,7 +568,7 @@ final class IntegrationTests: XCTestCase {
         line: UInt = #line
     ) -> (sut: RegistrationViewController, services: Services) {
         let services = Services()
-        let sut = RegistrationViewController(
+        let sut = RegistrationViewComposer.composed(
             textFieldFactory: TextFieldMock.init,
             tapGestureRecognizerFactory: TapGestureRecognizerMock.init,
             registrationService: services,
