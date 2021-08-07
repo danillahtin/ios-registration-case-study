@@ -20,7 +20,9 @@ final class RegistrationViewController: UIViewController {
         usernameTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         usernameTextField.delegate = self
         usernameTextField.inputAccessoryView = makeToolbar(items: [
-            UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelButtonTapped)),
+            UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(onCancelButtonTapped)),
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+            UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(onUsernameNextButtonTapped)),
         ])
         let passwordTextField = UITextField()
         passwordTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
@@ -59,6 +61,11 @@ final class RegistrationViewController: UIViewController {
 
     @objc
     func onCancelButtonTapped() {
+        usernameTextField.resignFirstResponder()
+    }
+
+    @objc
+    func onUsernameNextButtonTapped() {
         usernameTextField.resignFirstResponder()
     }
 }
@@ -162,6 +169,16 @@ final class IntegrationTests: XCTestCase {
         XCTAssertEqual(sut.isUsernameActiveInput, false)
     }
 
+    func test_givenUsernameIsActive_whenToolbarNextButtonTapped_thenUsernameIsNotActiveInput() {
+        let sut = makeSut()
+
+        sut.simulateUsernameIsActiveInput()
+        XCTAssertEqual(sut.isUsernameActiveInput, true)
+
+        sut.simulateUsernameToolbarNextButtonTapped()
+        XCTAssertEqual(sut.isUsernameActiveInput, false)
+    }
+
     // MARK: - Helpers
     private func makeSut() -> RegistrationViewController {
         let sut = RegistrationViewController()
@@ -201,6 +218,16 @@ private extension RegistrationViewController {
         usernameTextField.isFirstResponder
     }
 
+    var usernameTextFieldCancelButton: UIBarButtonItem! {
+        let toolbar = usernameTextField.inputAccessoryView as? UIToolbar
+        return toolbar?.items?.first(where: { $0.title?.lowercased() == "cancel" })
+    }
+
+    var usernameTextFieldNextButton: UIBarButtonItem! {
+        let toolbar = usernameTextField.inputAccessoryView as? UIToolbar
+        return toolbar?.items?.first(where: { $0.title?.lowercased() == "next" })
+    }
+
     func simulateUsernameInput(_ username: String) {
         usernameTextField.text = username
         usernameTextField.simulate(event: .editingChanged, with: usernameTextField)
@@ -220,8 +247,11 @@ private extension RegistrationViewController {
     }
 
     func simulateUsernameToolbarCancelButtonTapped() {
-        let toolbar = usernameTextField.inputAccessoryView as? UIToolbar
-        toolbar?.items?.first?.simulateTap()
+        usernameTextFieldCancelButton.simulateTap()
+    }
+
+    func simulateUsernameToolbarNextButtonTapped() {
+        usernameTextFieldNextButton.simulateTap()
     }
 }
 
