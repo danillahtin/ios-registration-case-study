@@ -18,6 +18,7 @@ final class RegistrationViewController: UIViewController {
 
         let usernameTextField = UITextField()
         let passwordTextField = UITextField()
+        passwordTextField.isSecureTextEntry = true
         let registerButton = UIButton()
         registerButton.setTitle("Register", for: .normal)
 
@@ -65,6 +66,12 @@ final class IntegrationTests: XCTestCase {
         XCTAssertEqual(sut.registerButtonTitle, "Register")
     }
 
+    func test_passwordInput_isSecure() {
+        let sut = makeSut()
+
+        XCTAssertEqual(sut.isPasswordInputSecure, true)
+    }
+
     // MARK: - Helpers
     private func makeSut() -> RegistrationViewController {
         let sut = RegistrationViewController()
@@ -82,6 +89,10 @@ private extension RegistrationViewController {
 
     var password: String? {
         passwordTextField.text
+    }
+
+    var isPasswordInputSecure: Bool {
+        passwordTextField.isSecureTextEntry
     }
 
     var isRegisterButtonHidden: Bool {
