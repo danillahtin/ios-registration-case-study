@@ -24,6 +24,8 @@
 		8BD163ED26BF503F00C2E126 /* UI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B75653126BDEBED00D2F90E /* UI.framework */; };
 		8BD163EE26BF503F00C2E126 /* UI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B75653126BDEBED00D2F90E /* UI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8BD163F326BF50FF00C2E126 /* Presentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD163F226BF50FF00C2E126 /* Presentation.framework */; };
+		8BD163F726BF517100C2E126 /* RegistrationViewComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163F626BF517100C2E126 /* RegistrationViewComposer.swift */; };
+		8BD163F926BF51CC00C2E126 /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163F826BF51CC00C2E126 /* Weak.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +90,8 @@
 		8BD163DD26BF4EAF00C2E126 /* Presentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Presentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BD163E126BF4F2000C2E126 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		8BD163F226BF50FF00C2E126 /* Presentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Presentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BD163F626BF517100C2E126 /* RegistrationViewComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewComposer.swift; sourceTree = "<group>"; };
+		8BD163F826BF51CC00C2E126 /* Weak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weak.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +178,8 @@
 			children = (
 				8B75655326BDED0900D2F90E /* Info.plist */,
 				8BD163C926BF4D3900C2E126 /* Scheduler.swift */,
+				8BD163F626BF517100C2E126 /* RegistrationViewComposer.swift */,
+				8BD163F826BF51CC00C2E126 /* Weak.swift */,
 			);
 			path = Composition;
 			sourceTree = "<group>";
@@ -406,6 +412,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BD163CA26BF4D3900C2E126 /* Scheduler.swift in Sources */,
+				8BD163F726BF517100C2E126 /* RegistrationViewComposer.swift in Sources */,
+				8BD163F926BF51CC00C2E126 /* Weak.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

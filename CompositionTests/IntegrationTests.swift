@@ -6,134 +6,9 @@
 //
 
 import XCTest
-import UIKit
 import Core
-import Presentation
 import UI
 import Composition
-
-final class Weak<Object: AnyObject> {
-    weak var object: Object?
-
-    init(_ object: Object? = nil) {
-        self.object = object
-    }
-}
-
-extension Weak: LoadingView where Object: LoadingView {
-    func display(viewModel: LoadingViewModel) {
-        object?.display(viewModel: viewModel)
-    }
-}
-
-extension Weak: ButtonView where Object: ButtonView {
-    func display(viewModel: ButtonViewModel) {
-        object?.display(viewModel: viewModel)
-    }
-}
-
-extension Weak: TitleView where Object: TitleView {
-    func display(viewModel: TitleViewModel) {
-        object?.display(viewModel: viewModel)
-    }
-}
-
-extension Weak: RegistrationView where Object: RegistrationView {
-    func display(viewModel: RegistrationViewModel) {
-        object?.display(viewModel: viewModel)
-    }
-}
-
-enum RegistrationViewComposer {
-    typealias OnRegisterBlock = () -> ()
-    typealias OnErrorBlock = (Error) -> ()
-
-    private final class Adapter: RegistrationViewControllerDelegate {
-        private let registrationService: RegistrationService
-        private let uiScheduler: Scheduler
-        private let serviceScheduler: Scheduler
-        private let onRegister: () -> ()
-        private let onError: (Error) -> ()
-
-        var presenter: RegistrationViewPresenter?
-        var request: RegistrationRequest = .init(username: nil, password: nil)
-
-        init(
-            registrationService: RegistrationService,
-            uiScheduler: Scheduler,
-            serviceScheduler: Scheduler,
-            onRegister: @escaping () -> (),
-            onError: @escaping (Error) -> ()
-        ) {
-            self.registrationService = registrationService
-            self.uiScheduler = uiScheduler
-            self.serviceScheduler = serviceScheduler
-            self.onRegister = onRegister
-            self.onError = onError
-        }
-
-        func onViewDidLoad() {
-            presenter?.didLoadView()
-        }
-
-        func didUpdate(username: String?, password: String?) {
-            presenter?.didUpdate(username: username, password: password)
-            request = RegistrationRequest(username: username, password: password)
-        }
-
-        func onRegisterButtonTapped() {
-            presenter?.didStartRegistration()
-
-            serviceScheduler.schedule { [weak self, request] in
-                switch self?.registrationService.register(with: request) {
-                case .success:
-                    self?.onRegister()
-                case .failure(let error):
-                    self?.onError(error)
-                case .none:
-                    break
-                }
-
-                self?.uiScheduler.schedule {
-                    self?.presenter?.didFinishRegistration()
-                }
-            }
-        }
-    }
-
-    static func composed(
-        textFieldFactory: @escaping RegistrationViewController.TextFieldFactory = UITextField.init,
-        tapGestureRecognizerFactory: @escaping RegistrationViewController.TapGestureRecognizerFactory = UITapGestureRecognizer.init,
-        registrationService: RegistrationService,
-        uiScheduler: Scheduler = DispatchQueue.main,
-        serviceScheduler: Scheduler,
-        onRegister: @escaping OnRegisterBlock,
-        onError: @escaping OnErrorBlock
-    ) -> RegistrationViewController {
-        let adapter = Adapter(
-            registrationService: registrationService,
-            uiScheduler: uiScheduler,
-            serviceScheduler: serviceScheduler,
-            onRegister: onRegister,
-            onError: onError
-        )
-
-        let vc = RegistrationViewController(
-            textFieldFactory: textFieldFactory,
-            tapGestureRecognizerFactory: tapGestureRecognizerFactory,
-            delegate: adapter
-        )
-
-        adapter.presenter = RegistrationViewPresenter(
-            loadingView: Weak(vc),
-            buttonView: Weak(vc),
-            titleView: Weak(vc),
-            registrationView: Weak(vc)
-        )
-
-        return vc
-    }
-}
 
 final class IntegrationTests: XCTestCase {
     func test_loadView_setsCorrectTitle() {
@@ -648,13 +523,13 @@ private final class Services: RegistrationService {
         performServiceWorks()
     }
 
-    var onRegisterCallCount: Int = 0
+    private(set) var onRegisterCallCount: Int = 0
 
     func onRegister() {
         onRegisterCallCount += 1
     }
 
-    var retrievedErrors: [NSError] = []
+    private(set) var retrievedErrors: [NSError] = []
 
     func onError(_ error: Error) {
         retrievedErrors.append(error as NSError)
