@@ -81,6 +81,14 @@ final class IntegrationTests: XCTestCase {
         XCTAssertEqual(sut.isRegisterButtonEnabled, false)
     }
 
+    func test_givenPasswordIsEmpty_thenRegisterButtonIsDisabled() {
+        let sut = makeSut()
+
+        sut.simulatePasswordInput("")
+
+        XCTAssertEqual(sut.isRegisterButtonEnabled, false)
+    }
+
     // MARK: - Helpers
     private func makeSut() -> RegistrationViewController {
         let sut = RegistrationViewController()
@@ -118,5 +126,9 @@ private extension RegistrationViewController {
 
     func simulateUsernameInput(_ username: String) {
         usernameTextField.text = username
+    }
+
+    func simulatePasswordInput(_ password: String) {
+        passwordTextField.text = password
     }
 }
