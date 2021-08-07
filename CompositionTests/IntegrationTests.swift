@@ -9,14 +9,29 @@ import XCTest
 import UIKit
 
 final class RegistrationViewController: UIViewController {
+    typealias TextFieldFactory = () -> UITextField
+
     weak var usernameTextField: UITextField!
     weak var passwordTextField: UITextField!
     weak var registerButton: UIButton!
 
+    private let textFieldFactory: TextFieldFactory
+
+    init(textFieldFactory: @escaping TextFieldFactory = UITextField.init) {
+        self.textFieldFactory = textFieldFactory
+
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func loadView() {
         let view = UIView()
 
-        let usernameTextField = UITextField()
+        let usernameTextField = textFieldFactory()
         usernameTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         usernameTextField.delegate = self
         usernameTextField.inputAccessoryView = makeToolbar(items: [
@@ -24,7 +39,7 @@ final class RegistrationViewController: UIViewController {
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
             UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(onUsernameNextButtonTapped)),
         ])
-        let passwordTextField = UITextField()
+        let passwordTextField = textFieldFactory()
         passwordTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         passwordTextField.isSecureTextEntry = true
         let registerButton = UIButton()
@@ -191,11 +206,37 @@ final class IntegrationTests: XCTestCase {
 
     // MARK: - Helpers
     private func makeSut() -> RegistrationViewController {
-        let sut = RegistrationViewController()
+        let sut = RegistrationViewController(textFieldFactory: TextFieldMock.init)
 
         sut.loadViewIfNeeded()
 
         return sut
+    }
+}
+
+private final class TextFieldMock: UITextField {
+    private var _isFirstResponder: Bool = false
+
+    override var isFirstResponder: Bool {
+        _isFirstResponder
+    }
+
+    @discardableResult
+    override func becomeFirstResponder() -> Bool {
+        guard canBecomeFirstResponder else { return false }
+
+        _isFirstResponder = true
+
+        return true
+    }
+
+    @discardableResult
+    override func resignFirstResponder() -> Bool {
+        guard isFirstResponder else { return false }
+
+        _isFirstResponder = false
+
+        return true
     }
 }
 
@@ -273,39 +314,6 @@ private extension RegistrationViewController {
 }
 
 extension UIControl {
-    static var isFirstResponderAssociatedKey: Void?
-    
-    private var _isFirstResponder: Bool {
-        get {
-            objc_getAssociatedObject(self, &UIControl.isFirstResponderAssociatedKey) as? Bool ?? false
-        }
-        set {
-            objc_setAssociatedObject(self, &UIControl.isFirstResponderAssociatedKey, newValue, .OBJC_ASSOCIATION_RETAIN)
-        }
-    }
-
-    open override var isFirstResponder: Bool {
-        _isFirstResponder
-    }
-
-    @discardableResult
-    open override func becomeFirstResponder() -> Bool {
-        guard canBecomeFirstResponder else { return false }
-
-        _isFirstResponder = true
-
-        return true
-    }
-
-    @discardableResult
-    open override func resignFirstResponder() -> Bool {
-        guard isFirstResponder else { return false }
-
-        _isFirstResponder = false
-
-        return true
-    }
-
     private func perform(for event: UIControl.Event, _ block: (NSObject, Selector) -> ()) {
         allTargets.forEach { target in
             actions(forTarget: target, forControlEvent: event)?.forEach { action in
