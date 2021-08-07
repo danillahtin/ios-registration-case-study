@@ -42,6 +42,9 @@ final class RegistrationViewController: UIViewController {
         usernameTextField.returnKeyType = .next
         let passwordTextField = textFieldFactory()
         passwordTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        passwordTextField.inputAccessoryView = makeToolbar(items: [
+            UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(onCancelButtonTapped)),
+        ])
         passwordTextField.isSecureTextEntry = true
         passwordTextField.returnKeyType = .done
         let registerButton = UIButton()
@@ -149,6 +152,12 @@ final class IntegrationTests: XCTestCase {
         let sut = makeSut()
 
         XCTAssertEqual(sut.passwordTextField.returnKeyType, .done)
+    }
+
+    func test_loadView_displaysCorrectPasswordFirstButtonTitle() {
+        let sut = makeSut()
+
+        XCTAssertEqual(sut.passwordTextField.toolbarItems?.first?.title, "Cancel")
     }
 
     func test_passwordInput_isSecure() {
