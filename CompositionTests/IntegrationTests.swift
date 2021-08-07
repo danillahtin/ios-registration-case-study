@@ -21,6 +21,7 @@ final class RegistrationViewController: UIViewController {
         passwordTextField.isSecureTextEntry = true
         let registerButton = UIButton()
         registerButton.setTitle("Register", for: .normal)
+        registerButton.isEnabled = false
 
         view.addSubview(usernameTextField)
         view.addSubview(passwordTextField)
@@ -72,6 +73,14 @@ final class IntegrationTests: XCTestCase {
         XCTAssertEqual(sut.isPasswordInputSecure, true)
     }
 
+    func test_givenUsernameIsEmpty_thenRegisterButtonIsDisabled() {
+        let sut = makeSut()
+
+        sut.simulateUsernameInput("")
+
+        XCTAssertEqual(sut.isRegisterButtonEnabled, false)
+    }
+
     // MARK: - Helpers
     private func makeSut() -> RegistrationViewController {
         let sut = RegistrationViewController()
@@ -101,5 +110,13 @@ private extension RegistrationViewController {
 
     var registerButtonTitle: String? {
         registerButton.title(for: .normal)
+    }
+
+    var isRegisterButtonEnabled: Bool {
+        registerButton.isEnabled
+    }
+
+    func simulateUsernameInput(_ username: String) {
+        usernameTextField.text = username
     }
 }
