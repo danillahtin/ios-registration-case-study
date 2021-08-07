@@ -8,7 +8,7 @@
 import UIKit
 
 final class TapGestureRecognizerMock: UITapGestureRecognizer {
-    private let target: NSObject?
+    private weak var target: NSObject?
     private let action: Selector?
 
     override init(target: Any?, action: Selector?) {

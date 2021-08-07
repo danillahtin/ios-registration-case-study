@@ -19,6 +19,7 @@
 		8BD163BA26BF298100C2E126 /* TapGestureRecognizerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163B926BF298100C2E126 /* TapGestureRecognizerMock.swift */; };
 		8BD163BC26BF299200C2E126 /* TextFieldMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163BB26BF299200C2E126 /* TextFieldMock.swift */; };
 		8BD163C226BF2BA000C2E126 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD163BE26BF2B6100C2E126 /* Core.framework */; };
+		8BD163C826BF2CF500C2E126 /* XCTestCase+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163C726BF2CF500C2E126 /* XCTestCase+Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		8BD163BB26BF299200C2E126 /* TextFieldMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldMock.swift; sourceTree = "<group>"; };
 		8BD163BE26BF2B6100C2E126 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BD163C526BF2BE800C2E126 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BD163C726BF2CF500C2E126 /* XCTestCase+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Helpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 				8BD163B726BF296800C2E126 /* UIView+Helpers.swift */,
 				8BD163B926BF298100C2E126 /* TapGestureRecognizerMock.swift */,
 				8BD163BB26BF299200C2E126 /* TextFieldMock.swift */,
+				8BD163C726BF2CF500C2E126 /* XCTestCase+Helpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				8BD163BA26BF298100C2E126 /* TapGestureRecognizerMock.swift in Sources */,
 				8BD163B826BF296800C2E126 /* UIView+Helpers.swift in Sources */,
 				8BD163B626BF294B00C2E126 /* UIControl+Helpers.swift in Sources */,
+				8BD163C826BF2CF500C2E126 /* XCTestCase+Helpers.swift in Sources */,
 				8BD163BC26BF299200C2E126 /* TextFieldMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -324,7 +324,10 @@ final class IntegrationTests: XCTestCase {
     }
 
     // MARK: - Helpers
-    private func makeSut() -> (sut: RegistrationViewController, services: Services) {
+    private func makeSut(
+        file: StaticString = #file,
+        line: UInt = #line
+    ) -> (sut: RegistrationViewController, services: Services) {
         let services = Services()
         let sut = RegistrationViewController(
             textFieldFactory: TextFieldMock.init,
@@ -332,6 +335,9 @@ final class IntegrationTests: XCTestCase {
         )
 
         sut.loadViewIfNeeded()
+
+        trackForMemoryLeaks(sut, file: file, line: line)
+        trackForMemoryLeaks(services, file: file, line: line)
 
         return (sut, services)
     }
