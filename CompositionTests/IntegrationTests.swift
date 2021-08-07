@@ -13,14 +13,15 @@ final class RegistrationViewController: UIViewController {
     weak var passwordTextField: UITextField!
     weak var registerButton: UIButton!
 
-    private(set) var currentInput: UITextField?
-
     override func loadView() {
         let view = UIView()
 
         let usernameTextField = UITextField()
         usernameTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         usernameTextField.delegate = self
+        usernameTextField.inputAccessoryView = makeToolbar(items: [
+            UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onCancelButtonTapped)),
+        ])
         let passwordTextField = UITextField()
         passwordTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         passwordTextField.isSecureTextEntry = true
@@ -40,12 +41,25 @@ final class RegistrationViewController: UIViewController {
         self.title = "Registration"
     }
 
+    private func makeToolbar(items: [UIBarButtonItem]) -> UIToolbar {
+        let toolbar = UIToolbar()
+        toolbar.items = items
+        toolbar.sizeToFit()
+
+        return toolbar
+    }
+
     @objc
     func textFieldDidChange(_ textField: UITextField) {
         let isUsernameEmpty = usernameTextField.text?.isEmpty ?? true
         let isPasswordEmpty = passwordTextField.text?.isEmpty ?? true
 
         registerButton.isEnabled = !isUsernameEmpty && !isPasswordEmpty
+    }
+
+    @objc
+    func onCancelButtonTapped() {
+        usernameTextField.resignFirstResponder()
     }
 }
 
@@ -128,13 +142,23 @@ final class IntegrationTests: XCTestCase {
         XCTAssertEqual(sut.isRegisterButtonEnabled, true, "Expected register button to be enabled when both fields become non empty again")
     }
 
-    func test_givenUsernameIsActive_whenReturnButtonTapped_thenUsernameIsNotCurrentInput() {
+    func test_givenUsernameIsActive_whenReturnButtonTapped_thenUsernameIsNotActiveInput() {
         let sut = makeSut()
 
         sut.simulateUsernameIsActiveInput()
         XCTAssertEqual(sut.isUsernameActiveInput, true)
 
         sut.simulateUsernameReturnButtonTapped()
+        XCTAssertEqual(sut.isUsernameActiveInput, false)
+    }
+
+    func test_givenUsernameIsActive_whenToolbarCancelButtonTapped_thenUsernameIsNotActiveInput() {
+        let sut = makeSut()
+
+        sut.simulateUsernameIsActiveInput()
+        XCTAssertEqual(sut.isUsernameActiveInput, true)
+
+        sut.simulateUsernameToolbarCancelButtonTapped()
         XCTAssertEqual(sut.isUsernameActiveInput, false)
     }
 
@@ -194,6 +218,11 @@ private extension RegistrationViewController {
     func simulateUsernameReturnButtonTapped() {
         _ = usernameTextField.delegate?.textFieldShouldReturn?(usernameTextField)
     }
+
+    func simulateUsernameToolbarCancelButtonTapped() {
+        let toolbar = usernameTextField.inputAccessoryView as? UIToolbar
+        toolbar?.items?.first?.simulateTap()
+    }
 }
 
 extension UIControl {
@@ -246,5 +275,11 @@ extension UIControl {
 
     func simulate(event: UIControl.Event) {
         perform(for: event) { $0.perform($1) }
+    }
+}
+
+extension UIBarButtonItem {
+    func simulateTap() {
+        (target as! NSObject).perform(action!)
     }
 }
