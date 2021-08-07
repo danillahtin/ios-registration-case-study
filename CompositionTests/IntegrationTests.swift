@@ -67,6 +67,7 @@ final class RegistrationViewController: UIViewController {
     @objc
     func onUsernameNextButtonTapped() {
         usernameTextField.resignFirstResponder()
+        passwordTextField.becomeFirstResponder()
     }
 }
 
@@ -179,6 +180,15 @@ final class IntegrationTests: XCTestCase {
         XCTAssertEqual(sut.isUsernameActiveInput, false)
     }
 
+    func test_givenUsernameIsActive_whenToolbarNextButtonTapped_thenPasswordIsActiveInput() {
+        let sut = makeSut()
+
+        sut.simulateUsernameIsActiveInput()
+        sut.simulateUsernameToolbarNextButtonTapped()
+
+        XCTAssertEqual(sut.isPasswordActiveInput, true)
+    }
+
     // MARK: - Helpers
     private func makeSut() -> RegistrationViewController {
         let sut = RegistrationViewController()
@@ -216,6 +226,10 @@ private extension RegistrationViewController {
 
     var isUsernameActiveInput: Bool {
         usernameTextField.isFirstResponder
+    }
+
+    var isPasswordActiveInput: Bool {
+        passwordTextField.isFirstResponder
     }
 
     var usernameTextFieldCancelButton: UIBarButtonItem! {
