@@ -45,7 +45,7 @@ final class RegistrationViewController: UIViewController {
         passwordTextField.inputAccessoryView = makeToolbar(items: [
             UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(onCancelButtonTapped)),
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            UIBarButtonItem(title: "Done", style: .plain, target: self, action: nil),
+            UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(onPasswordDoneButtonTapped)),
         ])
         passwordTextField.isSecureTextEntry = true
         passwordTextField.returnKeyType = .done
@@ -91,6 +91,11 @@ final class RegistrationViewController: UIViewController {
     func onUsernameNextButtonTapped() {
         usernameTextField.resignFirstResponder()
         passwordTextField.becomeFirstResponder()
+    }
+
+    @objc
+    func onPasswordDoneButtonTapped() {
+        passwordTextField.resignFirstResponder()
     }
 }
 
@@ -258,6 +263,16 @@ final class IntegrationTests: XCTestCase {
         XCTAssertEqual(sut.isPasswordActiveInput, false)
     }
 
+    func test_givenPasswordIsActive_whenToolbarDoneButtonTapped_thenPasswordIsNotActiveInput() {
+        let sut = makeSut()
+
+        sut.simulatePasswordIsActiveInput()
+        XCTAssertEqual(sut.isPasswordActiveInput, true)
+
+        sut.simulatePasswordToolbarNextButtonTapped()
+        XCTAssertEqual(sut.isPasswordActiveInput, false)
+    }
+
     // MARK: - Helpers
     private func makeSut() -> RegistrationViewController {
         let sut = RegistrationViewController(textFieldFactory: TextFieldMock.init)
@@ -339,6 +354,10 @@ private extension RegistrationViewController {
         passwordTextField.toolbarItems?.first
     }
 
+    var passwordTextFieldDoneButton: UIBarButtonItem! {
+        passwordTextField.toolbarItems?.last
+    }
+
     func simulateUsernameInput(_ username: String) {
         usernameTextField.text = username
         usernameTextField.simulate(event: .editingChanged, with: usernameTextField)
@@ -371,6 +390,10 @@ private extension RegistrationViewController {
 
     func simulatePasswordToolbarCancelButtonTapped() {
         passwordTextFieldCancelButton.simulateTap()
+    }
+
+    func simulatePasswordToolbarNextButtonTapped() {
+        passwordTextFieldDoneButton.simulateTap()
     }
 }
 
