@@ -31,24 +31,9 @@ final class RegistrationViewController: UIViewController {
     override func loadView() {
         let view = UIView()
 
-        let usernameTextField = textFieldFactory()
-        usernameTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        usernameTextField.delegate = self
-        usernameTextField.inputAccessoryView = makeToolbar(items: [
-            UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(onCancelButtonTapped)),
-            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(onUsernameNextButtonTapped)),
-        ])
-        usernameTextField.returnKeyType = .next
-        let passwordTextField = textFieldFactory()
-        passwordTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        passwordTextField.inputAccessoryView = makeToolbar(items: [
-            UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(onCancelButtonTapped)),
-            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(onPasswordDoneButtonTapped)),
-        ])
-        passwordTextField.isSecureTextEntry = true
-        passwordTextField.returnKeyType = .done
+        let usernameTextField = makeUsernameTextField()
+        let passwordTextField = makePasswordTextField()
+
         let registerButton = UIButton()
         registerButton.setTitle("Register", for: .normal)
         registerButton.isEnabled = false
@@ -63,6 +48,34 @@ final class RegistrationViewController: UIViewController {
         self.view = view
 
         self.title = "Registration"
+    }
+
+    private func makeUsernameTextField() -> UITextField {
+        let textField = textFieldFactory()
+        textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        textField.delegate = self
+        textField.inputAccessoryView = makeToolbar(items: [
+            UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(onCancelButtonTapped)),
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+            UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(onUsernameNextButtonTapped)),
+        ])
+        textField.returnKeyType = .next
+
+        return textField
+    }
+
+    private func makePasswordTextField() -> UITextField {
+        let textField = textFieldFactory()
+        textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        textField.inputAccessoryView = makeToolbar(items: [
+            UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(onCancelButtonTapped)),
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+            UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(onPasswordDoneButtonTapped)),
+        ])
+        textField.isSecureTextEntry = true
+        textField.returnKeyType = .done
+
+        return textField
     }
 
     private func makeToolbar(items: [UIBarButtonItem]) -> UIToolbar {
