@@ -49,12 +49,15 @@ final class RequestValidatingDecoratorTests: XCTestCase {
 
     // MARK: - Helpers
 
-    private func makeSut() -> (sut: RequestValidatingDecorator, decoratee: RegistrationServiceMock) {
+    private func makeSut(
+        file: StaticString = #file,
+        line: UInt = #line
+    ) -> (sut: RequestValidatingDecorator, decoratee: RegistrationServiceMock) {
         let decoratee = RegistrationServiceMock()
         let sut = RequestValidatingDecorator(decoratee)
 
-        trackForMemoryLeaks(sut)
-        trackForMemoryLeaks(decoratee)
+        trackForMemoryLeaks(sut, file: file, line: line)
+        trackForMemoryLeaks(decoratee, file: file, line: line)
 
         return (sut, decoratee)
     }
