@@ -19,6 +19,7 @@ final class RegistrationViewController: UIViewController {
         let usernameTextField = UITextField()
         let passwordTextField = UITextField()
         let registerButton = UIButton()
+        registerButton.setTitle("Register", for: .normal)
 
         view.addSubview(usernameTextField)
         view.addSubview(passwordTextField)
@@ -58,6 +59,12 @@ final class IntegrationTests: XCTestCase {
         XCTAssertEqual(sut.isRegisterButtonHidden, false)
     }
 
+    func test_loadView_displaysCorrectRegisterButtonTitle() {
+        let sut = makeSut()
+
+        XCTAssertEqual(sut.registerButtonTitle, "Register")
+    }
+
     // MARK: - Helpers
     private func makeSut() -> RegistrationViewController {
         let sut = RegistrationViewController()
@@ -79,5 +86,9 @@ private extension RegistrationViewController {
 
     var isRegisterButtonHidden: Bool {
         registerButton.isHidden
+    }
+
+    var registerButtonTitle: String? {
+        registerButton.title(for: .normal)
     }
 }
