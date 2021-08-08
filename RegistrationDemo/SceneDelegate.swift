@@ -7,7 +7,7 @@
 
 import UIKit
 import Core
-import Composition
+import RegistrationComposition
 
 final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?

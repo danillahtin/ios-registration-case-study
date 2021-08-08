@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8B75655726BDED0900D2F90E"
-               BuildableName = "CompositionTests.xctest"
-               BlueprintName = "CompositionTests"
+               BuildableName = "RegistrationCompositionTests.xctest"
+               BlueprintName = "RegistrationCompositionTests"
                ReferencedContainer = "container:RegistrationiOS.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -36,8 +36,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8B75655726BDED0900D2F90E"
-               BuildableName = "CompositionTests.xctest"
-               BlueprintName = "CompositionTests"
+               BuildableName = "RegistrationCompositionTests.xctest"
+               BlueprintName = "RegistrationCompositionTests"
                ReferencedContainer = "container:RegistrationiOS.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -48,8 +48,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8B75653926BDEBEE00D2F90E"
-               BuildableName = "UITests.xctest"
-               BlueprintName = "UITests"
+               BuildableName = "RegistrationUITests.xctest"
+               BlueprintName = "RegistrationUITests"
                ReferencedContainer = "container:RegistrationiOS.xcodeproj">
             </BuildableReference>
          </TestableReference>

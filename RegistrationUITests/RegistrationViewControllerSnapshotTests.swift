@@ -7,8 +7,7 @@
 
 import SnapshotTesting
 import XCTest
-import Presentation
-import UI
+import RegistrationUI
 
 final class RegistrationViewControllerSnapshotTests: XCTestCase {
     override func setUp() {
@@ -150,7 +149,7 @@ private extension RegistrationViewController {
         passwordTextField.text = "password"
         display(viewModel: .init(isLoading: false))
         display(viewModel: .init(title: "Register", isEnabled: true))
-        display(viewModel: ErrorViewModel(message: message))
+        display(viewModel: .init(message: message))
     }
 
     func displayRegisterButton(enabled: Bool) {

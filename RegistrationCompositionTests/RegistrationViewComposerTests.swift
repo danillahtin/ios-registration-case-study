@@ -8,8 +8,8 @@
 import XCTest
 import Core
 import Presentation
-import UI
-import Composition
+import RegistrationUI
+import RegistrationComposition
 
 final class RegistrationViewComposerTests: XCTestCase {
     func test_loadView_setsCorrectTitle() {

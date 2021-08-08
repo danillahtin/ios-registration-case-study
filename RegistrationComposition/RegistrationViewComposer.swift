@@ -8,7 +8,7 @@
 import UIKit
 import Core
 import Presentation
-import UI
+import RegistrationUI
 
 public enum RegistrationViewComposer {
     public typealias OnRegisterBlock = () -> ()
