@@ -97,6 +97,7 @@
                         <outlet property="passwordContainerView" destination="PUI-QB-Kx0" id="WZM-2I-yc7"/>
                         <outlet property="registerActivityIndicator" destination="PnM-XS-pz4" id="8S7-aF-QU8"/>
                         <outlet property="registerButton" destination="xYa-Lo-WPj" id="ru5-fC-EWA"/>
+                        <outlet property="registerButtonContainerView" destination="7hE-Wu-eys" id="onF-rB-ZSy"/>
                         <outlet property="usernameContainerView" destination="iIe-4g-efa" id="gaz-kd-Ol4"/>
                     </connections>
                 </viewController>

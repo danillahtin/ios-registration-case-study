@@ -23,6 +23,7 @@ public final class RegistrationViewController: UIViewController {
     @IBOutlet public private(set) weak var errorView: UIButton!
     @IBOutlet private weak var usernameContainerView: UIView!
     @IBOutlet private weak var passwordContainerView: UIView!
+    @IBOutlet private weak var registerButtonContainerView: UIView!
     public private(set) weak var usernameTextField: UITextField!
     public private(set) weak var passwordTextField: UITextField!
     public private(set) var passwordDoneButton: UIBarButtonItem?
@@ -157,6 +158,9 @@ extension RegistrationViewController: ButtonView {
     public func display(viewModel: ButtonViewModel) {
         registerButton.setTitle(viewModel.title, for: .normal)
         registerButton.isEnabled = viewModel.isEnabled
+        registerButtonContainerView.backgroundColor = viewModel.isEnabled
+            ? registerButtonContainerView.backgroundColor?.withAlphaComponent(1)
+            : registerButtonContainerView.backgroundColor?.withAlphaComponent(0.4)
         passwordDoneButton?.isEnabled = viewModel.isEnabled
     }
 }

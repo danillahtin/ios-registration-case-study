@@ -25,8 +25,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 DispatchQueue.main.async {
                     self.showAlert(message: "You registered!", from: nc)
                 }
-            },
-            onError: { _ in }
+            }
         )
 
         nc.viewControllers = [vc]

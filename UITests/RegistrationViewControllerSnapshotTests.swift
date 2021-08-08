@@ -7,11 +7,54 @@
 
 import SnapshotTesting
 import XCTest
+import Presentation
 import UI
 
 final class RegistrationViewControllerSnapshotTests: XCTestCase {
+    override func setUp() {
+        super.setUp()
+
+        UIView.setAnimationsEnabled(false)
+    }
+
+    override func tearDown() {
+        super.tearDown()
+
+        UIView.setAnimationsEnabled(true)
+    }
+
     func test_initialState() {
-        assertSnapshot { $0.displayInitialState() }
+        assertSnapshot()
+    }
+
+    func test_usernameShortFilled() {
+        assertSnapshot(username: "Short name")
+    }
+
+    func test_usernameLongFilled() {
+        assertSnapshot(username: "Very very very very very very very very very very long name")
+    }
+
+    func test_passwordShortFilled() {
+        assertSnapshot(password: "Short password")
+    }
+
+    func test_passwordLongFilled() {
+        assertSnapshot(password: "Very very very very very very very very very long password")
+    }
+
+    func test_loading() {
+        assertSnapshot { $0.displayLoadingState() }
+    }
+
+    func test_errorState() {
+        assertSnapshot { $0.displayErrorState(message: "Short error message") }
+        assertSnapshot { $0.displayErrorState(message: "Very very very very very very very very very very very very very long error message") }
+    }
+
+    func test_registerButtonEnabledState() {
+        assertSnapshot { $0.displayRegisterButton(enabled: false) }
+        assertSnapshot { $0.displayRegisterButton(enabled: true) }
     }
 
     // MARK: - Helpers
@@ -19,7 +62,7 @@ final class RegistrationViewControllerSnapshotTests: XCTestCase {
     private func assertSnapshot(
         username: String? = nil,
         password: String? = nil,
-        prepare block: (RegistrationViewController) -> (),
+        prepare block: (RegistrationViewController) -> () = { _ in },
         file: StaticString = #file,
         testName: String = #function,
         line: UInt = #line
@@ -62,8 +105,8 @@ final class RegistrationViewControllerSnapshotTests: XCTestCase {
     }
 
     private func makeSut(
-        username: String? = nil,
-        password: String? = nil,
+        username: String?,
+        password: String?,
         prepare block: (RegistrationViewController) -> ()
     ) -> UINavigationController {
         let services = Services()
@@ -76,6 +119,7 @@ final class RegistrationViewControllerSnapshotTests: XCTestCase {
 
         sut.usernameTextField.text = username
         sut.passwordTextField.text = password
+        sut.displayInitialState()
 
         block(sut)
 
@@ -89,9 +133,28 @@ final class RegistrationViewControllerSnapshotTests: XCTestCase {
 private extension RegistrationViewController {
     func displayInitialState() {
         display(viewModel: .init(isLoading: false))
-        display(viewModel: .init(title: "Register", isEnabled: true))
+        display(viewModel: .init(title: "Register", isEnabled: false))
         display(viewModel: .init(title: "Registration"))
         display(viewModel: .init(message: nil))
+    }
+
+    func displayLoadingState() {
+        usernameTextField.text = "my_login"
+        passwordTextField.text = "password"
+        display(viewModel: .init(title: "Register", isEnabled: true))
+        display(viewModel: .init(isLoading: true))
+    }
+
+    func displayErrorState(message: String) {
+        usernameTextField.text = "my_login"
+        passwordTextField.text = "password"
+        display(viewModel: .init(isLoading: false))
+        display(viewModel: .init(title: "Register", isEnabled: true))
+        display(viewModel: ErrorViewModel(message: message))
+    }
+
+    func displayRegisterButton(enabled: Bool) {
+        display(viewModel: .init(title: "Register", isEnabled: enabled))
     }
 }
 
