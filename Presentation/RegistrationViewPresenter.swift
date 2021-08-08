@@ -46,6 +46,7 @@ public final class RegistrationViewPresenter {
                 isEnabled: !isUsernameEmpty && !isPasswordEmpty
             )
         )
+        errorView.display(viewModel: .init(message: nil))
     }
 
     public func didStartRegistration() {

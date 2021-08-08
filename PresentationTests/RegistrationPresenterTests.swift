@@ -162,6 +162,21 @@ final class RegistrationPresenterTests: XCTestCase {
         ])
     }
 
+    func test_didUpdateUsernamePassword_displaysNoError() {
+        let (sut, services) = makeSut()
+
+        XCTAssertEqual(services.errorViewModels, [])
+
+        sut.didUpdate(username: "some", password: "some")
+        XCTAssertEqual(services.errorViewModels, [.init(message: nil)])
+
+        sut.didUpdate(username: "another", password: "another")
+        XCTAssertEqual(services.errorViewModels, [
+            .init(message: nil),
+            .init(message: nil),
+        ])
+    }
+
     // MARK: - Helpers
 
     private func makeSut(
