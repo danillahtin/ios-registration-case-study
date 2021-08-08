@@ -23,7 +23,7 @@ public final class RegistrationPresenter {
         registrationView: RegistrationView,
         errorView: ErrorView,
         scheduler: DeferredScheduler,
-        localizationProvider: LocalizationProvider = DefaultLocalizationProvider()
+        localizationProvider: LocalizationProvider
     ) {
         self.loadingView = loadingView
         self.buttonView = buttonView
