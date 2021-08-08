@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Core
+import RegistrationCore
 import RegistrationComposition
 
 final class SceneDelegate: UIResponder, UIWindowSceneDelegate {

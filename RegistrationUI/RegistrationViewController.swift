@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Presentation
+import RegistrationPresentation
 
 public protocol RegistrationViewControllerDelegate {
     func onViewDidLoad()

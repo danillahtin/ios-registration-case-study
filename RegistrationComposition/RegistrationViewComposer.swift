@@ -6,8 +6,8 @@
 //
 
 import UIKit
-import Core
-import Presentation
+import RegistrationCore
+import RegistrationPresentation
 import RegistrationUI
 
 public enum RegistrationViewComposer {

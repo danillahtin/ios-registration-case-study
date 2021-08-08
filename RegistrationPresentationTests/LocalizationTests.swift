@@ -6,7 +6,7 @@
 //
 
 import XCTest
-import Presentation
+import RegistrationPresentation
 
 final class FeedLocalizationTests: XCTestCase {
     func test_localizedStrings_haveKeysAndValuesForAllSupportedLocalizations() {

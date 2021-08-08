@@ -5,7 +5,7 @@
       location = "group:/Users/danillahtin/Documents/Programming/Registration/RegistrationiOS.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Multiplatform.xcodeproj">
+      location = "group:/Users/danillahtin/Documents/Programming/Registration/Registration.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:/Users/danillahtin/Documents/Programming/Registration/RegistrationPrototype.xcodeproj">

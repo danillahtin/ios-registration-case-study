@@ -6,7 +6,7 @@
 //
 
 import XCTest
-import Core
+import RegistrationCore
 
 final class RequestValidatingDecoratorTests: XCTestCase {
     func test_givenRequestWithEmptyUsername_whenRegisterCalled_thenReturnsError() {

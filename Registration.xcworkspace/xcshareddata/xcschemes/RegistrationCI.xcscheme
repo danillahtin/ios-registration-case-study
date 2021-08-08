@@ -60,9 +60,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8B7564DF26BDDA3D00D2F90E"
-               BuildableName = "CoreTests.xctest"
-               BlueprintName = "CoreTests"
-               ReferencedContainer = "container:Multiplatform.xcodeproj">
+               BuildableName = "RegistrationCoreTests.xctest"
+               BlueprintName = "RegistrationCoreTests"
+               ReferencedContainer = "container:Registration.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -72,9 +72,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8B75651526BDE9C000D2F90E"
-               BuildableName = "PresentationTests.xctest"
-               BlueprintName = "PresentationTests"
-               ReferencedContainer = "container:Multiplatform.xcodeproj">
+               BuildableName = "RegistrationPresentationTests.xctest"
+               BlueprintName = "RegistrationPresentationTests"
+               ReferencedContainer = "container:Registration.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>

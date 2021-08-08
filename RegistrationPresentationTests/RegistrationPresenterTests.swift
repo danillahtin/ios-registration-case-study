@@ -6,7 +6,7 @@
 //
 
 import XCTest
-import Presentation
+import RegistrationPresentation
 
 final class RegistrationPresenterTests: XCTestCase {
     func test_didLoadView_displaysNotLoading() {

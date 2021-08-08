@@ -16,12 +16,9 @@
 		8BD163B826BF296800C2E126 /* UIView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163B726BF296800C2E126 /* UIView+Helpers.swift */; };
 		8BD163BA26BF298100C2E126 /* TapGestureRecognizerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163B926BF298100C2E126 /* TapGestureRecognizerMock.swift */; };
 		8BD163BC26BF299200C2E126 /* TextFieldMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163BB26BF299200C2E126 /* TextFieldMock.swift */; };
-		8BD163C226BF2BA000C2E126 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD163BE26BF2B6100C2E126 /* Core.framework */; };
 		8BD163C826BF2CF500C2E126 /* XCTestCase+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163C726BF2CF500C2E126 /* XCTestCase+Helpers.swift */; };
-		8BD163DE26BF4EAF00C2E126 /* Presentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD163DD26BF4EAF00C2E126 /* Presentation.framework */; };
 		8BD163E226BF4F2000C2E126 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163E126BF4F2000C2E126 /* RegistrationViewController.swift */; };
 		8BD163ED26BF503F00C2E126 /* RegistrationUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B75653126BDEBED00D2F90E /* RegistrationUI.framework */; };
-		8BD163F326BF50FF00C2E126 /* Presentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD163F226BF50FF00C2E126 /* Presentation.framework */; };
 		8BD163F726BF517100C2E126 /* RegistrationViewComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163F626BF517100C2E126 /* RegistrationViewComposer.swift */; };
 		8BD163F926BF51CC00C2E126 /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163F826BF51CC00C2E126 /* Weak.swift */; };
 		8BD1640226BFF90C00C2E126 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD1640126BFF90C00C2E126 /* Animator.swift */; };
@@ -37,10 +34,13 @@
 		8BD1643626C0117300C2E126 /* RegistrationComposition.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B75655026BDED0900D2F90E /* RegistrationComposition.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8BD1643926C0117300C2E126 /* RegistrationUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B75653126BDEBED00D2F90E /* RegistrationUI.framework */; };
 		8BD1643A26C0117300C2E126 /* RegistrationUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B75653126BDEBED00D2F90E /* RegistrationUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8BD1643D26C0117300C2E126 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD1643326C0117300C2E126 /* Core.framework */; };
-		8BD1643E26C0117300C2E126 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD1643326C0117300C2E126 /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8BD1643F26C0117300C2E126 /* Presentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD1643426C0117300C2E126 /* Presentation.framework */; };
-		8BD1644026C0117300C2E126 /* Presentation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD1643426C0117300C2E126 /* Presentation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8BD1644326C042BF00C2E126 /* RegistrationPresentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD1644226C042BF00C2E126 /* RegistrationPresentation.framework */; };
+		8BD1644826C042CE00C2E126 /* RegistrationCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD1644626C042CE00C2E126 /* RegistrationCore.framework */; };
+		8BD1644A26C042CE00C2E126 /* RegistrationPresentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD1644726C042CE00C2E126 /* RegistrationPresentation.framework */; };
+		8BD1644F26C042EC00C2E126 /* RegistrationCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD1644D26C042EC00C2E126 /* RegistrationCore.framework */; };
+		8BD1645026C042EC00C2E126 /* RegistrationCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD1644D26C042EC00C2E126 /* RegistrationCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8BD1645126C042EC00C2E126 /* RegistrationPresentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD1644E26C042EC00C2E126 /* RegistrationPresentation.framework */; };
+		8BD1645226C042EC00C2E126 /* RegistrationPresentation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD1644E26C042EC00C2E126 /* RegistrationPresentation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,8 +89,8 @@
 			dstSubfolderSpec = 10;
 			files = (
 				8BD1643A26C0117300C2E126 /* RegistrationUI.framework in Embed Frameworks */,
-				8BD1643E26C0117300C2E126 /* Core.framework in Embed Frameworks */,
-				8BD1644026C0117300C2E126 /* Presentation.framework in Embed Frameworks */,
+				8BD1645226C042EC00C2E126 /* RegistrationPresentation.framework in Embed Frameworks */,
+				8BD1645026C042EC00C2E126 /* RegistrationCore.framework in Embed Frameworks */,
 				8BD1643626C0117300C2E126 /* RegistrationComposition.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -135,6 +135,11 @@
 		8BD1642F26C0116300C2E126 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8BD1643326C0117300C2E126 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BD1643426C0117300C2E126 /* Presentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Presentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BD1644226C042BF00C2E126 /* RegistrationPresentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RegistrationPresentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BD1644626C042CE00C2E126 /* RegistrationCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RegistrationCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BD1644726C042CE00C2E126 /* RegistrationPresentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RegistrationPresentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BD1644D26C042EC00C2E126 /* RegistrationCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RegistrationCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BD1644E26C042EC00C2E126 /* RegistrationPresentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RegistrationPresentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,7 +147,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BD163F326BF50FF00C2E126 /* Presentation.framework in Frameworks */,
+				8BD1644326C042BF00C2E126 /* RegistrationPresentation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,9 +164,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BD1644826C042CE00C2E126 /* RegistrationCore.framework in Frameworks */,
 				8BD163ED26BF503F00C2E126 /* RegistrationUI.framework in Frameworks */,
-				8BD163DE26BF4EAF00C2E126 /* Presentation.framework in Frameworks */,
-				8BD163C226BF2BA000C2E126 /* Core.framework in Frameworks */,
+				8BD1644A26C042CE00C2E126 /* RegistrationPresentation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,8 +183,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BD1643926C0117300C2E126 /* RegistrationUI.framework in Frameworks */,
-				8BD1643D26C0117300C2E126 /* Core.framework in Frameworks */,
-				8BD1643F26C0117300C2E126 /* Presentation.framework in Frameworks */,
+				8BD1645126C042EC00C2E126 /* RegistrationPresentation.framework in Frameworks */,
+				8BD1644F26C042EC00C2E126 /* RegistrationCore.framework in Frameworks */,
 				8BD1643526C0117300C2E126 /* RegistrationComposition.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -270,6 +275,11 @@
 		8BD163BD26BF2B6100C2E126 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8BD1644D26C042EC00C2E126 /* RegistrationCore.framework */,
+				8BD1644E26C042EC00C2E126 /* RegistrationPresentation.framework */,
+				8BD1644626C042CE00C2E126 /* RegistrationCore.framework */,
+				8BD1644726C042CE00C2E126 /* RegistrationPresentation.framework */,
+				8BD1644226C042BF00C2E126 /* RegistrationPresentation.framework */,
 				8BD1643326C0117300C2E126 /* Core.framework */,
 				8BD1643426C0117300C2E126 /* Presentation.framework */,
 				8BD163F226BF50FF00C2E126 /* Presentation.framework */,

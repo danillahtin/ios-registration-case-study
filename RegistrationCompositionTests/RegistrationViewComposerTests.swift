@@ -6,8 +6,8 @@
 //
 
 import XCTest
-import Core
-import Presentation
+import RegistrationCore
+import RegistrationPresentation
 import RegistrationUI
 import RegistrationComposition
 
