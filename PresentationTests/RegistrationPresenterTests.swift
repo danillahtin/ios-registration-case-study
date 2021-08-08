@@ -36,8 +36,8 @@ final class RegistrationPresenterTests: XCTestCase {
         XCTAssertEqual(services.registrationViewModels, [
             .init(
                 cancelTitle: "REGISTRATION_CANCEL_TITLE_LOCALIZED",
-                nextTitle: "Next",
-                doneTitle: "Done"
+                nextTitle: "REGISTRATION_NEXT_TITLE_LOCALIZED",
+                doneTitle: "REGISTRATION_DONE_TITLE_LOCALIZED"
             )
         ])
     }
@@ -138,12 +138,12 @@ final class RegistrationPresenterTests: XCTestCase {
         XCTAssertEqual(services.buttonViewModels, [])
 
         sut.didUpdate(username: "", password: "any")
-        XCTAssertEqual(services.buttonViewModels, [.init(title: "Register", isEnabled: false)])
+        XCTAssertEqual(services.buttonViewModels, [.init(title: registerButtonTitle, isEnabled: false)])
 
         sut.didUpdate(username: nil, password: "any")
         XCTAssertEqual(services.buttonViewModels, [
-            .init(title: "Register", isEnabled: false),
-            .init(title: "Register", isEnabled: false),
+            .init(title: registerButtonTitle, isEnabled: false),
+            .init(title: registerButtonTitle, isEnabled: false),
         ])
     }
 
@@ -153,12 +153,12 @@ final class RegistrationPresenterTests: XCTestCase {
         XCTAssertEqual(services.buttonViewModels, [])
 
         sut.didUpdate(username: "any", password: "")
-        XCTAssertEqual(services.buttonViewModels, [.init(title: "Register", isEnabled: false)])
+        XCTAssertEqual(services.buttonViewModels, [.init(title: registerButtonTitle, isEnabled: false)])
 
         sut.didUpdate(username: "any", password: nil)
         XCTAssertEqual(services.buttonViewModels, [
-            .init(title: "Register", isEnabled: false),
-            .init(title: "Register", isEnabled: false),
+            .init(title: registerButtonTitle, isEnabled: false),
+            .init(title: registerButtonTitle, isEnabled: false),
         ])
     }
 
@@ -168,27 +168,27 @@ final class RegistrationPresenterTests: XCTestCase {
         XCTAssertEqual(services.buttonViewModels, [])
 
         sut.didUpdate(username: "", password: "")
-        XCTAssertEqual(services.buttonViewModels, [.init(title: "Register", isEnabled: false)])
+        XCTAssertEqual(services.buttonViewModels, [.init(title: registerButtonTitle, isEnabled: false)])
 
         sut.didUpdate(username: "", password: nil)
         XCTAssertEqual(services.buttonViewModels, [
-            .init(title: "Register", isEnabled: false),
-            .init(title: "Register", isEnabled: false),
+            .init(title: registerButtonTitle, isEnabled: false),
+            .init(title: registerButtonTitle, isEnabled: false),
         ])
 
         sut.didUpdate(username: nil, password: nil)
         XCTAssertEqual(services.buttonViewModels, [
-            .init(title: "Register", isEnabled: false),
-            .init(title: "Register", isEnabled: false),
-            .init(title: "Register", isEnabled: false),
+            .init(title: registerButtonTitle, isEnabled: false),
+            .init(title: registerButtonTitle, isEnabled: false),
+            .init(title: registerButtonTitle, isEnabled: false),
         ])
 
         sut.didUpdate(username: nil, password: "")
         XCTAssertEqual(services.buttonViewModels, [
-            .init(title: "Register", isEnabled: false),
-            .init(title: "Register", isEnabled: false),
-            .init(title: "Register", isEnabled: false),
-            .init(title: "Register", isEnabled: false),
+            .init(title: registerButtonTitle, isEnabled: false),
+            .init(title: registerButtonTitle, isEnabled: false),
+            .init(title: registerButtonTitle, isEnabled: false),
+            .init(title: registerButtonTitle, isEnabled: false),
         ])
     }
 
@@ -198,12 +198,12 @@ final class RegistrationPresenterTests: XCTestCase {
         XCTAssertEqual(services.buttonViewModels, [])
 
         sut.didUpdate(username: "some", password: "some")
-        XCTAssertEqual(services.buttonViewModels, [.init(title: "Register", isEnabled: true)])
+        XCTAssertEqual(services.buttonViewModels, [.init(title: registerButtonTitle, isEnabled: true)])
 
         sut.didUpdate(username: "another", password: "another")
         XCTAssertEqual(services.buttonViewModels, [
-            .init(title: "Register", isEnabled: true),
-            .init(title: "Register", isEnabled: true),
+            .init(title: registerButtonTitle, isEnabled: true),
+            .init(title: registerButtonTitle, isEnabled: true),
         ])
     }
 
@@ -223,6 +223,10 @@ final class RegistrationPresenterTests: XCTestCase {
     }
 
     // MARK: - Helpers
+
+    var registerButtonTitle: String {
+        "REGISTRATION_REGISTER_BUTTON_TITLE_LOCALIZED"
+    }
 
     private func makeSut(
         file: StaticString = #file,

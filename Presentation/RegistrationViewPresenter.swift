@@ -16,8 +16,6 @@ public final class RegistrationViewPresenter {
     private let scheduler: DeferredScheduler
     private let localizationProvider: LocalizationProvider
 
-    private var buttonTitle: String { "Register" }
-
     private var hideErrorCancellable: Cancellable?
 
     public init(
@@ -43,9 +41,9 @@ public final class RegistrationViewPresenter {
         titleView.display(viewModel: .init(title: localizationProvider.title))
         registrationView.display(
             viewModel: .init(
-                cancelTitle: localizationProvider.cancelTitle,
-                nextTitle: "Next",
-                doneTitle: "Done"
+                cancelTitle: localizationProvider.cancel,
+                nextTitle: localizationProvider.next,
+                doneTitle: localizationProvider.done
             )
         )
     }
@@ -56,7 +54,7 @@ public final class RegistrationViewPresenter {
 
         buttonView.display(
             viewModel: .init(
-                title: buttonTitle,
+                title: localizationProvider.register,
                 isEnabled: !isUsernameEmpty && !isPasswordEmpty
             )
         )
@@ -87,7 +85,19 @@ private extension LocalizationProvider {
         string(for: "REGISTRATION_VIEW_TITLE")
     }
 
-    var cancelTitle: String {
+    var cancel: String {
         string(for: "REGISTRATION_CANCEL_TITLE")
+    }
+
+    var next: String {
+        string(for: "REGISTRATION_NEXT_TITLE")
+    }
+
+    var done: String {
+        string(for: "REGISTRATION_DONE_TITLE")
+    }
+
+    var register: String {
+        string(for: "REGISTRATION_REGISTER_BUTTON_TITLE")
     }
 }
