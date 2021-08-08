@@ -59,7 +59,7 @@ private final class Adapter: RegistrationViewControllerDelegate {
     private let onRegister: () -> ()
 
     var presenter: RegistrationPresenter?
-    var request: RegistrationRequest = .init(username: nil, password: nil)
+    var request: RegistrationRequest = .init(username: "", password: "")
 
     init(
         registrationService: RegistrationService,

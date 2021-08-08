@@ -11,27 +11,11 @@
         <!--Registration-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="Registration" id="BYZ-38-t0r" customClass="RegistrationViewController" customModule="UI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Registration" id="BYZ-38-t0r" customClass="RegistrationViewController" customModule="RegistrationUI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="yym-XV-EzR">
-                                <rect key="frame" x="20" y="60" width="374" height="120"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iIe-4g-efa">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="60"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="uKV-th-0xB"/>
-                                        </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PUI-QB-Kx0">
-                                        <rect key="frame" x="0.0" y="60" width="374" height="60"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    </view>
-                                </subviews>
-                            </stackView>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="PBj-o4-f5Y">
                                 <rect key="frame" x="20" y="84" width="374" height="65"/>
                                 <color key="backgroundColor" systemColor="systemPinkColor"/>
@@ -83,9 +67,6 @@
                             <constraint firstItem="PBj-o4-f5Y" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="1S9-I8-ufe"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="7hE-Wu-eys" secondAttribute="bottom" constant="44" id="2Hq-pA-EON"/>
                             <constraint firstItem="7hE-Wu-eys" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Oi1-Pf-Jc4"/>
-                            <constraint firstItem="yym-XV-EzR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Sfw-74-Waa"/>
-                            <constraint firstItem="yym-XV-EzR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="Xhf-X9-uoZ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="yym-XV-EzR" secondAttribute="trailing" id="eso-0y-8df"/>
                             <constraint firstItem="PBj-o4-f5Y" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="gmc-Yf-tDu"/>
                             <constraint firstAttribute="trailingMargin" secondItem="PBj-o4-f5Y" secondAttribute="trailing" id="nIw-OS-Fcr"/>
                             <constraint firstItem="7hE-Wu-eys" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="rGJ-Pu-dlP"/>
@@ -94,11 +75,9 @@
                     <navigationItem key="navigationItem" title="Registration" id="Qv2-yy-EGd"/>
                     <connections>
                         <outlet property="errorView" destination="PBj-o4-f5Y" id="VNg-18-Wwm"/>
-                        <outlet property="passwordContainerView" destination="PUI-QB-Kx0" id="WZM-2I-yc7"/>
                         <outlet property="registerActivityIndicator" destination="PnM-XS-pz4" id="8S7-aF-QU8"/>
                         <outlet property="registerButton" destination="xYa-Lo-WPj" id="ru5-fC-EWA"/>
                         <outlet property="registerButtonContainerView" destination="7hE-Wu-eys" id="onF-rB-ZSy"/>
-                        <outlet property="usernameContainerView" destination="iIe-4g-efa" id="gaz-kd-Ol4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -21,17 +21,16 @@ public final class RegistrationViewController: UIViewController {
     @IBOutlet public private(set) weak var registerButton: UIButton!
     @IBOutlet public private(set) weak var registerActivityIndicator: UIActivityIndicatorView!
     @IBOutlet public private(set) weak var errorView: UIButton!
-    @IBOutlet private weak var usernameContainerView: UIView!
-    @IBOutlet private weak var passwordContainerView: UIView!
     @IBOutlet private weak var registerButtonContainerView: UIView!
-    public private(set) weak var usernameTextField: UITextField!
-    public private(set) weak var passwordTextField: UITextField!
-    public private(set) var passwordDoneButton: UIBarButtonItem?
+    public var usernameTextField: UITextField! { formViewController.usernameTextField }
+    public var passwordTextField: UITextField! { formViewController.passwordTextField }
+    public var passwordDoneButton: UIBarButtonItem? { formViewController.passwordDoneButton }
 
-    private var textFieldFactory: TextFieldFactory!
     private var tapGestureRecognizerFactory: TapGestureRecognizerFactory!
     private var delegate: RegistrationViewControllerDelegate!
     private var animator: Animator!
+
+    private var formViewController: RegistrationFormViewController!
 
     public static func make(
         textFieldFactory: @escaping TextFieldFactory = UITextField.init,
@@ -45,10 +44,12 @@ public final class RegistrationViewController: UIViewController {
         )
         let vc = storyboard.instantiateInitialViewController() as! RegistrationViewController
 
-        vc.textFieldFactory = textFieldFactory
         vc.tapGestureRecognizerFactory = tapGestureRecognizerFactory
         vc.delegate = delegate
         vc.animator = animator
+        vc.formViewController = RegistrationFormViewController(textFieldFactory: textFieldFactory)
+        vc.formViewController.didUpdate = delegate.didUpdate
+        vc.formViewController.didRegister = delegate.onRegisterButtonTapped
 
         return vc
     }
@@ -56,18 +57,19 @@ public final class RegistrationViewController: UIViewController {
     public override func loadView() {
         super.loadView()
 
-        let usernameTextField = makeUsernameTextField()
-        let passwordTextField = makePasswordTextField()
+        addChild(formViewController)
+        view.insertSubview(formViewController.view, belowSubview: errorView)
+        formViewController.view.translatesAutoresizingMaskIntoConstraints = false
 
-        usernameContainerView.addSubview(usernameTextField)
-        usernameTextField.alignInsideSuperview()
-        passwordContainerView.addSubview(passwordTextField)
-        passwordTextField.alignInsideSuperview()
+        NSLayoutConstraint.activate([
+            view.layoutMarginsGuide.leftAnchor.constraint(equalTo: formViewController.view.leftAnchor),
+            view.layoutMarginsGuide.rightAnchor.constraint(equalTo: formViewController.view.rightAnchor),
+            view.safeAreaLayoutGuide.topAnchor.constraint(equalTo: formViewController.view.topAnchor, constant: -16),
+        ])
 
-        self.usernameTextField = usernameTextField
-        self.passwordTextField = passwordTextField
+        formViewController.didMove(toParent: self)
 
-        let cancelInputTapRecognizer = tapGestureRecognizerFactory(self, #selector(onCancelButtonTapped))
+        let cancelInputTapRecognizer = tapGestureRecognizerFactory(formViewController, #selector(formViewController.endEditing))
 
         errorView.titleLabel?.textAlignment = .center
 
@@ -78,36 +80,6 @@ public final class RegistrationViewController: UIViewController {
         super.viewDidLoad()
 
         delegate?.onViewDidLoad()
-        notifyTextFieldUpdated()
-    }
-
-    private func makeUsernameTextField() -> UITextField {
-        let textField = textFieldFactory()
-        textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        textField.delegate = self
-        textField.returnKeyType = .next
-        textField.placeholder = "Username"
-
-        return textField
-    }
-
-    private func makePasswordTextField() -> UITextField {
-        let textField = textFieldFactory()
-        textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        textField.isSecureTextEntry = true
-        textField.returnKeyType = .done
-        textField.placeholder = "Password"
-
-        return textField
-    }
-
-    @objc
-    private func textFieldDidChange(_ textField: UITextField) {
-        notifyTextFieldUpdated()
-    }
-
-    private func notifyTextFieldUpdated() {
-        delegate?.didUpdate(username: usernameTextField.text, password: passwordTextField.text)
     }
 
     @IBAction
@@ -134,14 +106,6 @@ public final class RegistrationViewController: UIViewController {
     }
 }
 
-extension RegistrationViewController: UITextFieldDelegate {
-    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-
-        return true
-    }
-}
-
 extension RegistrationViewController: LoadingView {
     public func display(viewModel: LoadingViewModel) {
         if viewModel.isLoading {
@@ -156,12 +120,12 @@ extension RegistrationViewController: LoadingView {
 
 extension RegistrationViewController: ButtonView {
     public func display(viewModel: ButtonViewModel) {
+        formViewController.display(viewModel: viewModel)
         registerButton.setTitle(viewModel.title, for: .normal)
         registerButton.isEnabled = viewModel.isEnabled
         registerButtonContainerView.backgroundColor = viewModel.isEnabled
             ? registerButtonContainerView.backgroundColor?.withAlphaComponent(1)
             : registerButtonContainerView.backgroundColor?.withAlphaComponent(0.4)
-        passwordDoneButton?.isEnabled = viewModel.isEnabled
     }
 }
 
@@ -173,46 +137,7 @@ extension RegistrationViewController: TitleView {
 
 extension RegistrationViewController: RegistrationView {
     public func display(viewModel: RegistrationViewModel) {
-        usernameTextField.inputAccessoryView = makeToolbar(items: [
-            UIBarButtonItem(title: viewModel.cancelTitle, style: .plain, target: self, action: #selector(onCancelButtonTapped)),
-            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            UIBarButtonItem(title: viewModel.nextTitle, style: .plain, target: self, action: #selector(onUsernameNextButtonTapped)),
-        ])
-
-        passwordDoneButton = UIBarButtonItem(title: viewModel.doneTitle, style: .plain, target: self, action: #selector(onPasswordDoneButtonTapped))
-        passwordDoneButton?.isEnabled = registerButton.isEnabled
-
-        passwordTextField.inputAccessoryView = makeToolbar(items: [
-            UIBarButtonItem(title: viewModel.cancelTitle, style: .plain, target: self, action: #selector(onCancelButtonTapped)),
-            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            passwordDoneButton!,
-        ])
-    }
-
-    private func makeToolbar(items: [UIBarButtonItem]) -> UIToolbar {
-        let toolbar = UIToolbar(frame: .init(x: 0, y: 0, width: 100, height: 100))
-        toolbar.items = items
-        toolbar.sizeToFit()
-
-        return toolbar
-    }
-
-    @objc
-    private func onCancelButtonTapped() {
-        usernameTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
-    }
-
-    @objc
-    private func onUsernameNextButtonTapped() {
-        usernameTextField.resignFirstResponder()
-        passwordTextField.becomeFirstResponder()
-    }
-
-    @objc
-    private func onPasswordDoneButtonTapped() {
-        passwordTextField.resignFirstResponder()
-        onRegisterButtonTapped()
+        formViewController.display(viewModel: viewModel)
     }
 }
 
@@ -223,20 +148,5 @@ extension RegistrationViewController: ErrorView {
         } else {
             hideErrorView()
         }
-    }
-}
-
-private extension UIView {
-    func alignInsideSuperview() {
-        guard let superview = superview else { return }
-
-        translatesAutoresizingMaskIntoConstraints = false
-
-        NSLayoutConstraint.activate([
-            leftAnchor.constraint(equalTo: superview.leftAnchor),
-            rightAnchor.constraint(equalTo: superview.rightAnchor),
-            topAnchor.constraint(equalTo: superview.topAnchor),
-            bottomAnchor.constraint(equalTo: superview.bottomAnchor),
-        ])
     }
 }

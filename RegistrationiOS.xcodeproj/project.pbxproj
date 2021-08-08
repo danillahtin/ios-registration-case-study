@@ -40,6 +40,8 @@
 		8BD1645126C042EC00C2E126 /* RegistrationPresentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD1644E26C042EC00C2E126 /* RegistrationPresentation.framework */; };
 		8BD1645226C042EC00C2E126 /* RegistrationPresentation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD1644E26C042EC00C2E126 /* RegistrationPresentation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8BD1646A26C06A3B00C2E126 /* XCTestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD1646926C06A3B00C2E126 /* XCTestHelpers.framework */; };
+		8BD1647826C0811500C2E126 /* RegistrationFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD1647726C0811500C2E126 /* RegistrationFormViewController.swift */; };
+		8BD1647A26C0814000C2E126 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD1647926C0814000C2E126 /* Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +140,8 @@
 		8BD1644D26C042EC00C2E126 /* RegistrationCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RegistrationCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BD1644E26C042EC00C2E126 /* RegistrationPresentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RegistrationPresentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BD1646926C06A3B00C2E126 /* XCTestHelpers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = XCTestHelpers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BD1647726C0811500C2E126 /* RegistrationFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFormViewController.swift; sourceTree = "<group>"; };
+		8BD1647926C0814000C2E126 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,8 +225,10 @@
 			children = (
 				8B75653526BDEBED00D2F90E /* Info.plist */,
 				8BD163E126BF4F2000C2E126 /* RegistrationViewController.swift */,
+				8BD1647726C0811500C2E126 /* RegistrationFormViewController.swift */,
 				8BD1640F26C009F600C2E126 /* RegistrationViewController.storyboard */,
 				8BD1640126BFF90C00C2E126 /* Animator.swift */,
+				8BD1647926C0814000C2E126 /* Helpers.swift */,
 			);
 			path = RegistrationUI;
 			sourceTree = "<group>";
@@ -517,7 +523,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BD163E226BF4F2000C2E126 /* RegistrationViewController.swift in Sources */,
+				8BD1647826C0811500C2E126 /* RegistrationFormViewController.swift in Sources */,
 				8BD1640226BFF90C00C2E126 /* Animator.swift in Sources */,
+				8BD1647A26C0814000C2E126 /* Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
