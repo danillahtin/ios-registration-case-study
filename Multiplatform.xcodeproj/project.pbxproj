@@ -21,6 +21,8 @@
 		8BD163D626BF4E1A00C2E126 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163D526BF4E1A00C2E126 /* TitleView.swift */; };
 		8BD163D826BF4E5300C2E126 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163D726BF4E5300C2E126 /* RegistrationView.swift */; };
 		8BD163DA26BF4E7E00C2E126 /* RegistrationViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163D926BF4E7E00C2E126 /* RegistrationViewPresenter.swift */; };
+		8BD163FB26BFD60300C2E126 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163FA26BFD60300C2E126 /* ErrorView.swift */; };
+		8BD163FD26BFD6BA00C2E126 /* XCTestCase+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163FC26BFD6BA00C2E126 /* XCTestCase+Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,8 @@
 		8BD163D526BF4E1A00C2E126 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		8BD163D726BF4E5300C2E126 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		8BD163D926BF4E7E00C2E126 /* RegistrationViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewPresenter.swift; sourceTree = "<group>"; };
+		8BD163FA26BFD60300C2E126 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		8BD163FC26BFD6BA00C2E126 /* XCTestCase+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Helpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +162,7 @@
 				8BD163D526BF4E1A00C2E126 /* TitleView.swift */,
 				8BD163D726BF4E5300C2E126 /* RegistrationView.swift */,
 				8BD163D926BF4E7E00C2E126 /* RegistrationViewPresenter.swift */,
+				8BD163FA26BFD60300C2E126 /* ErrorView.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -167,6 +172,7 @@
 			children = (
 				8B75651D26BDE9C000D2F90E /* Info.plist */,
 				8B75652526BDEA7C00D2F90E /* RegistrationPresenterTests.swift */,
+				8BD163FC26BFD6BA00C2E126 /* XCTestCase+Helpers.swift */,
 			);
 			path = PresentationTests;
 			sourceTree = "<group>";
@@ -366,6 +372,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BD163D226BF4DED00C2E126 /* ButtonView.swift in Sources */,
+				8BD163FB26BFD60300C2E126 /* ErrorView.swift in Sources */,
 				8BD163CE26BF4DCB00C2E126 /* LoadingView.swift in Sources */,
 				8BD163D626BF4E1A00C2E126 /* TitleView.swift in Sources */,
 				8BD163DA26BF4E7E00C2E126 /* RegistrationViewPresenter.swift in Sources */,
@@ -377,6 +384,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BD163FD26BFD6BA00C2E126 /* XCTestCase+Helpers.swift in Sources */,
 				8B75652626BDEA7C00D2F90E /* RegistrationPresenterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

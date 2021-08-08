@@ -54,6 +54,21 @@ final class RegistrationPresenterTests: XCTestCase {
         XCTAssertEqual(services.loadingViewModels, [.init(isLoading: false)])
     }
 
+    func test_didFinishRegistrationWithError_displaysErrorView() {
+        let (sut, services) = makeSut()
+
+        XCTAssertEqual(services.errorViewModels, [])
+
+        sut.didFinishRegistration(with: makeError("some error"))
+        XCTAssertEqual(services.errorViewModels, [.init(message: "some error")])
+
+        sut.didFinishRegistration(with: makeError("another error"))
+        XCTAssertEqual(services.errorViewModels, [
+            .init(message: "some error"),
+            .init(message: "another error"),
+        ])
+    }
+
     func test_givenUsernameIsEmpty_thenDidUpdateUsernamePasswordDisplaysButtonDisabled() {
         let (sut, services) = makeSut()
 
@@ -140,18 +155,20 @@ final class RegistrationPresenterTests: XCTestCase {
             loadingView: services,
             buttonView: services,
             titleView: services,
-            registrationView: services
+            registrationView: services,
+            errorView: services
         )
 
         return (sut, services)
     }
 }
 
-private final class Services: LoadingView, ButtonView, TitleView, RegistrationView {
+private final class Services: LoadingView, ButtonView, TitleView, RegistrationView, ErrorView {
     private(set) var loadingViewModels: [LoadingViewModel] = []
     private(set) var buttonViewModels: [ButtonViewModel] = []
     private(set) var titleViewModels: [TitleViewModel] = []
     private(set) var registrationViewModels: [RegistrationViewModel] = []
+    private(set) var errorViewModels: [ErrorViewModel] = []
 
     func display(viewModel: LoadingViewModel) {
         loadingViewModels.append(viewModel)
@@ -167,5 +184,9 @@ private final class Services: LoadingView, ButtonView, TitleView, RegistrationVi
 
     func display(viewModel: RegistrationViewModel) {
         registrationViewModels.append(viewModel)
+    }
+
+    func display(viewModel: ErrorViewModel) {
+        errorViewModels.append(viewModel)
     }
 }
