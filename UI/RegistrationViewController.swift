@@ -146,6 +146,7 @@ public final class RegistrationViewController: UIViewController {
     }
 
     private func showErrorView(message: String) {
+        errorView.setTitle(message, for: .normal)
         animator.animate { [weak self] in
             self?.errorView.alpha = 1
         }
