@@ -20,7 +20,7 @@ public enum RegistrationViewComposer {
         registrationService: RegistrationService,
         uiScheduler: Scheduler = DispatchQueue.main,
         serviceScheduler: Scheduler,
-        animationScheduler: Scheduler = AnimationScheduler.fast,
+        animator: Animator = UIKitAnimator.fast,
         onRegister: @escaping OnRegisterBlock,
         onError: @escaping OnErrorBlock
     ) -> RegistrationViewController {
@@ -35,7 +35,7 @@ public enum RegistrationViewComposer {
         let vc = RegistrationViewController(
             textFieldFactory: textFieldFactory,
             tapGestureRecognizerFactory: tapGestureRecognizerFactory,
-            animationScheduler: animationScheduler,
+            animator: animator,
             delegate: adapter
         )
 

@@ -25,7 +25,8 @@
 		8BD163F326BF50FF00C2E126 /* Presentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD163F226BF50FF00C2E126 /* Presentation.framework */; };
 		8BD163F726BF517100C2E126 /* RegistrationViewComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163F626BF517100C2E126 /* RegistrationViewComposer.swift */; };
 		8BD163F926BF51CC00C2E126 /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163F826BF51CC00C2E126 /* Weak.swift */; };
-		8BD1640026BFF72200C2E126 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163C926BF4D3900C2E126 /* Scheduler.swift */; };
+		8BD1640226BFF90C00C2E126 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD1640126BFF90C00C2E126 /* Animator.swift */; };
+		8BD1640326BFFAD200C2E126 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163C926BF4D3900C2E126 /* Scheduler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		8BD163F226BF50FF00C2E126 /* Presentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Presentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BD163F626BF517100C2E126 /* RegistrationViewComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewComposer.swift; sourceTree = "<group>"; };
 		8BD163F826BF51CC00C2E126 /* Weak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weak.swift; sourceTree = "<group>"; };
+		8BD1640126BFF90C00C2E126 /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,8 +161,8 @@
 			isa = PBXGroup;
 			children = (
 				8B75653526BDEBED00D2F90E /* Info.plist */,
-				8BD163C926BF4D3900C2E126 /* Scheduler.swift */,
 				8BD163E126BF4F2000C2E126 /* RegistrationViewController.swift */,
+				8BD1640126BFF90C00C2E126 /* Animator.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -178,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				8B75655326BDED0900D2F90E /* Info.plist */,
+				8BD163C926BF4D3900C2E126 /* Scheduler.swift */,
 				8BD163F626BF517100C2E126 /* RegistrationViewComposer.swift */,
 				8BD163F826BF51CC00C2E126 /* Weak.swift */,
 			);
@@ -396,7 +399,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BD163E226BF4F2000C2E126 /* RegistrationViewController.swift in Sources */,
-				8BD1640026BFF72200C2E126 /* Scheduler.swift in Sources */,
+				8BD1640226BFF90C00C2E126 /* Animator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +415,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BD1640326BFFAD200C2E126 /* Scheduler.swift in Sources */,
 				8BD163F726BF517100C2E126 /* RegistrationViewComposer.swift in Sources */,
 				8BD163F926BF51CC00C2E126 /* Weak.swift in Sources */,
 			);
