@@ -18,7 +18,6 @@
 		8BD163BC26BF299200C2E126 /* TextFieldMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163BB26BF299200C2E126 /* TextFieldMock.swift */; };
 		8BD163C226BF2BA000C2E126 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD163BE26BF2B6100C2E126 /* Core.framework */; };
 		8BD163C826BF2CF500C2E126 /* XCTestCase+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163C726BF2CF500C2E126 /* XCTestCase+Helpers.swift */; };
-		8BD163CA26BF4D3900C2E126 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163C926BF4D3900C2E126 /* Scheduler.swift */; };
 		8BD163DE26BF4EAF00C2E126 /* Presentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD163DD26BF4EAF00C2E126 /* Presentation.framework */; };
 		8BD163E226BF4F2000C2E126 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163E126BF4F2000C2E126 /* RegistrationViewController.swift */; };
 		8BD163ED26BF503F00C2E126 /* UI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B75653126BDEBED00D2F90E /* UI.framework */; };
@@ -26,6 +25,7 @@
 		8BD163F326BF50FF00C2E126 /* Presentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD163F226BF50FF00C2E126 /* Presentation.framework */; };
 		8BD163F726BF517100C2E126 /* RegistrationViewComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163F626BF517100C2E126 /* RegistrationViewComposer.swift */; };
 		8BD163F926BF51CC00C2E126 /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163F826BF51CC00C2E126 /* Weak.swift */; };
+		8BD1640026BFF72200C2E126 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163C926BF4D3900C2E126 /* Scheduler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -159,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				8B75653526BDEBED00D2F90E /* Info.plist */,
+				8BD163C926BF4D3900C2E126 /* Scheduler.swift */,
 				8BD163E126BF4F2000C2E126 /* RegistrationViewController.swift */,
 			);
 			path = UI;
@@ -177,7 +178,6 @@
 			isa = PBXGroup;
 			children = (
 				8B75655326BDED0900D2F90E /* Info.plist */,
-				8BD163C926BF4D3900C2E126 /* Scheduler.swift */,
 				8BD163F626BF517100C2E126 /* RegistrationViewComposer.swift */,
 				8BD163F826BF51CC00C2E126 /* Weak.swift */,
 			);
@@ -396,6 +396,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BD163E226BF4F2000C2E126 /* RegistrationViewController.swift in Sources */,
+				8BD1640026BFF72200C2E126 /* Scheduler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,7 +412,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BD163CA26BF4D3900C2E126 /* Scheduler.swift in Sources */,
 				8BD163F726BF517100C2E126 /* RegistrationViewComposer.swift in Sources */,
 				8BD163F926BF51CC00C2E126 /* Weak.swift in Sources */,
 			);
