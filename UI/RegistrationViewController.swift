@@ -115,6 +115,7 @@ public final class RegistrationViewController: UIViewController {
     private func makeErrorView() -> UIButton {
         let button = UIButton()
         button.addTarget(self, action: #selector(onErrorViewTapped), for: .touchUpInside)
+        button.alpha = 0
 
         return button
     }

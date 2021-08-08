@@ -83,6 +83,12 @@ final class RegistrationViewComposerTests: XCTestCase {
         XCTAssertEqual(sut.isRegisterActivityIndicatorHidden, true)
     }
 
+    func test_loadView_hidesErrorView() {
+        let (sut, _) = makeSut()
+
+        XCTAssertEqual(sut.isErrorViewHidden, true)
+    }
+
     func test_passwordInput_isSecure() {
         let (sut, _) = makeSut()
 
