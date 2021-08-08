@@ -17,9 +17,6 @@ public final class RegistrationViewPresenter {
     private let localizationProvider: LocalizationProvider
 
     private var buttonTitle: String { "Register" }
-    private var title: String {
-        localizationProvider.string(for: "REGISTRATION_VIEW_TITLE")
-    }
 
     private var hideErrorCancellable: Cancellable?
 
@@ -43,8 +40,14 @@ public final class RegistrationViewPresenter {
 
     public func didLoadView() {
         loadingView.display(viewModel: .init(isLoading: false))
-        titleView.display(viewModel: .init(title: title))
-        registrationView.display(viewModel: .init(cancelTitle: "Cancel", nextTitle: "Next", doneTitle: "Done"))
+        titleView.display(viewModel: .init(title: localizationProvider.title))
+        registrationView.display(
+            viewModel: .init(
+                cancelTitle: localizationProvider.cancelTitle,
+                nextTitle: "Next",
+                doneTitle: "Done"
+            )
+        )
     }
 
     public func didUpdate(username: String?, password: String?) {
@@ -76,5 +79,15 @@ public final class RegistrationViewPresenter {
         hideErrorCancellable = scheduler.schedule(after: 5, { [weak self] in
             self?.errorView.display(viewModel: .init(message: .none))
         })
+    }
+}
+
+private extension LocalizationProvider {
+    var title: String {
+        string(for: "REGISTRATION_VIEW_TITLE")
+    }
+
+    var cancelTitle: String {
+        string(for: "REGISTRATION_CANCEL_TITLE")
     }
 }

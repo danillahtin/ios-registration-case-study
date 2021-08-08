@@ -33,7 +33,13 @@ final class RegistrationPresenterTests: XCTestCase {
         XCTAssertEqual(services.registrationViewModels, [])
 
         sut.didLoadView()
-        XCTAssertEqual(services.registrationViewModels, [.init(cancelTitle: "Cancel", nextTitle: "Next", doneTitle: "Done")])
+        XCTAssertEqual(services.registrationViewModels, [
+            .init(
+                cancelTitle: "REGISTRATION_CANCEL_TITLE_LOCALIZED",
+                nextTitle: "Next",
+                doneTitle: "Done"
+            )
+        ])
     }
 
     func test_didStartRegistration_displaysLoading() {

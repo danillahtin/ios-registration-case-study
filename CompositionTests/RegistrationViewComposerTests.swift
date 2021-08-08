@@ -51,7 +51,10 @@ final class RegistrationViewComposerTests: XCTestCase {
     func test_loadView_displaysCorrectUsernameFirstButtonTitle() {
         let (sut, _) = makeSut()
 
-        XCTAssertEqual(sut.usernameTextField.toolbarItems?.first?.title, "Cancel")
+        XCTAssertEqual(
+            sut.usernameTextField.toolbarItems?.first?.title,
+            "REGISTRATION_CANCEL_TITLE_LOCALIZED"
+        )
     }
 
     func test_loadView_displaysCorrectUsernameLastButtonTitle() {
@@ -69,7 +72,10 @@ final class RegistrationViewComposerTests: XCTestCase {
     func test_loadView_displaysCorrectPasswordFirstButtonTitle() {
         let (sut, _) = makeSut()
 
-        XCTAssertEqual(sut.passwordTextField.toolbarItems?.first?.title, "Cancel")
+        XCTAssertEqual(
+            sut.passwordTextField.toolbarItems?.first?.title,
+            "REGISTRATION_CANCEL_TITLE_LOCALIZED"
+        )
     }
 
     func test_loadView_displaysCorrectPasswordLastButtonTitle() {
