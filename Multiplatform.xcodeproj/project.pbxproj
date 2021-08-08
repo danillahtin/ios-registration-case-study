@@ -26,6 +26,7 @@
 		8BD163FF26BFEF0300C2E126 /* DeferredScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163FE26BFEF0300C2E126 /* DeferredScheduler.swift */; };
 		8BD1640726C0027500C2E126 /* LocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD1640626C0027500C2E126 /* LocalizationTests.swift */; };
 		8BD1640826C002A400C2E126 /* Localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8BD1640A26C002A400C2E126 /* Localized.strings */; };
+		8BD1640E26C0042A00C2E126 /* LocalizationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD1640D26C0042A00C2E126 /* LocalizationProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		8BD163FE26BFEF0300C2E126 /* DeferredScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeferredScheduler.swift; sourceTree = "<group>"; };
 		8BD1640626C0027500C2E126 /* LocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationTests.swift; sourceTree = "<group>"; };
 		8BD1640926C002A400C2E126 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localized.strings; sourceTree = "<group>"; };
+		8BD1640D26C0042A00C2E126 /* LocalizationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 				8BD163FA26BFD60300C2E126 /* ErrorView.swift */,
 				8BD163FE26BFEF0300C2E126 /* DeferredScheduler.swift */,
 				8BD1640A26C002A400C2E126 /* Localized.strings */,
+				8BD1640D26C0042A00C2E126 /* LocalizationProvider.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BD163D226BF4DED00C2E126 /* ButtonView.swift in Sources */,
+				8BD1640E26C0042A00C2E126 /* LocalizationProvider.swift in Sources */,
 				8BD163FB26BFD60300C2E126 /* ErrorView.swift in Sources */,
 				8BD163CE26BF4DCB00C2E126 /* LoadingView.swift in Sources */,
 				8BD163D626BF4E1A00C2E126 /* TitleView.swift in Sources */,

@@ -14,15 +14,11 @@ public final class RegistrationViewPresenter {
     private let registrationView: RegistrationView
     private let errorView: ErrorView
     private let scheduler: DeferredScheduler
+    private let localizationProvider: LocalizationProvider
 
     private var buttonTitle: String { "Register" }
     private var title: String {
-        NSLocalizedString(
-            "REGISTRATION_VIEW_TITLE",
-            tableName: "Localized",
-            bundle: Bundle(for: RegistrationViewPresenter.self),
-            comment: "Title for registration view"
-        )
+        localizationProvider.string(for: "REGISTRATION_VIEW_TITLE")
     }
 
     private var hideErrorCancellable: Cancellable?
@@ -33,7 +29,8 @@ public final class RegistrationViewPresenter {
         titleView: TitleView,
         registrationView: RegistrationView,
         errorView: ErrorView,
-        scheduler: DeferredScheduler
+        scheduler: DeferredScheduler,
+        localizationProvider: LocalizationProvider = DefaultLocalizationProvider()
     ) {
         self.loadingView = loadingView
         self.buttonView = buttonView
@@ -41,6 +38,7 @@ public final class RegistrationViewPresenter {
         self.registrationView = registrationView
         self.errorView = errorView
         self.scheduler = scheduler
+        self.localizationProvider = localizationProvider
     }
 
     public func didLoadView() {

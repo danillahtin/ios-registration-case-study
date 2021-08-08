@@ -24,7 +24,7 @@ final class RegistrationPresenterTests: XCTestCase {
         XCTAssertEqual(services.titleViewModels, [])
 
         sut.didLoadView()
-        XCTAssertEqual(services.titleViewModels, [.init(title: "Registration")])
+        XCTAssertEqual(services.titleViewModels, [.init(title: "REGISTRATION_VIEW_TITLE_LOCALIZED")])
     }
 
     func test_didLoadView_displaysCorrectRegistrationViewModel() {
@@ -229,14 +229,15 @@ final class RegistrationPresenterTests: XCTestCase {
             titleView: services,
             registrationView: services,
             errorView: services,
-            scheduler: services
+            scheduler: services,
+            localizationProvider: services
         )
 
         return (sut, services)
     }
 }
 
-private final class Services: LoadingView, ButtonView, TitleView, RegistrationView, ErrorView, DeferredScheduler {
+private final class Services: LoadingView, ButtonView, TitleView, RegistrationView, ErrorView, DeferredScheduler, LocalizationProvider {
     private(set) var loadingViewModels: [LoadingViewModel] = []
     private(set) var buttonViewModels: [ButtonViewModel] = []
     private(set) var titleViewModels: [TitleViewModel] = []
@@ -289,5 +290,9 @@ private final class Services: LoadingView, ButtonView, TitleView, RegistrationVi
         for scheduledTime in scheduledWork.keys where scheduledTime <= time {
             scheduledWork.removeValue(forKey: scheduledTime)?()
         }
+    }
+
+    func string(for key: String) -> String {
+        key + "_LOCALIZED"
     }
 }

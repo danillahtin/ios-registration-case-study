@@ -15,10 +15,7 @@ final class RegistrationViewComposerTests: XCTestCase {
     func test_loadView_setsCorrectTitle() {
         let (sut, _) = makeSut()
 
-        let bundle = Bundle(for: RegistrationViewPresenter.self)
-        let localized = bundle.localizedString(forKey: "REGISTRATION_VIEW_TITLE", value: nil, table: "Localized")
-
-        XCTAssertEqual(sut.title, localized)
+        XCTAssertEqual(sut.title, "REGISTRATION_VIEW_TITLE_LOCALIZED")
     }
 
     func test_loadView_displaysEmptyUsername() {
@@ -435,6 +432,7 @@ final class RegistrationViewComposerTests: XCTestCase {
             textFieldFactory: TextFieldMock.init,
             tapGestureRecognizerFactory: TapGestureRecognizerMock.init,
             registrationService: services,
+            localizationProvider: services,
             uiScheduler: services.uiScheduler,
             deferredUiScheduler: NeverScheduler(),
             serviceScheduler: services.servicesScheduler,
@@ -576,7 +574,7 @@ private extension RegistrationViewController {
     }
 }
 
-private final class Services: RegistrationService {
+private final class Services: RegistrationService, LocalizationProvider {
     final class SchedulerSpy: Scheduler {
         private var works: [() -> ()] = []
 
@@ -625,6 +623,10 @@ private final class Services: RegistrationService {
 
     func onError(_ error: Error) {
         retrievedErrors.append(error as NSError)
+    }
+
+    func string(for key: String) -> String {
+        key + "_LOCALIZED"
     }
 }
 

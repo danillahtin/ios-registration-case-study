@@ -18,6 +18,7 @@ public enum RegistrationViewComposer {
         textFieldFactory: @escaping RegistrationViewController.TextFieldFactory = UITextField.init,
         tapGestureRecognizerFactory: @escaping RegistrationViewController.TapGestureRecognizerFactory = UITapGestureRecognizer.init,
         registrationService: RegistrationService,
+        localizationProvider: LocalizationProvider = DefaultLocalizationProvider(),
         uiScheduler: Scheduler = DispatchQueue.main,
         deferredUiScheduler: DeferredScheduler = DispatchQueue.main,
         serviceScheduler: Scheduler,
@@ -46,7 +47,8 @@ public enum RegistrationViewComposer {
             titleView: Weak(vc),
             registrationView: Weak(vc),
             errorView: Weak(vc),
-            scheduler: deferredUiScheduler
+            scheduler: deferredUiScheduler,
+            localizationProvider: localizationProvider
         )
 
         return vc
