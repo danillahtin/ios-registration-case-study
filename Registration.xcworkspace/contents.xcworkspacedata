@@ -8,6 +8,6 @@
       location = "group:Multiplatform.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Prototype.xcodeproj">
+      location = "group:/Users/danillahtin/Documents/Programming/Registration/RegistrationPrototype.xcodeproj">
    </FileRef>
 </Workspace>

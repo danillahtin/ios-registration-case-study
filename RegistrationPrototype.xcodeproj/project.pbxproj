@@ -16,7 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8B7564B626BDAD0900D2F90E /* Prototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Prototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B7564B626BDAD0900D2F90E /* RegistrationPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RegistrationPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B7564B926BDAD0900D2F90E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B7564BB26BDAD0900D2F90E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8B7564BD26BDAD0900D2F90E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -40,7 +40,7 @@
 		8B7564AD26BDAD0900D2F90E = {
 			isa = PBXGroup;
 			children = (
-				8B7564B826BDAD0900D2F90E /* Prototype */,
+				8B7564B826BDAD0900D2F90E /* RegistrationPrototype */,
 				8B7564B726BDAD0900D2F90E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -48,12 +48,12 @@
 		8B7564B726BDAD0900D2F90E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8B7564B626BDAD0900D2F90E /* Prototype.app */,
+				8B7564B626BDAD0900D2F90E /* RegistrationPrototype.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8B7564B826BDAD0900D2F90E /* Prototype */ = {
+		8B7564B826BDAD0900D2F90E /* RegistrationPrototype */ = {
 			isa = PBXGroup;
 			children = (
 				8B7564B926BDAD0900D2F90E /* AppDelegate.swift */,
@@ -64,15 +64,15 @@
 				8B7564C426BDAD0B00D2F90E /* LaunchScreen.storyboard */,
 				8B7564C726BDAD0B00D2F90E /* Info.plist */,
 			);
-			path = Prototype;
+			path = RegistrationPrototype;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8B7564B526BDAD0900D2F90E /* Prototype */ = {
+		8B7564B526BDAD0900D2F90E /* RegistrationPrototype */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8B7564CA26BDAD0B00D2F90E /* Build configuration list for PBXNativeTarget "Prototype" */;
+			buildConfigurationList = 8B7564CA26BDAD0B00D2F90E /* Build configuration list for PBXNativeTarget "RegistrationPrototype" */;
 			buildPhases = (
 				8B7564B226BDAD0900D2F90E /* Sources */,
 				8B7564B326BDAD0900D2F90E /* Frameworks */,
@@ -82,9 +82,9 @@
 			);
 			dependencies = (
 			);
-			name = Prototype;
+			name = RegistrationPrototype;
 			productName = Prototype;
-			productReference = 8B7564B626BDAD0900D2F90E /* Prototype.app */;
+			productReference = 8B7564B626BDAD0900D2F90E /* RegistrationPrototype.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -101,7 +101,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8B7564B126BDAD0900D2F90E /* Build configuration list for PBXProject "Prototype" */;
+			buildConfigurationList = 8B7564B126BDAD0900D2F90E /* Build configuration list for PBXProject "RegistrationPrototype" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -114,7 +114,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8B7564B526BDAD0900D2F90E /* Prototype */,
+				8B7564B526BDAD0900D2F90E /* RegistrationPrototype */,
 			);
 		};
 /* End PBXProject section */
@@ -287,7 +287,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Prototype/Info.plist;
+				INFOPLIST_FILE = RegistrationPrototype/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -305,7 +305,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Prototype/Info.plist;
+				INFOPLIST_FILE = RegistrationPrototype/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -320,7 +320,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8B7564B126BDAD0900D2F90E /* Build configuration list for PBXProject "Prototype" */ = {
+		8B7564B126BDAD0900D2F90E /* Build configuration list for PBXProject "RegistrationPrototype" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8B7564C826BDAD0B00D2F90E /* Debug */,
@@ -329,7 +329,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8B7564CA26BDAD0B00D2F90E /* Build configuration list for PBXNativeTarget "Prototype" */ = {
+		8B7564CA26BDAD0B00D2F90E /* Build configuration list for PBXNativeTarget "RegistrationPrototype" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8B7564CB26BDAD0B00D2F90E /* Debug */,
