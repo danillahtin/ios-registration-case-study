@@ -49,6 +49,7 @@ public final class RegistrationViewPresenter {
     }
 
     public func didStartRegistration() {
+        errorView.display(viewModel: .init(message: nil))
         loadingView.display(viewModel: .init(isLoading: true))
     }
 
