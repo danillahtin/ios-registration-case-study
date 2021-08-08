@@ -12,7 +12,6 @@ import UI
 
 public enum RegistrationViewComposer {
     public typealias OnRegisterBlock = () -> ()
-    public typealias OnErrorBlock = (Error) -> ()
 
     public static func composed(
         textFieldFactory: @escaping RegistrationViewController.TextFieldFactory = UITextField.init,
@@ -23,15 +22,13 @@ public enum RegistrationViewComposer {
         deferredUiScheduler: DeferredScheduler = DispatchQueue.main,
         serviceScheduler: Scheduler,
         animator: Animator = UIKitAnimator.fast,
-        onRegister: @escaping OnRegisterBlock,
-        onError: @escaping OnErrorBlock
+        onRegister: @escaping OnRegisterBlock
     ) -> RegistrationViewController {
         let adapter = Adapter(
             registrationService: registrationService,
             uiScheduler: uiScheduler,
             serviceScheduler: serviceScheduler,
-            onRegister: onRegister,
-            onError: onError
+            onRegister: onRegister
         )
 
         let vc = RegistrationViewController.make(
@@ -60,7 +57,6 @@ private final class Adapter: RegistrationViewControllerDelegate {
     private let uiScheduler: Scheduler
     private let serviceScheduler: Scheduler
     private let onRegister: () -> ()
-    private let onError: (Error) -> ()
 
     var presenter: RegistrationViewPresenter?
     var request: RegistrationRequest = .init(username: nil, password: nil)
@@ -69,14 +65,12 @@ private final class Adapter: RegistrationViewControllerDelegate {
         registrationService: RegistrationService,
         uiScheduler: Scheduler,
         serviceScheduler: Scheduler,
-        onRegister: @escaping () -> (),
-        onError: @escaping (Error) -> ()
+        onRegister: @escaping () -> ()
     ) {
         self.registrationService = registrationService
         self.uiScheduler = uiScheduler
         self.serviceScheduler = serviceScheduler
         self.onRegister = onRegister
-        self.onError = onError
     }
 
     func onViewDidLoad() {
@@ -102,12 +96,9 @@ private final class Adapter: RegistrationViewControllerDelegate {
                 self?.uiScheduler.schedule {
                     self?.presenter?.didFinishRegistration(with: error)
                 }
-                self?.onError(error)
             case .none:
                 break
             }
-
-
         }
     }
 }

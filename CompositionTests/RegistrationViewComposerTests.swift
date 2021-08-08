@@ -309,23 +309,6 @@ final class RegistrationViewComposerTests: XCTestCase {
         XCTAssertEqual(services.onRegisterCallCount, 0)
     }
 
-    func test_whenRegistrationCompletesWithFailure_thenOnErrorIsCalled() {
-        let (sut, services) = makeSut()
-
-        sut.simulateRegistration()
-        XCTAssertEqual(services.retrievedErrors, [])
-
-        services.completeRegistration(with: .failure(makeError("some error")))
-        XCTAssertEqual(services.retrievedErrors, [makeError("some error")])
-
-        sut.simulateRegistration()
-        services.completeRegistration(with: .failure(makeError("another error")))
-        XCTAssertEqual(services.retrievedErrors, [
-            makeError("some error"),
-            makeError("another error")
-        ])
-    }
-
     func test_whenRegistrationCompletesWithFailure_thenErrorViewIsDisplayedWithCorrectMessage() {
         let (sut, services) = makeSut()
 
@@ -427,16 +410,6 @@ final class RegistrationViewComposerTests: XCTestCase {
         XCTAssertEqual(services.onRegisterCallCount, 1)
     }
 
-    func test_whenRegistrationCompletesWithSuccess_thenOnErrorIsNotCalled() {
-        let (sut, services) = makeSut()
-
-        sut.simulateRegistration()
-        XCTAssertEqual(services.retrievedErrors, [])
-
-        services.completeRegistration(with: .success(()))
-        XCTAssertEqual(services.retrievedErrors, [])
-    }
-
     // MARK: - Helpers
     private func makeSut(
         file: StaticString = #file,
@@ -452,8 +425,7 @@ final class RegistrationViewComposerTests: XCTestCase {
             deferredUiScheduler: NeverScheduler(),
             serviceScheduler: services.servicesScheduler,
             animator: ImmediateAnimator(),
-            onRegister: services.onRegister,
-            onError: services.onError
+            onRegister: services.onRegister
         )
 
         sut.loadViewIfNeeded()
@@ -632,12 +604,6 @@ private final class Services: RegistrationService, LocalizationProvider {
 
     func onRegister() {
         onRegisterCallCount += 1
-    }
-
-    private(set) var retrievedErrors: [NSError] = []
-
-    func onError(_ error: Error) {
-        retrievedErrors.append(error as NSError)
     }
 
     func string(for key: String) -> String {
