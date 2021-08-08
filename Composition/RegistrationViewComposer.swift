@@ -34,7 +34,7 @@ public enum RegistrationViewComposer {
             onError: onError
         )
 
-        let vc = RegistrationViewController(
+        let vc = RegistrationViewController.make(
             textFieldFactory: textFieldFactory,
             tapGestureRecognizerFactory: tapGestureRecognizerFactory,
             animator: animator,

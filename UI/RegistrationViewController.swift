@@ -24,28 +24,25 @@ public final class RegistrationViewController: UIViewController {
     public private(set) weak var registerActivityIndicator: UIActivityIndicatorView!
     public private(set) weak var errorView: UIButton!
 
-    private let textFieldFactory: TextFieldFactory
-    private let tapGestureRecognizerFactory: TapGestureRecognizerFactory
-    private let delegate: RegistrationViewControllerDelegate?
-    private let animator: Animator
+    private var textFieldFactory: TextFieldFactory!
+    private var tapGestureRecognizerFactory: TapGestureRecognizerFactory!
+    private var delegate: RegistrationViewControllerDelegate!
+    private var animator: Animator!
 
-    public init(
+    public static func make(
         textFieldFactory: @escaping TextFieldFactory = UITextField.init,
         tapGestureRecognizerFactory: @escaping TapGestureRecognizerFactory = UITapGestureRecognizer.init,
         animator: Animator,
         delegate: RegistrationViewControllerDelegate
-    ) {
-        self.textFieldFactory = textFieldFactory
-        self.tapGestureRecognizerFactory = tapGestureRecognizerFactory
-        self.delegate = delegate
-        self.animator = animator
+    ) -> RegistrationViewController {
+        let vc = RegistrationViewController()
 
-        super.init(nibName: nil, bundle: nil)
-    }
+        vc.textFieldFactory = textFieldFactory
+        vc.tapGestureRecognizerFactory = tapGestureRecognizerFactory
+        vc.delegate = delegate
+        vc.animator = animator
 
-    @available(*, unavailable)
-    public required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        return vc
     }
 
     public override func loadView() {
