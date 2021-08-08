@@ -27,15 +27,18 @@ public final class RegistrationViewController: UIViewController {
     private let textFieldFactory: TextFieldFactory
     private let tapGestureRecognizerFactory: TapGestureRecognizerFactory
     private let delegate: RegistrationViewControllerDelegate?
+    private let animationScheduler: Scheduler
 
     public init(
         textFieldFactory: @escaping TextFieldFactory = UITextField.init,
         tapGestureRecognizerFactory: @escaping TapGestureRecognizerFactory = UITapGestureRecognizer.init,
+        animationScheduler: Scheduler,
         delegate: RegistrationViewControllerDelegate
     ) {
         self.textFieldFactory = textFieldFactory
         self.tapGestureRecognizerFactory = tapGestureRecognizerFactory
         self.delegate = delegate
+        self.animationScheduler = animationScheduler
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -136,11 +139,15 @@ public final class RegistrationViewController: UIViewController {
     }
 
     private func hideErrorView() {
-        errorView.alpha = 0
+        animationScheduler.schedule { [weak self] in
+            self?.errorView.alpha = 0
+        }
     }
 
     private func showErrorView(message: String) {
-        errorView.alpha = 1
+        animationScheduler.schedule { [weak self] in
+            self?.errorView.alpha = 1
+        }
     }
 }
 

@@ -413,6 +413,7 @@ final class RegistrationViewComposerTests: XCTestCase {
             registrationService: services,
             uiScheduler: services.uiScheduler,
             serviceScheduler: services.servicesScheduler,
+            animationScheduler: ImmediateScheduler(),
             onRegister: services.onRegister,
             onError: services.onError
         )
@@ -595,5 +596,11 @@ private final class Services: RegistrationService {
 
     func onError(_ error: Error) {
         retrievedErrors.append(error as NSError)
+    }
+}
+
+private struct ImmediateScheduler: Scheduler {
+    func schedule(_ work: @escaping () -> ()) {
+        work()
     }
 }
