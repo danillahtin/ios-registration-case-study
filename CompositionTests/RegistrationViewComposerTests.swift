@@ -264,6 +264,23 @@ final class RegistrationViewComposerTests: XCTestCase {
         XCTAssertEqual(services.requests, [makeRequest()])
     }
 
+    func test_whenUsernameOrPasswordUpdated_thenDoneButtonEnabledStateIsUpdated() {
+        let (sut, _) = makeSut()
+
+        sut.simulateUsernameInput("any")
+        sut.simulatePasswordInput("")
+        XCTAssertEqual(sut.isPasswordDoneButtonEnabled, false)
+
+        sut.simulatePasswordInput("any")
+        XCTAssertEqual(sut.isPasswordDoneButtonEnabled, true)
+
+        sut.simulateUsernameInput("")
+        XCTAssertEqual(sut.isPasswordDoneButtonEnabled, false)
+
+        sut.simulateUsernameInput("any")
+        XCTAssertEqual(sut.isPasswordDoneButtonEnabled, true)
+    }
+
     func test_givenPasswordIsActive_whenToolbarDoneButtonTapped_thenRegistrationIsRequestedWithUsernameAndPassword() {
         let (sut, services) = makeSut()
 
@@ -500,6 +517,10 @@ private extension RegistrationViewController {
 
     var errorViewMessage: String? {
         errorView.title(for: .normal)
+    }
+
+    var isPasswordDoneButtonEnabled: Bool {
+        passwordDoneButton?.isEnabled ?? false
     }
 
     func simulateUsernameInput(_ username: String) {

@@ -25,6 +25,7 @@ public final class RegistrationViewController: UIViewController {
     @IBOutlet private weak var passwordContainerView: UIView!
     public private(set) weak var usernameTextField: UITextField!
     public private(set) weak var passwordTextField: UITextField!
+    public private(set) var passwordDoneButton: UIBarButtonItem?
 
     private var textFieldFactory: TextFieldFactory!
     private var tapGestureRecognizerFactory: TapGestureRecognizerFactory!
@@ -156,6 +157,7 @@ extension RegistrationViewController: ButtonView {
     public func display(viewModel: ButtonViewModel) {
         registerButton.setTitle(viewModel.title, for: .normal)
         registerButton.isEnabled = viewModel.isEnabled
+        passwordDoneButton?.isEnabled = viewModel.isEnabled
     }
 }
 
@@ -173,10 +175,13 @@ extension RegistrationViewController: RegistrationView {
             UIBarButtonItem(title: viewModel.nextTitle, style: .plain, target: self, action: #selector(onUsernameNextButtonTapped)),
         ])
 
+        passwordDoneButton = UIBarButtonItem(title: viewModel.doneTitle, style: .plain, target: self, action: #selector(onPasswordDoneButtonTapped))
+        passwordDoneButton?.isEnabled = registerButton.isEnabled
+
         passwordTextField.inputAccessoryView = makeToolbar(items: [
             UIBarButtonItem(title: viewModel.cancelTitle, style: .plain, target: self, action: #selector(onCancelButtonTapped)),
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            UIBarButtonItem(title: viewModel.doneTitle, style: .plain, target: self, action: #selector(onPasswordDoneButtonTapped)),
+            passwordDoneButton!,
         ])
     }
 
