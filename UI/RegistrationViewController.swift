@@ -22,7 +22,7 @@ public final class RegistrationViewController: UIViewController {
     public private(set) weak var passwordTextField: UITextField!
     public private(set) weak var registerButton: UIButton!
     public private(set) weak var registerActivityIndicator: UIActivityIndicatorView!
-    public private(set) weak var errorView: UIView!
+    public private(set) weak var errorView: UIButton!
 
     private let textFieldFactory: TextFieldFactory
     private let tapGestureRecognizerFactory: TapGestureRecognizerFactory
@@ -52,7 +52,7 @@ public final class RegistrationViewController: UIViewController {
         let passwordTextField = makePasswordTextField()
         let registerButton = makeRegisterButton()
         let registerActivityIndicator = makeRegisterActivityIndicator()
-        let errorView = UIView()
+        let errorView = makeErrorView()
         let cancelInputTapRecognizer = tapGestureRecognizerFactory(self, #selector(onCancelButtonTapped))
 
         view.addSubview(usernameTextField)
@@ -109,6 +109,13 @@ public final class RegistrationViewController: UIViewController {
         return activityIndicator
     }
 
+    private func makeErrorView() -> UIButton {
+        let button = UIButton()
+        button.addTarget(self, action: #selector(onErrorViewTapped), for: .touchUpInside)
+
+        return button
+    }
+
     @objc
     private func textFieldDidChange(_ textField: UITextField) {
         notifyTextFieldUpdated()
@@ -121,6 +128,19 @@ public final class RegistrationViewController: UIViewController {
     @objc
     private func onRegisterButtonTapped() {
         delegate?.onRegisterButtonTapped()
+    }
+
+    @objc
+    private func onErrorViewTapped() {
+        hideErrorView()
+    }
+
+    private func hideErrorView() {
+        errorView.alpha = 0
+    }
+
+    private func showErrorView(message: String) {
+        errorView.alpha = 1
     }
 }
 
@@ -202,9 +222,9 @@ extension RegistrationViewController: RegistrationView {
 extension RegistrationViewController: ErrorView {
     public func display(viewModel: ErrorViewModel) {
         if let message = viewModel.message {
-            errorView.alpha = 1
+            showErrorView(message: message)
         } else {
-            errorView.alpha = 0
+            hideErrorView()
         }
     }
 }
