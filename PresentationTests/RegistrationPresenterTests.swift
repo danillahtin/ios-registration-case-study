@@ -87,6 +87,24 @@ final class RegistrationPresenterTests: XCTestCase {
         ])
     }
 
+    func test_givenErrorViewIsDisplayed_whenTimePass_thenErrorViewIsNotDisplayed() {
+        let (sut, services) = makeSut()
+
+        sut.didFinishRegistration(with: makeError("some error"))
+        XCTAssertEqual(services.errorViewModels, [.init(message: "some error")])
+
+        services.simulateTimePassed(seconds: 4.9)
+        XCTAssertEqual(services.errorViewModels, [
+            .init(message: "some error"),
+        ])
+
+        services.simulateTimePassed(seconds: 0.2)
+        XCTAssertEqual(services.errorViewModels, [
+            .init(message: "some error"),
+            .init(message: nil),
+        ])
+    }
+
     func test_givenUsernameIsEmpty_thenDidUpdateUsernamePasswordDisplaysButtonDisabled() {
         let (sut, services) = makeSut()
 
@@ -189,14 +207,15 @@ final class RegistrationPresenterTests: XCTestCase {
             buttonView: services,
             titleView: services,
             registrationView: services,
-            errorView: services
+            errorView: services,
+            scheduler: services
         )
 
         return (sut, services)
     }
 }
 
-private final class Services: LoadingView, ButtonView, TitleView, RegistrationView, ErrorView {
+private final class Services: LoadingView, ButtonView, TitleView, RegistrationView, ErrorView, DeferredScheduler {
     private(set) var loadingViewModels: [LoadingViewModel] = []
     private(set) var buttonViewModels: [ButtonViewModel] = []
     private(set) var titleViewModels: [TitleViewModel] = []
@@ -221,5 +240,20 @@ private final class Services: LoadingView, ButtonView, TitleView, RegistrationVi
 
     func display(viewModel: ErrorViewModel) {
         errorViewModels.append(viewModel)
+    }
+
+    private var time: TimeInterval = 0
+    private var scheduledWork: [TimeInterval: () -> ()] = [:]
+
+    func schedule(after: TimeInterval, _ work: @escaping () -> ()) {
+        scheduledWork[after + time] = work
+    }
+
+    func simulateTimePassed(seconds: TimeInterval) {
+        time += seconds
+
+        for scheduledTime in scheduledWork.keys where scheduledTime <= time {
+            scheduledWork.removeValue(forKey: scheduledTime)?()
+        }
     }
 }

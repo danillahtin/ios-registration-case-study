@@ -13,6 +13,7 @@ public final class RegistrationViewPresenter {
     private let titleView: TitleView
     private let registrationView: RegistrationView
     private let errorView: ErrorView
+    private let scheduler: DeferredScheduler
 
     private var buttonTitle: String { "Register" }
 
@@ -21,13 +22,15 @@ public final class RegistrationViewPresenter {
         buttonView: ButtonView,
         titleView: TitleView,
         registrationView: RegistrationView,
-        errorView: ErrorView? = nil
+        errorView: ErrorView? = nil,
+        scheduler: DeferredScheduler? = nil
     ) {
         self.loadingView = loadingView
         self.buttonView = buttonView
         self.titleView = titleView
         self.registrationView = registrationView
         self.errorView = errorView ?? ErrorViewStub()
+        self.scheduler = scheduler ?? DeferredSchedulerStub()
     }
 
     public func didLoadView() {
@@ -61,11 +64,20 @@ public final class RegistrationViewPresenter {
     public func didFinishRegistration(with error: Error) {
         errorView.display(viewModel: .init(message: error.localizedDescription))
         loadingView.display(viewModel: .init(isLoading: false))
+        scheduler.schedule(after: 5, { [weak self] in
+            self?.errorView.display(viewModel: .init(message: .none))
+        })
     }
 }
 
 private struct ErrorViewStub: ErrorView {
     func display(viewModel: ErrorViewModel) {
+
+    }
+}
+
+private struct DeferredSchedulerStub: DeferredScheduler {
+    func schedule(after: TimeInterval, _ work: @escaping () -> ()) {
 
     }
 }
