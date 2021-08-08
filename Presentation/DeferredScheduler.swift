@@ -7,6 +7,10 @@
 
 import Foundation
 
+public protocol Cancellable {
+    func cancel()
+}
+
 public protocol DeferredScheduler {
-    func schedule(after: TimeInterval, _ work: @escaping () -> ())
+    func schedule(after: TimeInterval, _ work: @escaping () -> ()) -> Cancellable
 }

@@ -105,6 +105,27 @@ final class RegistrationPresenterTests: XCTestCase {
         ])
     }
 
+    func test_givenErrorViewIsDisplayedTwiceWithDelay_whenTimePass_thenErrorViewIsNotDisplayed() {
+        let (sut, services) = makeSut()
+
+        sut.didFinishRegistration(with: makeError("some error"))
+        services.simulateTimePassed(seconds: 3)
+        sut.didFinishRegistration(with: makeError("another error"))
+        services.simulateTimePassed(seconds: 4.9)
+
+        XCTAssertEqual(services.errorViewModels, [
+            .init(message: "some error"),
+            .init(message: "another error"),
+        ])
+
+        services.simulateTimePassed(seconds: 0.2)
+        XCTAssertEqual(services.errorViewModels, [
+            .init(message: "some error"),
+            .init(message: "another error"),
+            .init(message: nil),
+        ])
+    }
+
     func test_givenUsernameIsEmpty_thenDidUpdateUsernamePasswordDisplaysButtonDisabled() {
         let (sut, services) = makeSut()
 
@@ -242,11 +263,24 @@ private final class Services: LoadingView, ButtonView, TitleView, RegistrationVi
         errorViewModels.append(viewModel)
     }
 
+    private struct Task: Cancellable {
+        let onCancel: () -> ()
+
+        func cancel() {
+            onCancel()
+        }
+    }
+
     private var time: TimeInterval = 0
     private var scheduledWork: [TimeInterval: () -> ()] = [:]
 
-    func schedule(after: TimeInterval, _ work: @escaping () -> ()) {
-        scheduledWork[after + time] = work
+    func schedule(after: TimeInterval, _ work: @escaping () -> ()) -> Cancellable {
+        let scheduledTime = after + time
+        scheduledWork[scheduledTime] = work
+
+        return Task { [weak self] in
+            self?.scheduledWork[scheduledTime] = nil
+        }
     }
 
     func simulateTimePassed(seconds: TimeInterval) {
