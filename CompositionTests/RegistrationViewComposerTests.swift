@@ -332,6 +332,20 @@ final class RegistrationViewComposerTests: XCTestCase {
         XCTAssertEqual(sut.isErrorViewHidden, true)
     }
 
+    func test_givenErrorViewIsDisplayed_whenRegisterButtonIsTapped_thenErrorViewIsHiddenIsScheduledOnUI() {
+        let (sut, services) = makeSut()
+
+        sut.simulateRegistration()
+        services.completeRegistration(with: .failure(makeError()))
+        XCTAssertEqual(sut.isErrorViewHidden, true)
+
+        services.performUIWorks()
+        XCTAssertEqual(sut.isErrorViewHidden, false)
+
+        sut.simulateRegisterButtonTapped()
+        XCTAssertEqual(sut.isErrorViewHidden, true)
+    }
+
     func test_whenRegistrationCompletesWithSuccess_thenRegistrationButtonIsNotHiddenIsScheduledOnUI() {
         let (sut, services) = makeSut()
 
