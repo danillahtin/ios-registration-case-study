@@ -58,6 +58,7 @@ public final class RegistrationViewPresenter {
 
     public func didFinishRegistration(with error: Error) {
         errorView.display(viewModel: .init(message: error.localizedDescription))
+        loadingView.display(viewModel: .init(isLoading: false))
     }
 }
 

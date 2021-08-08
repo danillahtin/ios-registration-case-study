@@ -54,6 +54,15 @@ final class RegistrationPresenterTests: XCTestCase {
         XCTAssertEqual(services.loadingViewModels, [.init(isLoading: false)])
     }
 
+    func test_didFinishRegistrationWithError_displaysNotLoading() {
+        let (sut, services) = makeSut()
+
+        XCTAssertEqual(services.loadingViewModels, [])
+
+        sut.didFinishRegistration(with: makeError())
+        XCTAssertEqual(services.loadingViewModels, [.init(isLoading: false)])
+    }
+
     func test_didFinishRegistrationWithError_displaysErrorView() {
         let (sut, services) = makeSut()
 
