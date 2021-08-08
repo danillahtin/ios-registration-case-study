@@ -58,14 +58,16 @@ public final class RegistrationViewController: UIViewController {
         let passwordTextField = makePasswordTextField()
 
         usernameContainerView.addSubview(usernameTextField)
-        usernameContainerView.alignInsideSuperview()
+        usernameTextField.alignInsideSuperview()
         passwordContainerView.addSubview(passwordTextField)
-        passwordContainerView.alignInsideSuperview()
+        passwordTextField.alignInsideSuperview()
 
         self.usernameTextField = usernameTextField
         self.passwordTextField = passwordTextField
 
         let cancelInputTapRecognizer = tapGestureRecognizerFactory(self, #selector(onCancelButtonTapped))
+
+        errorView.titleLabel?.textAlignment = .center
 
         view.addGestureRecognizer(cancelInputTapRecognizer)
     }
@@ -82,6 +84,7 @@ public final class RegistrationViewController: UIViewController {
         textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         textField.delegate = self
         textField.returnKeyType = .next
+        textField.placeholder = "Username"
 
         return textField
     }
@@ -91,6 +94,7 @@ public final class RegistrationViewController: UIViewController {
         textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         textField.isSecureTextEntry = true
         textField.returnKeyType = .done
+        textField.placeholder = "Password"
 
         return textField
     }
@@ -177,7 +181,7 @@ extension RegistrationViewController: RegistrationView {
     }
 
     private func makeToolbar(items: [UIBarButtonItem]) -> UIToolbar {
-        let toolbar = UIToolbar()
+        let toolbar = UIToolbar(frame: .init(x: 0, y: 0, width: 100, height: 100))
         toolbar.items = items
         toolbar.sizeToFit()
 
