@@ -16,6 +16,14 @@ public final class RegistrationViewPresenter {
     private let scheduler: DeferredScheduler
 
     private var buttonTitle: String { "Register" }
+    private var title: String {
+        NSLocalizedString(
+            "REGISTRATION_VIEW_TITLE",
+            tableName: "Localized",
+            bundle: Bundle(for: RegistrationViewPresenter.self),
+            comment: "Title for registration view"
+        )
+    }
 
     private var hideErrorCancellable: Cancellable?
 
@@ -37,7 +45,7 @@ public final class RegistrationViewPresenter {
 
     public func didLoadView() {
         loadingView.display(viewModel: .init(isLoading: false))
-        titleView.display(viewModel: .init(title: "Registration"))
+        titleView.display(viewModel: .init(title: title))
         registrationView.display(viewModel: .init(cancelTitle: "Cancel", nextTitle: "Next", doneTitle: "Done"))
     }
 

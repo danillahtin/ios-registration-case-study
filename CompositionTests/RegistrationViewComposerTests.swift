@@ -15,7 +15,10 @@ final class RegistrationViewComposerTests: XCTestCase {
     func test_loadView_setsCorrectTitle() {
         let (sut, _) = makeSut()
 
-        XCTAssertEqual(sut.title, "Registration")
+        let bundle = Bundle(for: RegistrationViewPresenter.self)
+        let localized = bundle.localizedString(forKey: "REGISTRATION_VIEW_TITLE", value: nil, table: "Localized")
+
+        XCTAssertEqual(sut.title, localized)
     }
 
     func test_loadView_displaysEmptyUsername() {
