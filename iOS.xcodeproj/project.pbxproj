@@ -27,6 +27,7 @@
 		8BD163F926BF51CC00C2E126 /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163F826BF51CC00C2E126 /* Weak.swift */; };
 		8BD1640226BFF90C00C2E126 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD1640126BFF90C00C2E126 /* Animator.swift */; };
 		8BD1640326BFFAD200C2E126 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163C926BF4D3900C2E126 /* Scheduler.swift */; };
+		8BD1641126C00A5000C2E126 /* RegistrationViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BD1640F26C009F600C2E126 /* RegistrationViewController.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,7 @@
 		8BD163F626BF517100C2E126 /* RegistrationViewComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewComposer.swift; sourceTree = "<group>"; };
 		8BD163F826BF51CC00C2E126 /* Weak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weak.swift; sourceTree = "<group>"; };
 		8BD1640126BFF90C00C2E126 /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
+		8BD1641026C009F600C2E126 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/RegistrationViewController.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 			children = (
 				8B75653526BDEBED00D2F90E /* Info.plist */,
 				8BD163E126BF4F2000C2E126 /* RegistrationViewController.swift */,
+				8BD1640F26C009F600C2E126 /* RegistrationViewController.storyboard */,
 				8BD1640126BFF90C00C2E126 /* Animator.swift */,
 			);
 			path = UI;
@@ -367,6 +370,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BD1641126C00A5000C2E126 /* RegistrationViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,6 +458,17 @@
 			targetProxy = 8BD163EF26BF503F00C2E126 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8BD1640F26C009F600C2E126 /* RegistrationViewController.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8BD1641026C009F600C2E126 /* Base */,
+			);
+			name = RegistrationViewController.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		8B75654326BDEBEE00D2F90E /* Debug */ = {

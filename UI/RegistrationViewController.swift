@@ -18,11 +18,13 @@ public final class RegistrationViewController: UIViewController {
     public typealias TextFieldFactory = () -> UITextField
     public typealias TapGestureRecognizerFactory = (_ target: Any?, _ action: Selector?) -> UITapGestureRecognizer
 
+    @IBOutlet public private(set) weak var registerButton: UIButton!
+    @IBOutlet public private(set) weak var registerActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet public private(set) weak var errorView: UIButton!
+    @IBOutlet private weak var usernameContainerView: UIView!
+    @IBOutlet private weak var passwordContainerView: UIView!
     public private(set) weak var usernameTextField: UITextField!
     public private(set) weak var passwordTextField: UITextField!
-    public private(set) weak var registerButton: UIButton!
-    public private(set) weak var registerActivityIndicator: UIActivityIndicatorView!
-    public private(set) weak var errorView: UIButton!
 
     private var textFieldFactory: TextFieldFactory!
     private var tapGestureRecognizerFactory: TapGestureRecognizerFactory!
@@ -35,7 +37,11 @@ public final class RegistrationViewController: UIViewController {
         animator: Animator,
         delegate: RegistrationViewControllerDelegate
     ) -> RegistrationViewController {
-        let vc = RegistrationViewController()
+        let storyboard = UIStoryboard(
+            name: "RegistrationViewController",
+            bundle: .init(for: RegistrationViewController.self)
+        )
+        let vc = storyboard.instantiateInitialViewController() as! RegistrationViewController
 
         vc.textFieldFactory = textFieldFactory
         vc.tapGestureRecognizerFactory = tapGestureRecognizerFactory
@@ -46,28 +52,22 @@ public final class RegistrationViewController: UIViewController {
     }
 
     public override func loadView() {
-        let view = UIView()
+        super.loadView()
 
         let usernameTextField = makeUsernameTextField()
         let passwordTextField = makePasswordTextField()
-        let registerButton = makeRegisterButton()
-        let registerActivityIndicator = makeRegisterActivityIndicator()
-        let errorView = makeErrorView()
-        let cancelInputTapRecognizer = tapGestureRecognizerFactory(self, #selector(onCancelButtonTapped))
 
-        view.addSubview(usernameTextField)
-        view.addSubview(passwordTextField)
-        view.addSubview(registerButton)
-        view.addSubview(registerActivityIndicator)
-        view.addSubview(errorView)
-        view.addGestureRecognizer(cancelInputTapRecognizer)
+        usernameContainerView.addSubview(usernameTextField)
+        usernameContainerView.alignInsideSuperview()
+        passwordContainerView.addSubview(passwordTextField)
+        passwordContainerView.alignInsideSuperview()
 
         self.usernameTextField = usernameTextField
         self.passwordTextField = passwordTextField
-        self.registerButton = registerButton
-        self.registerActivityIndicator = registerActivityIndicator
-        self.errorView = errorView
-        self.view = view
+
+        let cancelInputTapRecognizer = tapGestureRecognizerFactory(self, #selector(onCancelButtonTapped))
+
+        view.addGestureRecognizer(cancelInputTapRecognizer)
     }
 
     public override func viewDidLoad() {
@@ -95,28 +95,6 @@ public final class RegistrationViewController: UIViewController {
         return textField
     }
 
-    private func makeRegisterButton() -> UIButton {
-        let button = UIButton()
-        button.addTarget(self, action: #selector(onRegisterButtonTapped), for: .touchUpInside)
-
-        return button
-    }
-
-    private func makeRegisterActivityIndicator() -> UIActivityIndicatorView {
-        let activityIndicator = UIActivityIndicatorView(style: .medium)
-        activityIndicator.hidesWhenStopped = true
-
-        return activityIndicator
-    }
-
-    private func makeErrorView() -> UIButton {
-        let button = UIButton()
-        button.addTarget(self, action: #selector(onErrorViewTapped), for: .touchUpInside)
-        button.alpha = 0
-
-        return button
-    }
-
     @objc
     private func textFieldDidChange(_ textField: UITextField) {
         notifyTextFieldUpdated()
@@ -126,12 +104,12 @@ public final class RegistrationViewController: UIViewController {
         delegate?.didUpdate(username: usernameTextField.text, password: passwordTextField.text)
     }
 
-    @objc
+    @IBAction
     private func onRegisterButtonTapped() {
         delegate?.onRegisterButtonTapped()
     }
 
-    @objc
+    @IBAction
     private func onErrorViewTapped() {
         hideErrorView()
     }
@@ -232,5 +210,20 @@ extension RegistrationViewController: ErrorView {
         } else {
             hideErrorView()
         }
+    }
+}
+
+private extension UIView {
+    func alignInsideSuperview() {
+        guard let superview = superview else { return }
+
+        translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            leftAnchor.constraint(equalTo: superview.leftAnchor),
+            rightAnchor.constraint(equalTo: superview.rightAnchor),
+            topAnchor.constraint(equalTo: superview.topAnchor),
+            bottomAnchor.constraint(equalTo: superview.bottomAnchor),
+        ])
     }
 }
