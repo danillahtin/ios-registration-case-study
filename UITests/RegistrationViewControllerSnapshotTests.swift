@@ -10,25 +10,39 @@ import XCTest
 import UI
 
 final class RegistrationViewControllerSnapshotTests: XCTestCase {
-    func test() {
-        let sut = makeSut()
-        sut.displayInitialState()
+    func test_initialState() {
+        let sut = makeSut { $0.displayInitialState() }
 
-        isRecording = true
         assertSnapshot(
-            matching: sut.wrappedInNavigationController(),
+            matching: sut,
             as: .image(on: .iPhoneSe)
         )
 
         assertSnapshot(
-            matching: sut.wrappedInNavigationController(),
+            matching: sut,
+            as: .image(on: .iPhoneX)
+        )
+
+        sut.overrideUserInterfaceStyle = .dark
+
+        assertSnapshot(
+            matching: sut,
+            as: .image(on: .iPhoneSe)
+        )
+
+        assertSnapshot(
+            matching: sut,
             as: .image(on: .iPhoneX)
         )
     }
 
     // MARK: - Helpers
 
-    private func makeSut(username: String? = nil, password: String? = nil) -> RegistrationViewController {
+    private func makeSut(
+        username: String? = nil,
+        password: String? = nil,
+        prepare block: (RegistrationViewController) -> ()
+    ) -> UINavigationController {
         let services = Services()
         let sut = RegistrationViewController.make(
             animator: services,
@@ -40,15 +54,16 @@ final class RegistrationViewControllerSnapshotTests: XCTestCase {
         sut.usernameTextField.text = username
         sut.passwordTextField.text = password
 
-        return sut
+        block(sut)
+
+        let nc = UINavigationController(rootViewController: sut)
+        nc.navigationBar.prefersLargeTitles = true
+
+        return nc
     }
 }
 
 private extension RegistrationViewController {
-    func wrappedInNavigationController() -> UIViewController {
-        UINavigationController(rootViewController: self)
-    }
-
     func displayInitialState() {
         display(viewModel: .init(isLoading: false))
         display(viewModel: .init(title: "Register", isEnabled: true))
