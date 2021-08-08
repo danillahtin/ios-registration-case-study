@@ -19,6 +19,7 @@ public enum RegistrationViewComposer {
         tapGestureRecognizerFactory: @escaping RegistrationViewController.TapGestureRecognizerFactory = UITapGestureRecognizer.init,
         registrationService: RegistrationService,
         uiScheduler: Scheduler = DispatchQueue.main,
+        deferredUiScheduler: DeferredScheduler = DispatchQueue.main,
         serviceScheduler: Scheduler,
         animator: Animator = UIKitAnimator.fast,
         onRegister: @escaping OnRegisterBlock,
@@ -44,7 +45,8 @@ public enum RegistrationViewComposer {
             buttonView: Weak(vc),
             titleView: Weak(vc),
             registrationView: Weak(vc),
-            errorView: Weak(vc)
+            errorView: Weak(vc),
+            scheduler: deferredUiScheduler
         )
 
         return vc
@@ -135,5 +137,17 @@ extension Weak: RegistrationView where Object: RegistrationView {
 extension Weak: ErrorView where Object: ErrorView {
     func display(viewModel: ErrorViewModel) {
         object?.display(viewModel: viewModel)
+    }
+}
+
+extension DispatchWorkItem: Cancellable {}
+
+extension DispatchQueue: DeferredScheduler {
+    public func schedule(after: TimeInterval, _ work: @escaping () -> ()) -> Cancellable {
+        let work = DispatchWorkItem(block: work)
+
+        self.asyncAfter(deadline: .now() + .milliseconds(Int(after * 1000)), execute: work)
+
+        return work
     }
 }

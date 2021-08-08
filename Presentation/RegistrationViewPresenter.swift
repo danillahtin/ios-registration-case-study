@@ -24,15 +24,15 @@ public final class RegistrationViewPresenter {
         buttonView: ButtonView,
         titleView: TitleView,
         registrationView: RegistrationView,
-        errorView: ErrorView? = nil,
-        scheduler: DeferredScheduler? = nil
+        errorView: ErrorView,
+        scheduler: DeferredScheduler
     ) {
         self.loadingView = loadingView
         self.buttonView = buttonView
         self.titleView = titleView
         self.registrationView = registrationView
-        self.errorView = errorView ?? ErrorViewStub()
-        self.scheduler = scheduler ?? DeferredSchedulerStub()
+        self.errorView = errorView
+        self.scheduler = scheduler
     }
 
     public func didLoadView() {
@@ -70,23 +70,5 @@ public final class RegistrationViewPresenter {
         hideErrorCancellable = scheduler.schedule(after: 5, { [weak self] in
             self?.errorView.display(viewModel: .init(message: .none))
         })
-    }
-}
-
-private struct ErrorViewStub: ErrorView {
-    func display(viewModel: ErrorViewModel) {
-
-    }
-}
-
-private struct DeferredSchedulerStub: DeferredScheduler {
-    private struct Task: Cancellable {
-        func cancel() {
-
-        }
-    }
-
-    func schedule(after: TimeInterval, _ work: @escaping () -> ()) -> Cancellable {
-        Task()
     }
 }

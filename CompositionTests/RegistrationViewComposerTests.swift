@@ -7,6 +7,7 @@
 
 import XCTest
 import Core
+import Presentation
 import UI
 import Composition
 
@@ -432,6 +433,7 @@ final class RegistrationViewComposerTests: XCTestCase {
             tapGestureRecognizerFactory: TapGestureRecognizerMock.init,
             registrationService: services,
             uiScheduler: services.uiScheduler,
+            deferredUiScheduler: NeverScheduler(),
             serviceScheduler: services.servicesScheduler,
             animator: ImmediateAnimator(),
             onRegister: services.onRegister,
@@ -627,5 +629,15 @@ private struct ImmediateAnimator: Animator {
     func animate(_ animations: @escaping () -> (), completion: (() -> ())?) {
         animations()
         completion?()
+    }
+}
+
+private struct NeverScheduler: DeferredScheduler {
+    private struct Task: Cancellable {
+        func cancel() {}
+    }
+
+    func schedule(after: TimeInterval, _ work: @escaping () -> ()) -> Cancellable {
+        Task()
     }
 }
