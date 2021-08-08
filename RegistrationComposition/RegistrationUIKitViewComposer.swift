@@ -1,5 +1,5 @@
 //
-//  RegistrationViewComposer.swift
+//  RegistrationUIKitViewComposer.swift
 //  Composition
 //
 //  Created by Danil Lahtin on 08.08.2021.
@@ -10,7 +10,7 @@ import RegistrationCore
 import RegistrationPresentation
 import RegistrationUI
 
-public enum RegistrationViewComposer {
+public enum RegistrationUIKitViewComposer {
     public typealias OnRegisterBlock = () -> ()
 
     public static func composed(

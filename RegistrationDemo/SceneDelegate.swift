@@ -18,7 +18,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let nc = UINavigationController()
         nc.navigationBar.prefersLargeTitles = true
 
-        let vc = RegistrationViewComposer.composed(
+        let vc = RegistrationUIKitViewComposer.composed(
             registrationService: DemoRegistrationService(),
             serviceScheduler: DispatchQueue.global(qos: .userInitiated),
             onRegister: {

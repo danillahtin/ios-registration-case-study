@@ -19,7 +19,7 @@
 		8BD163C826BF2CF500C2E126 /* XCTestCase+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163C726BF2CF500C2E126 /* XCTestCase+Helpers.swift */; };
 		8BD163E226BF4F2000C2E126 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163E126BF4F2000C2E126 /* RegistrationViewController.swift */; };
 		8BD163ED26BF503F00C2E126 /* RegistrationUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B75653126BDEBED00D2F90E /* RegistrationUI.framework */; };
-		8BD163F726BF517100C2E126 /* RegistrationViewComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163F626BF517100C2E126 /* RegistrationViewComposer.swift */; };
+		8BD163F726BF517100C2E126 /* RegistrationUIKitViewComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163F626BF517100C2E126 /* RegistrationUIKitViewComposer.swift */; };
 		8BD163F926BF51CC00C2E126 /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163F826BF51CC00C2E126 /* Weak.swift */; };
 		8BD1640226BFF90C00C2E126 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD1640126BFF90C00C2E126 /* Animator.swift */; };
 		8BD1640326BFFAD200C2E126 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163C926BF4D3900C2E126 /* Scheduler.swift */; };
@@ -122,7 +122,7 @@
 		8BD163DD26BF4EAF00C2E126 /* Presentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Presentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BD163E126BF4F2000C2E126 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		8BD163F226BF50FF00C2E126 /* Presentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Presentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8BD163F626BF517100C2E126 /* RegistrationViewComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewComposer.swift; sourceTree = "<group>"; };
+		8BD163F626BF517100C2E126 /* RegistrationUIKitViewComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationUIKitViewComposer.swift; sourceTree = "<group>"; };
 		8BD163F826BF51CC00C2E126 /* Weak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weak.swift; sourceTree = "<group>"; };
 		8BD1640126BFF90C00C2E126 /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		8BD1641026C009F600C2E126 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/RegistrationViewController.storyboard; sourceTree = "<group>"; };
@@ -243,7 +243,7 @@
 			children = (
 				8B75655326BDED0900D2F90E /* Info.plist */,
 				8BD163C926BF4D3900C2E126 /* Scheduler.swift */,
-				8BD163F626BF517100C2E126 /* RegistrationViewComposer.swift */,
+				8BD163F626BF517100C2E126 /* RegistrationUIKitViewComposer.swift */,
 				8BD163F826BF51CC00C2E126 /* Weak.swift */,
 			);
 			path = RegistrationComposition;
@@ -537,7 +537,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BD1640326BFFAD200C2E126 /* Scheduler.swift in Sources */,
-				8BD163F726BF517100C2E126 /* RegistrationViewComposer.swift in Sources */,
+				8BD163F726BF517100C2E126 /* RegistrationUIKitViewComposer.swift in Sources */,
 				8BD163F926BF51CC00C2E126 /* Weak.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

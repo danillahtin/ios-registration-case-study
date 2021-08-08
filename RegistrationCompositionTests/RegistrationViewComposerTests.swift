@@ -433,7 +433,7 @@ final class RegistrationViewComposerTests: XCTestCase {
         line: UInt = #line
     ) -> (sut: RegistrationViewController, services: Services) {
         let services = Services()
-        let sut = RegistrationViewComposer.composed(
+        let sut = RegistrationUIKitViewComposer.composed(
             textFieldFactory: TextFieldMock.init,
             tapGestureRecognizerFactory: TapGestureRecognizerMock.init,
             registrationService: services,
