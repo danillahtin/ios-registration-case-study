@@ -304,6 +304,20 @@ final class RegistrationViewComposerTests: XCTestCase {
         ])
     }
 
+    func test_givenErrorViewIsDisplayed_whenUsernameIsUpdated_thenErrorViewIsHiddenIsScheduledOnUI() {
+        let (sut, services) = makeSut()
+
+        sut.simulateRegistration()
+        services.completeRegistration(with: .failure(makeError()))
+        XCTAssertEqual(sut.isErrorViewHidden, true)
+
+        services.performUIWorks()
+        XCTAssertEqual(sut.isErrorViewHidden, false)
+
+        sut.simulateUsernameInput("some")
+        XCTAssertEqual(sut.isErrorViewHidden, true)
+    }
+
     func test_whenRegistrationCompletesWithSuccess_thenRegistrationButtonIsNotHiddenIsScheduledOnUI() {
         let (sut, services) = makeSut()
 
@@ -427,6 +441,10 @@ private extension RegistrationViewController {
 
     var isRegisterActivityIndicatorHidden: Bool {
         registerActivityIndicator.isHidden
+    }
+
+    var isErrorViewHidden: Bool {
+        errorView.alpha == 0
     }
 
     func simulateUsernameInput(_ username: String) {

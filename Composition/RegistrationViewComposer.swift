@@ -41,7 +41,8 @@ public enum RegistrationViewComposer {
             loadingView: Weak(vc),
             buttonView: Weak(vc),
             titleView: Weak(vc),
-            registrationView: Weak(vc)
+            registrationView: Weak(vc),
+            errorView: Weak(vc)
         )
 
         return vc
@@ -87,16 +88,20 @@ private final class Adapter: RegistrationViewControllerDelegate {
         serviceScheduler.schedule { [weak self, request] in
             switch self?.registrationService.register(with: request) {
             case .success:
+                self?.uiScheduler.schedule {
+                    self?.presenter?.didFinishRegistration()
+                }
                 self?.onRegister()
             case .failure(let error):
+                self?.uiScheduler.schedule {
+                    self?.presenter?.didFinishRegistration(with: error)
+                }
                 self?.onError(error)
             case .none:
                 break
             }
 
-            self?.uiScheduler.schedule {
-                self?.presenter?.didFinishRegistration()
-            }
+
         }
     }
 }
@@ -121,6 +126,12 @@ extension Weak: TitleView where Object: TitleView {
 
 extension Weak: RegistrationView where Object: RegistrationView {
     func display(viewModel: RegistrationViewModel) {
+        object?.display(viewModel: viewModel)
+    }
+}
+
+extension Weak: ErrorView where Object: ErrorView {
+    func display(viewModel: ErrorViewModel) {
         object?.display(viewModel: viewModel)
     }
 }

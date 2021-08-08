@@ -22,6 +22,7 @@ public final class RegistrationViewController: UIViewController {
     public private(set) weak var passwordTextField: UITextField!
     public private(set) weak var registerButton: UIButton!
     public private(set) weak var registerActivityIndicator: UIActivityIndicatorView!
+    public private(set) weak var errorView: UIView!
 
     private let textFieldFactory: TextFieldFactory
     private let tapGestureRecognizerFactory: TapGestureRecognizerFactory
@@ -51,18 +52,21 @@ public final class RegistrationViewController: UIViewController {
         let passwordTextField = makePasswordTextField()
         let registerButton = makeRegisterButton()
         let registerActivityIndicator = makeRegisterActivityIndicator()
+        let errorView = UIView()
         let cancelInputTapRecognizer = tapGestureRecognizerFactory(self, #selector(onCancelButtonTapped))
 
         view.addSubview(usernameTextField)
         view.addSubview(passwordTextField)
         view.addSubview(registerButton)
         view.addSubview(registerActivityIndicator)
+        view.addSubview(errorView)
         view.addGestureRecognizer(cancelInputTapRecognizer)
 
         self.usernameTextField = usernameTextField
         self.passwordTextField = passwordTextField
         self.registerButton = registerButton
         self.registerActivityIndicator = registerActivityIndicator
+        self.errorView = errorView
         self.view = view
     }
 
@@ -192,5 +196,15 @@ extension RegistrationViewController: RegistrationView {
     private func onPasswordDoneButtonTapped() {
         passwordTextField.resignFirstResponder()
         onRegisterButtonTapped()
+    }
+}
+
+extension RegistrationViewController: ErrorView {
+    public func display(viewModel: ErrorViewModel) {
+        if let message = viewModel.message {
+            errorView.alpha = 1
+        } else {
+            errorView.alpha = 0
+        }
     }
 }
