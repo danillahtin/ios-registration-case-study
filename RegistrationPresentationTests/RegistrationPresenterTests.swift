@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import XCTestHelpers
 import RegistrationPresentation
 
 final class RegistrationPresenterTests: XCTestCase {

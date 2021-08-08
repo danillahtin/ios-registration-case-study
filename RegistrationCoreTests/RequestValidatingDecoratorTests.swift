@@ -1,11 +1,12 @@
 //
 //  RequestValidatingDecoratorTests.swift
-//  CoreTests
+//  RegistrationCoreTests
 //
 //  Created by Danil Lahtin on 07.08.2021.
 //
 
 import XCTest
+import XCTestHelpers
 import RegistrationCore
 
 final class RequestValidatingDecoratorTests: XCTestCase {

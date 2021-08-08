@@ -11,7 +11,6 @@
 		8B7564FB26BDDB0300D2F90E /* RegistrationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7564FA26BDDB0300D2F90E /* RegistrationRequest.swift */; };
 		8B7564FD26BDDB5A00D2F90E /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7564FC26BDDB5A00D2F90E /* RegistrationService.swift */; };
 		8B75650126BDDD8B00D2F90E /* RequestValidatingDecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75650026BDDD8B00D2F90E /* RequestValidatingDecoratorTests.swift */; };
-		8B75650426BDE72500D2F90E /* XCTestCase+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75650326BDE72500D2F90E /* XCTestCase+Helpers.swift */; };
 		8B75650626BDE82000D2F90E /* RequestValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75650526BDE82000D2F90E /* RequestValidationError.swift */; };
 		8B75650826BDE84000D2F90E /* RequestValidatingDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75650726BDE84000D2F90E /* RequestValidatingDecorator.swift */; };
 		8B75651726BDE9C000D2F90E /* RegistrationPresentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B75650E26BDE9C000D2F90E /* RegistrationPresentation.framework */; };
@@ -22,11 +21,14 @@
 		8BD163D826BF4E5300C2E126 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163D726BF4E5300C2E126 /* RegistrationView.swift */; };
 		8BD163DA26BF4E7E00C2E126 /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163D926BF4E7E00C2E126 /* RegistrationPresenter.swift */; };
 		8BD163FB26BFD60300C2E126 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163FA26BFD60300C2E126 /* ErrorView.swift */; };
-		8BD163FD26BFD6BA00C2E126 /* XCTestCase+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163FC26BFD6BA00C2E126 /* XCTestCase+Helpers.swift */; };
 		8BD163FF26BFEF0300C2E126 /* DeferredScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163FE26BFEF0300C2E126 /* DeferredScheduler.swift */; };
 		8BD1640726C0027500C2E126 /* LocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD1640626C0027500C2E126 /* LocalizationTests.swift */; };
 		8BD1640826C002A400C2E126 /* Localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8BD1640A26C002A400C2E126 /* Localized.strings */; };
 		8BD1640E26C0042A00C2E126 /* LocalizationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD1640D26C0042A00C2E126 /* LocalizationProvider.swift */; };
+		8BD1646226C0693700C2E126 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD1646126C0693700C2E126 /* XCTest.framework */; };
+		8BD1646626C0694C00C2E126 /* XCTestCase+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD1646526C0694C00C2E126 /* XCTestCase+Helpers.swift */; };
+		8BD1646726C0696A00C2E126 /* XCTestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD1645826C0692D00C2E126 /* XCTestHelpers.framework */; };
+		8BD1646826C06A0C00C2E126 /* XCTestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD1645826C0692D00C2E126 /* XCTestHelpers.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +56,6 @@
 		8B7564FA26BDDB0300D2F90E /* RegistrationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationRequest.swift; sourceTree = "<group>"; };
 		8B7564FC26BDDB5A00D2F90E /* RegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
 		8B75650026BDDD8B00D2F90E /* RequestValidatingDecoratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestValidatingDecoratorTests.swift; sourceTree = "<group>"; };
-		8B75650326BDE72500D2F90E /* XCTestCase+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Helpers.swift"; sourceTree = "<group>"; };
 		8B75650526BDE82000D2F90E /* RequestValidationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestValidationError.swift; sourceTree = "<group>"; };
 		8B75650726BDE84000D2F90E /* RequestValidatingDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestValidatingDecorator.swift; sourceTree = "<group>"; };
 		8B75650E26BDE9C000D2F90E /* RegistrationPresentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RegistrationPresentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,11 +69,14 @@
 		8BD163D726BF4E5300C2E126 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		8BD163D926BF4E7E00C2E126 /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
 		8BD163FA26BFD60300C2E126 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
-		8BD163FC26BFD6BA00C2E126 /* XCTestCase+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Helpers.swift"; sourceTree = "<group>"; };
 		8BD163FE26BFEF0300C2E126 /* DeferredScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeferredScheduler.swift; sourceTree = "<group>"; };
 		8BD1640626C0027500C2E126 /* LocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationTests.swift; sourceTree = "<group>"; };
 		8BD1640926C002A400C2E126 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localized.strings; sourceTree = "<group>"; };
 		8BD1640D26C0042A00C2E126 /* LocalizationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationProvider.swift; sourceTree = "<group>"; };
+		8BD1645826C0692D00C2E126 /* XCTestHelpers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XCTestHelpers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BD1645B26C0692D00C2E126 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8BD1646126C0693700C2E126 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/MacOSX.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		8BD1646526C0694C00C2E126 /* XCTestCase+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Helpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BD1646726C0696A00C2E126 /* XCTestHelpers.framework in Frameworks */,
 				8B7564E126BDDA3D00D2F90E /* RegistrationCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -102,7 +107,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BD1646826C06A0C00C2E126 /* XCTestHelpers.framework in Frameworks */,
 				8B75651726BDE9C000D2F90E /* RegistrationPresentation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8BD1645526C0692D00C2E126 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8BD1646226C0693700C2E126 /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,7 +130,9 @@
 				8B7564E426BDDA3D00D2F90E /* RegistrationCoreTests */,
 				8B75650F26BDE9C000D2F90E /* RegistrationPresentation */,
 				8B75651A26BDE9C000D2F90E /* RegistrationPresentationTests */,
+				8BD1645926C0692D00C2E126 /* XCTestHelpers */,
 				8B7564D826BDDA3D00D2F90E /* Products */,
+				8BD1646026C0693700C2E126 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,6 +143,7 @@
 				8B7564E026BDDA3D00D2F90E /* RegistrationCoreTests.xctest */,
 				8B75650E26BDE9C000D2F90E /* RegistrationPresentation.framework */,
 				8B75651626BDE9C000D2F90E /* RegistrationPresentationTests.xctest */,
+				8BD1645826C0692D00C2E126 /* XCTestHelpers.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -146,19 +163,10 @@
 		8B7564E426BDDA3D00D2F90E /* RegistrationCoreTests */ = {
 			isa = PBXGroup;
 			children = (
-				8B75650226BDE71900D2F90E /* Helpers */,
 				8B7564E726BDDA3D00D2F90E /* Info.plist */,
 				8B75650026BDDD8B00D2F90E /* RequestValidatingDecoratorTests.swift */,
 			);
 			path = RegistrationCoreTests;
-			sourceTree = "<group>";
-		};
-		8B75650226BDE71900D2F90E /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				8B75650326BDE72500D2F90E /* XCTestCase+Helpers.swift */,
-			);
-			path = Helpers;
 			sourceTree = "<group>";
 		};
 		8B75650F26BDE9C000D2F90E /* RegistrationPresentation */ = {
@@ -183,10 +191,26 @@
 			children = (
 				8B75651D26BDE9C000D2F90E /* Info.plist */,
 				8B75652526BDEA7C00D2F90E /* RegistrationPresenterTests.swift */,
-				8BD163FC26BFD6BA00C2E126 /* XCTestCase+Helpers.swift */,
 				8BD1640626C0027500C2E126 /* LocalizationTests.swift */,
 			);
 			path = RegistrationPresentationTests;
+			sourceTree = "<group>";
+		};
+		8BD1645926C0692D00C2E126 /* XCTestHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				8BD1646526C0694C00C2E126 /* XCTestCase+Helpers.swift */,
+				8BD1645B26C0692D00C2E126 /* Info.plist */,
+			);
+			path = XCTestHelpers;
+			sourceTree = "<group>";
+		};
+		8BD1646026C0693700C2E126 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8BD1646126C0693700C2E126 /* XCTest.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,6 +224,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		8B75650926BDE9C000D2F90E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8BD1645326C0692D00C2E126 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -281,6 +312,24 @@
 			productReference = 8B75651626BDE9C000D2F90E /* RegistrationPresentationTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		8BD1645726C0692D00C2E126 /* XCTestHelpers */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8BD1645D26C0692D00C2E126 /* Build configuration list for PBXNativeTarget "XCTestHelpers" */;
+			buildPhases = (
+				8BD1645326C0692D00C2E126 /* Headers */,
+				8BD1645426C0692D00C2E126 /* Sources */,
+				8BD1645526C0692D00C2E126 /* Frameworks */,
+				8BD1645626C0692D00C2E126 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XCTestHelpers;
+			productName = XCTestHelpers;
+			productReference = 8BD1645826C0692D00C2E126 /* XCTestHelpers.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -304,6 +353,9 @@
 					8B75651526BDE9C000D2F90E = {
 						CreatedOnToolsVersion = 12.5;
 					};
+					8BD1645726C0692D00C2E126 = {
+						CreatedOnToolsVersion = 12.5;
+					};
 				};
 			};
 			buildConfigurationList = 8B7564D126BDDA3D00D2F90E /* Build configuration list for PBXProject "Registration" */;
@@ -323,6 +375,7 @@
 				8B7564DF26BDDA3D00D2F90E /* RegistrationCoreTests */,
 				8B75650D26BDE9C000D2F90E /* RegistrationPresentation */,
 				8B75651526BDE9C000D2F90E /* RegistrationPresentationTests */,
+				8BD1645726C0692D00C2E126 /* XCTestHelpers */,
 			);
 		};
 /* End PBXProject section */
@@ -357,6 +410,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8BD1645626C0692D00C2E126 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -375,7 +435,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B75650426BDE72500D2F90E /* XCTestCase+Helpers.swift in Sources */,
 				8B75650126BDDD8B00D2F90E /* RequestValidatingDecoratorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,9 +458,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BD163FD26BFD6BA00C2E126 /* XCTestCase+Helpers.swift in Sources */,
 				8B75652626BDEA7C00D2F90E /* RegistrationPresenterTests.swift in Sources */,
 				8BD1640726C0027500C2E126 /* LocalizationTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8BD1645426C0692D00C2E126 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8BD1646626C0694C00C2E126 /* XCTestCase+Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -725,6 +791,52 @@
 			};
 			name = Release;
 		};
+		8BD1645E26C0692D00C2E126 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = XCTestHelpers/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.danillakhtin.registration.XCTestHelpers;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		8BD1645F26C0692D00C2E126 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = XCTestHelpers/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.danillakhtin.registration.XCTestHelpers;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -769,6 +881,15 @@
 			buildConfigurations = (
 				8B75652326BDE9C000D2F90E /* Debug */,
 				8B75652426BDE9C000D2F90E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8BD1645D26C0692D00C2E126 /* Build configuration list for PBXNativeTarget "XCTestHelpers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8BD1645E26C0692D00C2E126 /* Debug */,
+				8BD1645F26C0692D00C2E126 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

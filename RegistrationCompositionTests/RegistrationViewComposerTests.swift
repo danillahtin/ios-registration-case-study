@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import XCTestHelpers
 import RegistrationCore
 import RegistrationPresentation
 import RegistrationUI

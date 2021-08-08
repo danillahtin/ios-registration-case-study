@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8B75653B26BDEBEE00D2F90E /* RegistrationUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B75653126BDEBED00D2F90E /* RegistrationUI.framework */; };
-		8B75654026BDEBEE00D2F90E /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75653F26BDEBEE00D2F90E /* UITests.swift */; };
 		8B75655926BDED0900D2F90E /* RegistrationComposition.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B75655026BDED0900D2F90E /* RegistrationComposition.framework */; };
 		8B75656826BDED2F00D2F90E /* RegistrationViewComposerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75656726BDED2F00D2F90E /* RegistrationViewComposerTests.swift */; };
 		8BD163B426BF293800C2E126 /* UIBarButtonItem+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163B326BF293800C2E126 /* UIBarButtonItem+Helpers.swift */; };
@@ -16,7 +15,6 @@
 		8BD163B826BF296800C2E126 /* UIView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163B726BF296800C2E126 /* UIView+Helpers.swift */; };
 		8BD163BA26BF298100C2E126 /* TapGestureRecognizerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163B926BF298100C2E126 /* TapGestureRecognizerMock.swift */; };
 		8BD163BC26BF299200C2E126 /* TextFieldMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163BB26BF299200C2E126 /* TextFieldMock.swift */; };
-		8BD163C826BF2CF500C2E126 /* XCTestCase+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163C726BF2CF500C2E126 /* XCTestCase+Helpers.swift */; };
 		8BD163E226BF4F2000C2E126 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163E126BF4F2000C2E126 /* RegistrationViewController.swift */; };
 		8BD163ED26BF503F00C2E126 /* RegistrationUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B75653126BDEBED00D2F90E /* RegistrationUI.framework */; };
 		8BD163F726BF517100C2E126 /* RegistrationUIKitViewComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163F626BF517100C2E126 /* RegistrationUIKitViewComposer.swift */; };
@@ -41,6 +39,7 @@
 		8BD1645026C042EC00C2E126 /* RegistrationCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD1644D26C042EC00C2E126 /* RegistrationCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8BD1645126C042EC00C2E126 /* RegistrationPresentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD1644E26C042EC00C2E126 /* RegistrationPresentation.framework */; };
 		8BD1645226C042EC00C2E126 /* RegistrationPresentation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD1644E26C042EC00C2E126 /* RegistrationPresentation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8BD1646A26C06A3B00C2E126 /* XCTestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD1646926C06A3B00C2E126 /* XCTestHelpers.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,7 +101,6 @@
 		8B75653126BDEBED00D2F90E /* RegistrationUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RegistrationUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B75653526BDEBED00D2F90E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B75653A26BDEBEE00D2F90E /* RegistrationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RegistrationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8B75653F26BDEBEE00D2F90E /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
 		8B75654126BDEBEE00D2F90E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B75655026BDED0900D2F90E /* RegistrationComposition.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RegistrationComposition.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B75655326BDED0900D2F90E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -116,7 +114,6 @@
 		8BD163BB26BF299200C2E126 /* TextFieldMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldMock.swift; sourceTree = "<group>"; };
 		8BD163BE26BF2B6100C2E126 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BD163C526BF2BE800C2E126 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8BD163C726BF2CF500C2E126 /* XCTestCase+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Helpers.swift"; sourceTree = "<group>"; };
 		8BD163C926BF4D3900C2E126 /* Scheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
 		8BD163DB26BF4EA200C2E126 /* Presentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Presentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BD163DD26BF4EAF00C2E126 /* Presentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Presentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,6 +137,7 @@
 		8BD1644726C042CE00C2E126 /* RegistrationPresentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RegistrationPresentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BD1644D26C042EC00C2E126 /* RegistrationCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RegistrationCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BD1644E26C042EC00C2E126 /* RegistrationPresentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RegistrationPresentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BD1646926C06A3B00C2E126 /* XCTestHelpers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = XCTestHelpers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +173,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B75655926BDED0900D2F90E /* RegistrationComposition.framework in Frameworks */,
+				8BD1646A26C06A3B00C2E126 /* XCTestHelpers.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,7 +230,6 @@
 		8B75653E26BDEBEE00D2F90E /* RegistrationUITests */ = {
 			isa = PBXGroup;
 			children = (
-				8B75653F26BDEBEE00D2F90E /* UITests.swift */,
 				8B75654126BDEBEE00D2F90E /* Info.plist */,
 				8BD1641926C00F0400C2E126 /* RegistrationViewControllerSnapshotTests.swift */,
 			);
@@ -267,7 +265,6 @@
 				8BD163B726BF296800C2E126 /* UIView+Helpers.swift */,
 				8BD163B926BF298100C2E126 /* TapGestureRecognizerMock.swift */,
 				8BD163BB26BF299200C2E126 /* TextFieldMock.swift */,
-				8BD163C726BF2CF500C2E126 /* XCTestCase+Helpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -275,6 +272,7 @@
 		8BD163BD26BF2B6100C2E126 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8BD1646926C06A3B00C2E126 /* XCTestHelpers.framework */,
 				8BD1644D26C042EC00C2E126 /* RegistrationCore.framework */,
 				8BD1644E26C042EC00C2E126 /* RegistrationPresentation.framework */,
 				8BD1644626C042CE00C2E126 /* RegistrationCore.framework */,
@@ -527,7 +525,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B75654026BDEBEE00D2F90E /* UITests.swift in Sources */,
 				8BD1641A26C00F0400C2E126 /* RegistrationViewControllerSnapshotTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -551,7 +548,6 @@
 				8BD163BA26BF298100C2E126 /* TapGestureRecognizerMock.swift in Sources */,
 				8BD163B826BF296800C2E126 /* UIView+Helpers.swift in Sources */,
 				8BD163B626BF294B00C2E126 /* UIControl+Helpers.swift in Sources */,
-				8BD163C826BF2CF500C2E126 /* XCTestCase+Helpers.swift in Sources */,
 				8BD163BC26BF299200C2E126 /* TextFieldMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
