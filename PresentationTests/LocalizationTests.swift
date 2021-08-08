@@ -11,7 +11,7 @@ import Presentation
 final class FeedLocalizationTests: XCTestCase {
     func test_localizedStrings_haveKeysAndValuesForAllSupportedLocalizations() {
         let table = "Localized"
-        let presentationBundle = Bundle(for: RegistrationViewPresenter.self)
+        let presentationBundle = Bundle(for: RegistrationPresenter.self)
         let localizationBundles = allLocalizationBundles(in: presentationBundle)
         let localizedStringKeys = allLocalizedStringKeys(in: localizationBundles, table: table)
 

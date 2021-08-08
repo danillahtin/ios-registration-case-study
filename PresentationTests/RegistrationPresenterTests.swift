@@ -231,9 +231,9 @@ final class RegistrationPresenterTests: XCTestCase {
     private func makeSut(
         file: StaticString = #file,
         line: UInt = #line
-    ) -> (sut: RegistrationViewPresenter, services: Services) {
+    ) -> (sut: RegistrationPresenter, services: Services) {
         let services = Services()
-        let sut = RegistrationViewPresenter(
+        let sut = RegistrationPresenter(
             loadingView: services,
             buttonView: services,
             titleView: services,

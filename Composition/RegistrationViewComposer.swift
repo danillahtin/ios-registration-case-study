@@ -38,7 +38,7 @@ public enum RegistrationViewComposer {
             delegate: adapter
         )
 
-        adapter.presenter = RegistrationViewPresenter(
+        adapter.presenter = RegistrationPresenter(
             loadingView: Weak(vc),
             buttonView: Weak(vc),
             titleView: Weak(vc),
@@ -58,7 +58,7 @@ private final class Adapter: RegistrationViewControllerDelegate {
     private let serviceScheduler: Scheduler
     private let onRegister: () -> ()
 
-    var presenter: RegistrationViewPresenter?
+    var presenter: RegistrationPresenter?
     var request: RegistrationRequest = .init(username: nil, password: nil)
 
     init(

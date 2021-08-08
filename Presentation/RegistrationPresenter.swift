@@ -5,8 +5,6 @@
 //  Created by Danil Lahtin on 08.08.2021.
 //
 
-import Foundation
-
 public final class RegistrationPresenter {
     private let loadingView: LoadingView
     private let buttonView: ButtonView
