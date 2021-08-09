@@ -101,11 +101,7 @@ public final class RegistrationViewController: UIViewController {
         formViewController: UIViewController,
         errorViewController: UIViewController
     ) -> RegistrationViewController {
-        let storyboard = UIStoryboard(
-            name: "RegistrationViewController",
-            bundle: .init(for: RegistrationViewController.self)
-        )
-        let vc = storyboard.instantiateInitialViewController() as! RegistrationViewController
+        let vc = RegistrationViewController()
 
         vc.tapGestureRecognizerFactory = tapGestureRecognizerFactory
         vc.delegate = delegate
@@ -131,6 +127,9 @@ public final class RegistrationViewController: UIViewController {
         let cancelInputTapRecognizer = tapGestureRecognizerFactory(self, #selector(onCancelInputRecongnizerRecognized))
 
         view.addGestureRecognizer(cancelInputTapRecognizer)
+        view.backgroundColor = UIColor(dynamicProvider: {
+            $0.userInterfaceStyle == .dark ? .black : .white
+        })
     }
 
     private func addChild(
