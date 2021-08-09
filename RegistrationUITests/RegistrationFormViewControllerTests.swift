@@ -8,7 +8,6 @@
 import XCTest
 import XCTestHelpers
 import XCTestHelpersiOS
-import RegistrationCore
 import RegistrationPresentation
 import RegistrationUI
 

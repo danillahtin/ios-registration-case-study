@@ -5,8 +5,8 @@
 //  Created by Danil Lahtin on 08.08.2021.
 //
 
-import SnapshotTesting
 import XCTest
+import SnapshotTesting
 import RegistrationUI
 
 final class RegistrationViewControllerSnapshotTests: XCTestCase {
