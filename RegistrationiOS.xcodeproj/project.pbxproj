@@ -27,6 +27,8 @@
 		8BC29E5026C1D1EC00D2774A /* ImmediateAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E4F26C1D1EC00D2774A /* ImmediateAnimator.swift */; };
 		8BC29E5226C1D29D00D2774A /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E5126C1D29D00D2774A /* UIViewController+Helpers.swift */; };
 		8BC29E5426C1D85400D2774A /* ButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E5326C1D85400D2774A /* ButtonViewController.swift */; };
+		8BC29E5626C1D8FE00D2774A /* ButtonViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E5526C1D8FE00D2774A /* ButtonViewControllerTests.swift */; };
+		8BC29E5826C1DA6A00D2774A /* ButtonViewModel+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E5726C1DA6A00D2774A /* ButtonViewModel+Helpers.swift */; };
 		8BD163E226BF4F2000C2E126 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163E126BF4F2000C2E126 /* RegistrationViewController.swift */; };
 		8BD163ED26BF503F00C2E126 /* RegistrationUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B75653126BDEBED00D2F90E /* RegistrationUI.framework */; };
 		8BD163F726BF517100C2E126 /* RegistrationUIKitViewComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163F626BF517100C2E126 /* RegistrationUIKitViewComposer.swift */; };
@@ -137,6 +139,8 @@
 		8BC29E4F26C1D1EC00D2774A /* ImmediateAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmediateAnimator.swift; sourceTree = "<group>"; };
 		8BC29E5126C1D29D00D2774A /* UIViewController+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helpers.swift"; sourceTree = "<group>"; };
 		8BC29E5326C1D85400D2774A /* ButtonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonViewController.swift; sourceTree = "<group>"; };
+		8BC29E5526C1D8FE00D2774A /* ButtonViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonViewControllerTests.swift; sourceTree = "<group>"; };
+		8BC29E5726C1DA6A00D2774A /* ButtonViewModel+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ButtonViewModel+Helpers.swift"; sourceTree = "<group>"; };
 		8BD163BE26BF2B6100C2E126 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BD163C526BF2BE800C2E126 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BD163C926BF4D3900C2E126 /* Scheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
@@ -279,6 +283,7 @@
 				8B83961526C1BDC800D837E9 /* RegistrationFormViewControllerTests.swift */,
 				8BC29E4526C1CD9400D2774A /* ErrorViewControllerTests.swift */,
 				8BC29E4C26C1D09100D2774A /* ErrorViewControllerSnapshotTests.swift */,
+				8BC29E5526C1D8FE00D2774A /* ButtonViewControllerTests.swift */,
 			);
 			path = RegistrationUITests;
 			sourceTree = "<group>";
@@ -321,6 +326,7 @@
 			children = (
 				8BC29E4F26C1D1EC00D2774A /* ImmediateAnimator.swift */,
 				8BC29E5126C1D29D00D2774A /* UIViewController+Helpers.swift */,
+				8BC29E5726C1DA6A00D2774A /* ButtonViewModel+Helpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -627,8 +633,10 @@
 				8B83961626C1BDC800D837E9 /* RegistrationFormViewControllerTests.swift in Sources */,
 				8BC29E5226C1D29D00D2774A /* UIViewController+Helpers.swift in Sources */,
 				8BD1641A26C00F0400C2E126 /* RegistrationViewControllerSnapshotTests.swift in Sources */,
+				8BC29E5826C1DA6A00D2774A /* ButtonViewModel+Helpers.swift in Sources */,
 				8B83961226C1A16F00D837E9 /* RegistrationFormViewControllerSnapshotTests.swift in Sources */,
 				8BC29E4D26C1D09100D2774A /* ErrorViewControllerSnapshotTests.swift in Sources */,
+				8BC29E5626C1D8FE00D2774A /* ButtonViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

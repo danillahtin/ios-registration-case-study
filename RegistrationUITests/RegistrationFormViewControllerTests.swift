@@ -323,9 +323,3 @@ extension RegistrationViewModel {
         )
     }
 }
-
-private extension ButtonViewModel {
-    static func make(isEnabled: Bool) -> ButtonViewModel {
-        ButtonViewModel(title: "any", isEnabled: isEnabled)
-    }
-}
