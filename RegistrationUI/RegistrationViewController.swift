@@ -13,6 +13,47 @@ public protocol RegistrationViewControllerDelegate {
     func didCancelInput()
 }
 
+public final class FormViewLayout {
+    private let container: UIView
+    private let form: UIView
+    private let error: UIView
+    private let button: UIView
+
+    init(
+        container: UIView,
+        form: UIView,
+        error: UIView,
+        button: UIView
+    ) {
+        self.container = container
+        self.form = form
+        self.error = error
+        self.button = button
+    }
+
+    func apply() {
+        form.translatesAutoresizingMaskIntoConstraints = false
+        button.translatesAutoresizingMaskIntoConstraints = false
+        error.translatesAutoresizingMaskIntoConstraints = false
+
+        container.addSubview(form)
+        container.addSubview(button)
+        container.addSubview(error)
+
+        NSLayoutConstraint.activate([
+            container.layoutMarginsGuide.leftAnchor.constraint(equalTo: button.leftAnchor),
+            container.layoutMarginsGuide.rightAnchor.constraint(equalTo: button.rightAnchor),
+            container.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: button.bottomAnchor, constant: 44),
+            container.layoutMarginsGuide.leftAnchor.constraint(equalTo: form.leftAnchor),
+            container.layoutMarginsGuide.rightAnchor.constraint(equalTo: form.rightAnchor),
+            container.safeAreaLayoutGuide.topAnchor.constraint(equalTo: form.topAnchor, constant: -16),
+            container.layoutMarginsGuide.leftAnchor.constraint(equalTo: error.leftAnchor),
+            container.layoutMarginsGuide.rightAnchor.constraint(equalTo: error.rightAnchor),
+            container.safeAreaLayoutGuide.topAnchor.constraint(equalTo: error.topAnchor, constant: -40),
+        ])
+    }
+}
+
 public final class RegistrationViewController: UIViewController {
     public typealias TapGestureRecognizerFactory = (_ target: Any?, _ action: Selector?) -> UITapGestureRecognizer
 
@@ -44,9 +85,22 @@ public final class RegistrationViewController: UIViewController {
     public override func loadView() {
         super.loadView()
 
-        addButtonViewController()
-        addFormViewController()
-        addErrorViewController()
+        let controllers = [
+            formViewController!,
+            errorViewController!,
+            buttonViewController!,
+        ]
+
+        controllers.forEach(addChild)
+
+        FormViewLayout(
+            container: view,
+            form: formViewController.view,
+            error: errorViewController.view,
+            button: buttonViewController.view
+        ).apply()
+
+        controllers.forEach({ $0.didMove(toParent: self) })
 
         let cancelInputTapRecognizer = tapGestureRecognizerFactory(self, #selector(onCancelInputRecongnizerRecognized))
 
@@ -54,47 +108,6 @@ public final class RegistrationViewController: UIViewController {
         view.backgroundColor = UIColor(dynamicProvider: {
             $0.userInterfaceStyle == .dark ? .black : .white
         })
-    }
-
-    private func addChild(
-        _ child: UIViewController,
-        childLayoutBuilder: (UIView) -> [NSLayoutConstraint]
-    ) {
-        addChild(child)
-        view.addSubview(child.view)
-        child.view.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(childLayoutBuilder(child.view))
-        child.didMove(toParent: self)
-    }
-
-    private func addButtonViewController() {
-        addChild(buttonViewController) {
-            [
-                view.layoutMarginsGuide.leftAnchor.constraint(equalTo: $0.leftAnchor),
-                view.layoutMarginsGuide.rightAnchor.constraint(equalTo: $0.rightAnchor),
-                view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: $0.bottomAnchor, constant: 44),
-            ]
-        }
-    }
-
-    private func addFormViewController() {
-        addChild(formViewController) {
-            [
-                view.layoutMarginsGuide.leftAnchor.constraint(equalTo: $0.leftAnchor),
-                view.layoutMarginsGuide.rightAnchor.constraint(equalTo: $0.rightAnchor),
-                view.safeAreaLayoutGuide.topAnchor.constraint(equalTo: $0.topAnchor, constant: -16),
-            ]
-        }
-    }
-
-    private func addErrorViewController() {
-        addChild(errorViewController) {
-            [
-                view.layoutMarginsGuide.leftAnchor.constraint(equalTo: $0.leftAnchor),
-                view.layoutMarginsGuide.rightAnchor.constraint(equalTo: $0.rightAnchor),
-                view.safeAreaLayoutGuide.topAnchor.constraint(equalTo: $0.topAnchor, constant: -40),
-            ]
-        }
     }
 
     public override func viewDidLoad() {
