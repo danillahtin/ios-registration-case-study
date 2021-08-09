@@ -13,45 +13,108 @@ public protocol RegistrationViewControllerDelegate {
     func didCancelInput()
 }
 
-public final class FormViewLayout {
-    private let container: UIView
-    private let form: UIView
-    private let error: UIView
-    private let button: UIView
+public protocol Layout {
+    func apply()
+}
 
-    init(
+public final class ErrorViewLayout: Layout {
+    private let container: UIView
+    private let error: UIView
+
+    public init(
         container: UIView,
-        form: UIView,
-        error: UIView,
-        button: UIView
+        error: UIView
     ) {
         self.container = container
-        self.form = form
         self.error = error
-        self.button = button
     }
 
-    func apply() {
-        form.translatesAutoresizingMaskIntoConstraints = false
-        button.translatesAutoresizingMaskIntoConstraints = false
+    public func apply() {
         error.translatesAutoresizingMaskIntoConstraints = false
 
-        container.addSubview(form)
-        container.addSubview(button)
         container.addSubview(error)
 
         NSLayoutConstraint.activate([
-            container.layoutMarginsGuide.leftAnchor.constraint(equalTo: button.leftAnchor),
-            container.layoutMarginsGuide.rightAnchor.constraint(equalTo: button.rightAnchor),
-            container.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: button.bottomAnchor, constant: 44),
-            container.layoutMarginsGuide.leftAnchor.constraint(equalTo: form.leftAnchor),
-            container.layoutMarginsGuide.rightAnchor.constraint(equalTo: form.rightAnchor),
-            container.safeAreaLayoutGuide.topAnchor.constraint(equalTo: form.topAnchor, constant: -16),
             container.layoutMarginsGuide.leftAnchor.constraint(equalTo: error.leftAnchor),
             container.layoutMarginsGuide.rightAnchor.constraint(equalTo: error.rightAnchor),
             container.safeAreaLayoutGuide.topAnchor.constraint(equalTo: error.topAnchor, constant: -40),
         ])
     }
+}
+
+public final class BottomButtonLayout: Layout {
+    private let container: UIView
+    private let button: UIView
+
+    public init(
+        container: UIView,
+        button: UIView
+    ) {
+        self.container = container
+        self.button = button
+    }
+
+    public func apply() {
+        button.translatesAutoresizingMaskIntoConstraints = false
+
+        container.addSubview(button)
+
+        NSLayoutConstraint.activate([
+            container.layoutMarginsGuide.leftAnchor.constraint(equalTo: button.leftAnchor),
+            container.layoutMarginsGuide.rightAnchor.constraint(equalTo: button.rightAnchor),
+            container.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: button.bottomAnchor, constant: 44),
+        ])
+    }
+}
+
+public final class FormViewLayout: Layout {
+    private let container: UIView
+    private let form: UIView
+
+    public init(
+        container: UIView,
+        form: UIView
+    ) {
+        self.container = container
+        self.form = form
+    }
+
+    public func apply() {
+        form.translatesAutoresizingMaskIntoConstraints = false
+
+        container.addSubview(form)
+
+        NSLayoutConstraint.activate([
+            container.layoutMarginsGuide.leftAnchor.constraint(equalTo: form.leftAnchor),
+            container.layoutMarginsGuide.rightAnchor.constraint(equalTo: form.rightAnchor),
+            container.safeAreaLayoutGuide.topAnchor.constraint(equalTo: form.topAnchor, constant: -16),
+        ])
+    }
+}
+
+final class LayoutComposite: Layout {
+    private let components: [Layout]
+
+    init(components: [Layout]) {
+        self.components = components
+    }
+
+    public func apply() {
+        components.forEach({ $0.apply() })
+    }
+}
+
+public func RegistrationViewLayout(
+    container: UIView,
+    form: UIView,
+    button: UIView,
+    error: UIView
+) -> Layout {
+    LayoutComposite(components: [
+        FormViewLayout(container: container, form: form),
+        BottomButtonLayout(container: container, button: button),
+        ErrorViewLayout(container: container, error: error),
+    ])
 }
 
 public final class RegistrationViewController: UIViewController {
@@ -85,19 +148,19 @@ public final class RegistrationViewController: UIViewController {
     public override func loadView() {
         super.loadView()
 
-        let controllers = [
+        let controllers: [UIViewController] = [
             formViewController!,
-            errorViewController!,
             buttonViewController!,
+            errorViewController!,
         ]
 
         controllers.forEach(addChild)
 
-        FormViewLayout(
+        RegistrationViewLayout(
             container: view,
             form: formViewController.view,
-            error: errorViewController.view,
-            button: buttonViewController.view
+            button: buttonViewController.view,
+            error: errorViewController.view
         ).apply()
 
         controllers.forEach({ $0.didMove(toParent: self) })

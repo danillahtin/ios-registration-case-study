@@ -48,13 +48,18 @@ public enum RegistrationUIKitViewComposer {
             buttonViewController: buttonViewController
         )
 
+        let buttonView = ButtonViewWhenViewLoadedDecorator(
+            decoratee: ButtonViewComposite([
+                Weak(buttonViewController),
+                Weak(formViewController),
+            ])
+        )
+
+        adapter.viewDidLoad = buttonView.viewLoaded
         adapter.formViewController = formViewController
         adapter.presenter = RegistrationPresenter(
             loadingView: Weak(buttonViewController),
-            buttonView: ButtonViewComposite([
-                Weak(buttonViewController),
-                Weak(formViewController),
-            ]),
+            buttonView: buttonView,
             titleView: Weak(vc),
             registrationView: Weak(formViewController),
             errorView: Weak(errorViewController),
@@ -75,6 +80,7 @@ private final class Adapter: RegistrationViewControllerDelegate, RegistrationFor
     weak var formViewController: RegistrationFormViewController?
     var presenter: RegistrationPresenter?
     var request: RegistrationRequest = .init(username: "", password: "")
+    var viewDidLoad: () -> () = {}
 
     init(
         registrationService: RegistrationService,
@@ -90,6 +96,7 @@ private final class Adapter: RegistrationViewControllerDelegate, RegistrationFor
 
     func onViewDidLoad() {
         presenter?.didLoadView()
+        viewDidLoad()
     }
 
     func didCancelInput() {
@@ -173,5 +180,28 @@ private final class ButtonViewComposite: ButtonView {
 
     func display(viewModel: ButtonViewModel) {
         components.forEach({ $0.display(viewModel: viewModel) })
+    }
+}
+
+private final class ButtonViewWhenViewLoadedDecorator: ButtonView {
+    private let decoratee: ButtonView
+    private var viewModel: ButtonViewModel?
+    private var isViewLoaded = false
+
+    init(decoratee: ButtonView) {
+        self.decoratee = decoratee
+    }
+
+    func display(viewModel: ButtonViewModel) {
+        if isViewLoaded {
+            return decoratee.display(viewModel: viewModel)
+        }
+
+        self.viewModel = viewModel
+    }
+
+    func viewLoaded() {
+        isViewLoaded = true
+        viewModel.map(display)
     }
 }
