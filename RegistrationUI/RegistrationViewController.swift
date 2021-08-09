@@ -15,20 +15,27 @@ public protocol RegistrationViewControllerDelegate {
 }
 
 public final class ErrorViewController: UIViewController {
-    weak var errorView: UIButton! {
-        didSet {
-            errorView.addTarget(self, action: #selector(onErrorViewTapped), for: .touchUpInside)
-            errorView.titleLabel?.textAlignment = .center
-        }
-    }
-
+    public weak var errorView: UIButton! { view as? UIButton }
     private var animator: Animator!
 
-    static func make(animator: Animator) -> ErrorViewController {
+    public static func make(animator: Animator) -> ErrorViewController {
         let vc = ErrorViewController()
         vc.animator = animator
 
         return vc
+    }
+
+    public override func loadView() {
+        let errorView = UIButton()
+        errorView.contentEdgeInsets = .init(top: 24, left: 16, bottom: 24, right: 16)
+        errorView.setTitleColor(.white, for: .normal)
+        errorView.backgroundColor = .systemPink
+        errorView.titleLabel?.numberOfLines = 0
+        errorView.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+        errorView.titleLabel?.textAlignment = .center
+        errorView.addTarget(self, action: #selector(onErrorViewTapped), for: .touchUpInside)
+
+        view = errorView
     }
 
     @objc
@@ -65,7 +72,7 @@ public final class RegistrationViewController: UIViewController {
 
     @IBOutlet public private(set) weak var registerButton: UIButton!
     @IBOutlet public private(set) weak var registerActivityIndicator: UIActivityIndicatorView!
-    @IBOutlet public private(set) weak var errorView: UIButton!
+    public weak var errorView: UIButton! { errorViewController.errorView }
     @IBOutlet private weak var registerButtonContainerView: UIView!
 
     private var tapGestureRecognizerFactory: TapGestureRecognizerFactory!
@@ -97,27 +104,43 @@ public final class RegistrationViewController: UIViewController {
     public override func loadView() {
         super.loadView()
 
-        errorViewController.errorView = errorView
-
         addFormViewController()
+        addErrorViewController()
 
         let cancelInputTapRecognizer = tapGestureRecognizerFactory(self, #selector(onCancelInputRecongnizerRecognized))
 
         view.addGestureRecognizer(cancelInputTapRecognizer)
     }
 
+    private func addChild(
+        _ child: UIViewController,
+        childLayoutBuilder: (UIView) -> [NSLayoutConstraint]
+    ) {
+        addChild(child)
+        view.addSubview(child.view)
+        child.view.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate(childLayoutBuilder(child.view))
+        child.didMove(toParent: self)
+    }
+
     private func addFormViewController() {
-        addChild(formViewController)
-        view.insertSubview(formViewController.view, belowSubview: errorView)
-        formViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        addChild(formViewController) {
+            [
+                view.layoutMarginsGuide.leftAnchor.constraint(equalTo: $0.leftAnchor),
+                view.layoutMarginsGuide.rightAnchor.constraint(equalTo: $0.rightAnchor),
+                view.safeAreaLayoutGuide.topAnchor.constraint(equalTo: $0.topAnchor, constant: -16),
+            ]
+        }
+    }
 
-        NSLayoutConstraint.activate([
-            view.layoutMarginsGuide.leftAnchor.constraint(equalTo: formViewController.view.leftAnchor),
-            view.layoutMarginsGuide.rightAnchor.constraint(equalTo: formViewController.view.rightAnchor),
-            view.safeAreaLayoutGuide.topAnchor.constraint(equalTo: formViewController.view.topAnchor, constant: -16),
-        ])
-
-        formViewController.didMove(toParent: self)
+    private func addErrorViewController() {
+        addChild(errorViewController) {
+            [
+                view.layoutMarginsGuide.leftAnchor.constraint(equalTo: $0.leftAnchor),
+                view.layoutMarginsGuide.rightAnchor.constraint(equalTo: $0.rightAnchor),
+                view.safeAreaLayoutGuide.topAnchor.constraint(equalTo: $0.topAnchor, constant: -40),
+            ]
+        }
     }
 
     public override func viewDidLoad() {

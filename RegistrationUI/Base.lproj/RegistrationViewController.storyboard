@@ -16,15 +16,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="PBj-o4-f5Y">
-                                <rect key="frame" x="20" y="84" width="374" height="65"/>
-                                <color key="backgroundColor" systemColor="systemPinkColor"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <inset key="contentEdgeInsets" minX="16" minY="24" maxX="16" maxY="24"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7hE-Wu-eys">
                                 <rect key="frame" x="20" y="758" width="374" height="60"/>
                                 <subviews>
@@ -61,17 +52,13 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="PBj-o4-f5Y" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="1S9-I8-ufe"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="7hE-Wu-eys" secondAttribute="bottom" constant="44" id="2Hq-pA-EON"/>
                             <constraint firstItem="7hE-Wu-eys" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Oi1-Pf-Jc4"/>
-                            <constraint firstItem="PBj-o4-f5Y" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="gmc-Yf-tDu"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="PBj-o4-f5Y" secondAttribute="trailing" id="nIw-OS-Fcr"/>
                             <constraint firstItem="7hE-Wu-eys" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="rGJ-Pu-dlP"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Registration" id="Qv2-yy-EGd"/>
                     <connections>
-                        <outlet property="errorView" destination="PBj-o4-f5Y" id="VNg-18-Wwm"/>
                         <outlet property="registerActivityIndicator" destination="PnM-XS-pz4" id="8S7-aF-QU8"/>
                         <outlet property="registerButton" destination="xYa-Lo-WPj" id="ru5-fC-EWA"/>
                         <outlet property="registerButtonContainerView" destination="7hE-Wu-eys" id="onF-rB-ZSy"/>
@@ -88,9 +75,6 @@
         </systemColor>
         <systemColor name="systemIndigoColor">
             <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
