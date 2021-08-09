@@ -36,11 +36,13 @@ public enum RegistrationUIKitViewComposer {
             delegate: adapter
         )
 
+        let errorViewController = ErrorViewController.make(animator: animator)
+
         let vc = RegistrationViewController.make(
             tapGestureRecognizerFactory: tapGestureRecognizerFactory,
-            animator: animator,
             delegate: adapter,
-            formViewController: formViewController
+            formViewController: formViewController,
+            errorViewController: errorViewController
         )
 
         adapter.formViewController = formViewController
@@ -52,7 +54,7 @@ public enum RegistrationUIKitViewComposer {
             ]),
             titleView: Weak(vc),
             registrationView: Weak(formViewController),
-            errorView: Weak(vc),
+            errorView: Weak(errorViewController),
             scheduler: deferredUiScheduler,
             localizationProvider: localizationProvider
         )

@@ -83,9 +83,9 @@ public final class RegistrationViewController: UIViewController {
 
     public static func make(
         tapGestureRecognizerFactory: @escaping TapGestureRecognizerFactory = UITapGestureRecognizer.init,
-        animator: Animator,
         delegate: RegistrationViewControllerDelegate,
-        formViewController: UIViewController
+        formViewController: UIViewController,
+        errorViewController: ErrorViewController
     ) -> RegistrationViewController {
         let storyboard = UIStoryboard(
             name: "RegistrationViewController",
@@ -96,7 +96,7 @@ public final class RegistrationViewController: UIViewController {
         vc.tapGestureRecognizerFactory = tapGestureRecognizerFactory
         vc.delegate = delegate
         vc.formViewController = formViewController
-        vc.errorViewController = ErrorViewController.make(animator: animator)
+        vc.errorViewController = errorViewController
 
         return vc
     }
@@ -185,11 +185,5 @@ extension RegistrationViewController: ButtonView {
 extension RegistrationViewController: TitleView {
     public func display(viewModel: TitleViewModel) {
         title = viewModel.title
-    }
-}
-
-extension RegistrationViewController: ErrorView {
-    public func display(viewModel: ErrorViewModel) {
-        errorViewController.display(viewModel: viewModel)
     }
 }

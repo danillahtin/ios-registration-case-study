@@ -46,11 +46,6 @@ final class RegistrationViewControllerSnapshotTests: XCTestCase {
         assertSnapshot { $0.displayLoadingState() }
     }
 
-    func test_errorState() {
-        assertSnapshot { $0.displayErrorState(message: "Short error message") }
-        assertSnapshot { $0.displayErrorState(message: "Very very very very very very very very very very very very very long error message") }
-    }
-
     func test_registerButtonEnabledState() {
         assertSnapshot { $0.displayRegisterButton(enabled: false) }
         assertSnapshot { $0.displayRegisterButton(enabled: true) }
@@ -75,25 +70,15 @@ final class RegistrationViewControllerSnapshotTests: XCTestCase {
         password: String?,
         prepare block: (RegistrationViewController) -> ()
     ) -> UINavigationController {
-        let label = UILabel()
-        label.backgroundColor = UIColor.blue.withAlphaComponent(0.5)
-        label.textColor = UIColor(dynamicProvider: {
-            $0.userInterfaceStyle == .dark ? .white : .black
-        })
-        label.text = "Form"
-        label.heightAnchor.constraint(equalToConstant: 160).isActive = true
-        label.textAlignment = .center
-
-        let formViewController = UIViewController()
-        formViewController.view = label
-
         let services = Services()
+        let errorViewController = ErrorViewController.make(animator: services)
         let sut = RegistrationViewController.make(
-            animator: services,
             delegate: services,
-            formViewController: formViewController
+            formViewController: makeViewController(text: "Form", height: 160, backgroundColor: .blue),
+            errorViewController: errorViewController
         )
 
+        errorViewController.view.isHidden = true
         sut.loadViewIfNeeded()
 
         sut.displayInitialState()
@@ -105,6 +90,24 @@ final class RegistrationViewControllerSnapshotTests: XCTestCase {
 
         return nc
     }
+
+    private func makeViewController(
+        text: String,
+        height: CGFloat,
+        backgroundColor: UIColor
+    ) -> UIViewController {
+        let label = UILabel()
+        label.backgroundColor = backgroundColor
+        label.textColor = .white
+        label.text = text
+        label.heightAnchor.constraint(equalToConstant: height).isActive = true
+        label.textAlignment = .center
+
+        let vc = UIViewController()
+        vc.view = label
+
+        return vc
+    }
 }
 
 private extension RegistrationViewController {
@@ -112,7 +115,6 @@ private extension RegistrationViewController {
         display(viewModel: .init(isLoading: false))
         display(viewModel: .init(title: "Register", isEnabled: false))
         display(viewModel: .init(title: "Registration"))
-        display(viewModel: .init(message: nil))
     }
 
     func displayLoadingState() {
@@ -123,7 +125,6 @@ private extension RegistrationViewController {
     func displayErrorState(message: String) {
         display(viewModel: .init(isLoading: false))
         display(viewModel: .init(title: "Register", isEnabled: true))
-        display(viewModel: .init(message: message))
     }
 
     func displayRegisterButton(enabled: Bool) {
