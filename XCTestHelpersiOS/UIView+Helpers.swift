@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UIView {
+public extension UIView {
     var toolbarItems: [UIBarButtonItem]? {
         let toolbar = inputAccessoryView as? UIToolbar
         return toolbar?.items

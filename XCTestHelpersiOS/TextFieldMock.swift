@@ -7,15 +7,15 @@
 
 import UIKit
 
-final class TextFieldMock: UITextField {
+public final class TextFieldMock: UITextField {
     private var _isFirstResponder: Bool = false
 
-    override var isFirstResponder: Bool {
+    public override var isFirstResponder: Bool {
         _isFirstResponder
     }
 
     @discardableResult
-    override func becomeFirstResponder() -> Bool {
+    public override func becomeFirstResponder() -> Bool {
         guard canBecomeFirstResponder else { return false }
 
         _isFirstResponder = true
@@ -24,7 +24,7 @@ final class TextFieldMock: UITextField {
     }
 
     @discardableResult
-    override func resignFirstResponder() -> Bool {
+    public override func resignFirstResponder() -> Bool {
         guard isFirstResponder else { return false }
 
         _isFirstResponder = false

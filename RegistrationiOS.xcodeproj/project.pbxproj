@@ -13,16 +13,14 @@
 		8B83961226C1A16F00D837E9 /* RegistrationFormViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83961126C1A16F00D837E9 /* RegistrationFormViewControllerSnapshotTests.swift */; };
 		8B83961426C1A65E00D837E9 /* XCTestCase+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83961326C1A65E00D837E9 /* XCTestCase+Helpers.swift */; };
 		8B83961626C1BDC800D837E9 /* RegistrationFormViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83961526C1BDC800D837E9 /* RegistrationFormViewControllerTests.swift */; };
-		8B83961D26C1BF8E00D837E9 /* TextFieldMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83961A26C1BF8E00D837E9 /* TextFieldMock.swift */; };
-		8B83961E26C1BF8E00D837E9 /* UIBarButtonItem+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83961C26C1BF8E00D837E9 /* UIBarButtonItem+Helpers.swift */; };
-		8B83961F26C1BF8E00D837E9 /* TapGestureRecognizerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83961B26C1BF8E00D837E9 /* TapGestureRecognizerMock.swift */; };
-		8B83962026C1BF8E00D837E9 /* UIControl+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83961926C1BF8E00D837E9 /* UIControl+Helpers.swift */; };
-		8B83962126C1BF8E00D837E9 /* UIView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83961826C1BF8E00D837E9 /* UIView+Helpers.swift */; };
-		8BD163B426BF293800C2E126 /* UIBarButtonItem+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163B326BF293800C2E126 /* UIBarButtonItem+Helpers.swift */; };
-		8BD163B626BF294B00C2E126 /* UIControl+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163B526BF294B00C2E126 /* UIControl+Helpers.swift */; };
-		8BD163B826BF296800C2E126 /* UIView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163B726BF296800C2E126 /* UIView+Helpers.swift */; };
-		8BD163BA26BF298100C2E126 /* TapGestureRecognizerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163B926BF298100C2E126 /* TapGestureRecognizerMock.swift */; };
-		8BD163BC26BF299200C2E126 /* TextFieldMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163BB26BF299200C2E126 /* TextFieldMock.swift */; };
+		8BC29E3626C1C48D00D2774A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC29E3526C1C48D00D2774A /* XCTest.framework */; platformFilter = ios; };
+		8BC29E3E26C1C49900D2774A /* UIControl+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E3C26C1C49900D2774A /* UIControl+Helpers.swift */; };
+		8BC29E3F26C1C49900D2774A /* UIBarButtonItem+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E3926C1C49900D2774A /* UIBarButtonItem+Helpers.swift */; };
+		8BC29E4026C1C49900D2774A /* UIView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E3D26C1C49900D2774A /* UIView+Helpers.swift */; };
+		8BC29E4126C1C49900D2774A /* TapGestureRecognizerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E3A26C1C49900D2774A /* TapGestureRecognizerMock.swift */; };
+		8BC29E4226C1C49900D2774A /* TextFieldMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E3B26C1C49900D2774A /* TextFieldMock.swift */; };
+		8BC29E4326C1C4D500D2774A /* XCTestHelpersiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC29E2D26C1C48500D2774A /* XCTestHelpersiOS.framework */; };
+		8BC29E4426C1C4DD00D2774A /* XCTestHelpersiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC29E2D26C1C48500D2774A /* XCTestHelpersiOS.framework */; };
 		8BD163E226BF4F2000C2E126 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163E126BF4F2000C2E126 /* RegistrationViewController.swift */; };
 		8BD163ED26BF503F00C2E126 /* RegistrationUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B75653126BDEBED00D2F90E /* RegistrationUI.framework */; };
 		8BD163F726BF517100C2E126 /* RegistrationUIKitViewComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163F626BF517100C2E126 /* RegistrationUIKitViewComposer.swift */; };
@@ -120,16 +118,14 @@
 		8B83961126C1A16F00D837E9 /* RegistrationFormViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFormViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		8B83961326C1A65E00D837E9 /* XCTestCase+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Helpers.swift"; sourceTree = "<group>"; };
 		8B83961526C1BDC800D837E9 /* RegistrationFormViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFormViewControllerTests.swift; sourceTree = "<group>"; };
-		8B83961826C1BF8E00D837E9 /* UIView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Helpers.swift"; sourceTree = "<group>"; };
-		8B83961926C1BF8E00D837E9 /* UIControl+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+Helpers.swift"; sourceTree = "<group>"; };
-		8B83961A26C1BF8E00D837E9 /* TextFieldMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldMock.swift; sourceTree = "<group>"; };
-		8B83961B26C1BF8E00D837E9 /* TapGestureRecognizerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapGestureRecognizerMock.swift; sourceTree = "<group>"; };
-		8B83961C26C1BF8E00D837E9 /* UIBarButtonItem+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Helpers.swift"; sourceTree = "<group>"; };
-		8BD163B326BF293800C2E126 /* UIBarButtonItem+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Helpers.swift"; sourceTree = "<group>"; };
-		8BD163B526BF294B00C2E126 /* UIControl+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+Helpers.swift"; sourceTree = "<group>"; };
-		8BD163B726BF296800C2E126 /* UIView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Helpers.swift"; sourceTree = "<group>"; };
-		8BD163B926BF298100C2E126 /* TapGestureRecognizerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapGestureRecognizerMock.swift; sourceTree = "<group>"; };
-		8BD163BB26BF299200C2E126 /* TextFieldMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldMock.swift; sourceTree = "<group>"; };
+		8BC29E2D26C1C48500D2774A /* XCTestHelpersiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XCTestHelpersiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BC29E3026C1C48500D2774A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8BC29E3526C1C48D00D2774A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		8BC29E3926C1C49900D2774A /* UIBarButtonItem+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Helpers.swift"; sourceTree = "<group>"; };
+		8BC29E3A26C1C49900D2774A /* TapGestureRecognizerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapGestureRecognizerMock.swift; sourceTree = "<group>"; };
+		8BC29E3B26C1C49900D2774A /* TextFieldMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldMock.swift; sourceTree = "<group>"; };
+		8BC29E3C26C1C49900D2774A /* UIControl+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+Helpers.swift"; sourceTree = "<group>"; };
+		8BC29E3D26C1C49900D2774A /* UIView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Helpers.swift"; sourceTree = "<group>"; };
 		8BD163BE26BF2B6100C2E126 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BD163C526BF2BE800C2E126 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BD163C926BF4D3900C2E126 /* Scheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
@@ -173,6 +169,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BC29E4326C1C4D500D2774A /* XCTestHelpersiOS.framework in Frameworks */,
 				8B75653B26BDEBEE00D2F90E /* RegistrationUI.framework in Frameworks */,
 				8BD1641826C00ED200C2E126 /* SnapshotTesting in Frameworks */,
 			);
@@ -192,8 +189,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BC29E4426C1C4DD00D2774A /* XCTestHelpersiOS.framework in Frameworks */,
 				8B75655926BDED0900D2F90E /* RegistrationComposition.framework in Frameworks */,
 				8BD1646A26C06A3B00C2E126 /* XCTestHelpers.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8BC29E2A26C1C48500D2774A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8BC29E3626C1C48D00D2774A /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,6 +225,7 @@
 				8B75655126BDED0900D2F90E /* RegistrationComposition */,
 				8B75655C26BDED0900D2F90E /* RegistrationCompositionTests */,
 				8BD1642026C0116100C2E126 /* RegistrationDemo */,
+				8BC29E2E26C1C48500D2774A /* XCTestHelpersiOS */,
 				8B75653226BDEBED00D2F90E /* Products */,
 				8BD163BD26BF2B6100C2E126 /* Frameworks */,
 			);
@@ -232,6 +239,7 @@
 				8B75655026BDED0900D2F90E /* RegistrationComposition.framework */,
 				8B75655826BDED0900D2F90E /* RegistrationCompositionTests.xctest */,
 				8BD1641F26C0116100C2E126 /* RegistrationDemo.app */,
+				8BC29E2D26C1C48500D2774A /* XCTestHelpersiOS.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -252,7 +260,6 @@
 		8B75653E26BDEBEE00D2F90E /* RegistrationUITests */ = {
 			isa = PBXGroup;
 			children = (
-				8B83961726C1BF8E00D837E9 /* Helpers */,
 				8B75654126BDEBEE00D2F90E /* Info.plist */,
 				8BD1641926C00F0400C2E126 /* RegistrationViewControllerSnapshotTests.swift */,
 				8B83961126C1A16F00D837E9 /* RegistrationFormViewControllerSnapshotTests.swift */,
@@ -276,40 +283,29 @@
 		8B75655C26BDED0900D2F90E /* RegistrationCompositionTests */ = {
 			isa = PBXGroup;
 			children = (
-				8BD163B226BF292000C2E126 /* Helpers */,
 				8B75655F26BDED0900D2F90E /* Info.plist */,
 				8B75656726BDED2F00D2F90E /* RegistrationViewComposerTests.swift */,
 			);
 			path = RegistrationCompositionTests;
 			sourceTree = "<group>";
 		};
-		8B83961726C1BF8E00D837E9 /* Helpers */ = {
+		8BC29E2E26C1C48500D2774A /* XCTestHelpersiOS */ = {
 			isa = PBXGroup;
 			children = (
-				8B83961C26C1BF8E00D837E9 /* UIBarButtonItem+Helpers.swift */,
-				8B83961926C1BF8E00D837E9 /* UIControl+Helpers.swift */,
-				8B83961826C1BF8E00D837E9 /* UIView+Helpers.swift */,
-				8B83961B26C1BF8E00D837E9 /* TapGestureRecognizerMock.swift */,
-				8B83961A26C1BF8E00D837E9 /* TextFieldMock.swift */,
+				8BC29E3926C1C49900D2774A /* UIBarButtonItem+Helpers.swift */,
+				8BC29E3C26C1C49900D2774A /* UIControl+Helpers.swift */,
+				8BC29E3D26C1C49900D2774A /* UIView+Helpers.swift */,
+				8BC29E3A26C1C49900D2774A /* TapGestureRecognizerMock.swift */,
+				8BC29E3B26C1C49900D2774A /* TextFieldMock.swift */,
+				8BC29E3026C1C48500D2774A /* Info.plist */,
 			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
-		8BD163B226BF292000C2E126 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				8BD163B326BF293800C2E126 /* UIBarButtonItem+Helpers.swift */,
-				8BD163B526BF294B00C2E126 /* UIControl+Helpers.swift */,
-				8BD163B726BF296800C2E126 /* UIView+Helpers.swift */,
-				8BD163B926BF298100C2E126 /* TapGestureRecognizerMock.swift */,
-				8BD163BB26BF299200C2E126 /* TextFieldMock.swift */,
-			);
-			path = Helpers;
+			path = XCTestHelpersiOS;
 			sourceTree = "<group>";
 		};
 		8BD163BD26BF2B6100C2E126 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8BC29E3526C1C48D00D2774A /* XCTest.framework */,
 				8BD1646926C06A3B00C2E126 /* XCTestHelpers.framework */,
 				8BD1644D26C042EC00C2E126 /* RegistrationCore.framework */,
 				8BD1644E26C042EC00C2E126 /* RegistrationPresentation.framework */,
@@ -350,6 +346,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		8B75654B26BDED0900D2F90E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8BC29E2826C1C48500D2774A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -435,6 +438,24 @@
 			productReference = 8B75655826BDED0900D2F90E /* RegistrationCompositionTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		8BC29E2C26C1C48500D2774A /* XCTestHelpersiOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8BC29E3426C1C48500D2774A /* Build configuration list for PBXNativeTarget "XCTestHelpersiOS" */;
+			buildPhases = (
+				8BC29E2826C1C48500D2774A /* Headers */,
+				8BC29E2926C1C48500D2774A /* Sources */,
+				8BC29E2A26C1C48500D2774A /* Frameworks */,
+				8BC29E2B26C1C48500D2774A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XCTestHelpersiOS;
+			productName = XCTestHelpersiOS;
+			productReference = 8BC29E2D26C1C48500D2774A /* XCTestHelpersiOS.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		8BD1641E26C0116100C2E126 /* RegistrationDemo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8BD1643026C0116300C2E126 /* Build configuration list for PBXNativeTarget "RegistrationDemo" */;
@@ -478,6 +499,9 @@
 					8B75655726BDED0900D2F90E = {
 						CreatedOnToolsVersion = 12.5;
 					};
+					8BC29E2C26C1C48500D2774A = {
+						CreatedOnToolsVersion = 12.5;
+					};
 					8BD1641E26C0116100C2E126 = {
 						CreatedOnToolsVersion = 12.5;
 					};
@@ -504,6 +528,7 @@
 				8B75654F26BDED0900D2F90E /* RegistrationComposition */,
 				8B75655726BDED0900D2F90E /* RegistrationCompositionTests */,
 				8BD1641E26C0116100C2E126 /* RegistrationDemo */,
+				8BC29E2C26C1C48500D2774A /* XCTestHelpersiOS */,
 			);
 		};
 /* End PBXProject section */
@@ -538,6 +563,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8BC29E2B26C1C48500D2774A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8BD1641D26C0116100C2E126 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -565,15 +597,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B83961E26C1BF8E00D837E9 /* UIBarButtonItem+Helpers.swift in Sources */,
-				8B83961F26C1BF8E00D837E9 /* TapGestureRecognizerMock.swift in Sources */,
 				8B83961426C1A65E00D837E9 /* XCTestCase+Helpers.swift in Sources */,
 				8B83961626C1BDC800D837E9 /* RegistrationFormViewControllerTests.swift in Sources */,
-				8B83962126C1BF8E00D837E9 /* UIView+Helpers.swift in Sources */,
 				8BD1641A26C00F0400C2E126 /* RegistrationViewControllerSnapshotTests.swift in Sources */,
 				8B83961226C1A16F00D837E9 /* RegistrationFormViewControllerSnapshotTests.swift in Sources */,
-				8B83961D26C1BF8E00D837E9 /* TextFieldMock.swift in Sources */,
-				8B83962026C1BF8E00D837E9 /* UIControl+Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -591,12 +618,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BD163B426BF293800C2E126 /* UIBarButtonItem+Helpers.swift in Sources */,
 				8B75656826BDED2F00D2F90E /* RegistrationViewComposerTests.swift in Sources */,
-				8BD163BA26BF298100C2E126 /* TapGestureRecognizerMock.swift in Sources */,
-				8BD163B826BF296800C2E126 /* UIView+Helpers.swift in Sources */,
-				8BD163B626BF294B00C2E126 /* UIControl+Helpers.swift in Sources */,
-				8BD163BC26BF299200C2E126 /* TextFieldMock.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8BC29E2926C1C48500D2774A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8BC29E3F26C1C49900D2774A /* UIBarButtonItem+Helpers.swift in Sources */,
+				8BC29E4026C1C49900D2774A /* UIView+Helpers.swift in Sources */,
+				8BC29E3E26C1C49900D2774A /* UIControl+Helpers.swift in Sources */,
+				8BC29E4126C1C49900D2774A /* TapGestureRecognizerMock.swift in Sources */,
+				8BC29E4226C1C49900D2774A /* TextFieldMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -951,6 +985,52 @@
 			};
 			name = Release;
 		};
+		8BC29E3226C1C48500D2774A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = XCTestHelpersiOS/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.danillakhtin.registration.XCTestHelpersiOS;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8BC29E3326C1C48500D2774A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = XCTestHelpersiOS/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.danillakhtin.registration.XCTestHelpersiOS;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		8BD1643126C0116300C2E126 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1031,6 +1111,15 @@
 			buildConfigurations = (
 				8B75656526BDED0900D2F90E /* Debug */,
 				8B75656626BDED0900D2F90E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8BC29E3426C1C48500D2774A /* Build configuration list for PBXNativeTarget "XCTestHelpersiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8BC29E3226C1C48500D2774A /* Debug */,
+				8BC29E3326C1C48500D2774A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

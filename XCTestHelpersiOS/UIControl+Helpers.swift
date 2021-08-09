@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UIControl {
+public extension UIControl {
     private func perform(for event: UIControl.Event, _ block: (NSObject, Selector) -> ()) {
         allTargets.forEach { target in
             actions(forTarget: target, forControlEvent: event)?.forEach { action in
@@ -27,7 +27,7 @@ extension UIControl {
     }
 }
 
-extension UIButton {
+public extension UIButton {
     func simulateTap() {
         simulate(event: .touchUpInside)
     }

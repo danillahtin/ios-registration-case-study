@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UIBarButtonItem {
+public extension UIBarButtonItem {
     func simulateTap() {
         (target as! NSObject).perform(action!)
     }
