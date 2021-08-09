@@ -1,5 +1,5 @@
 //
-//  RegistrationFormViewControllerTests.swift
+//  UsernamePasswordFormViewControllerTests.swift
 //  RegistrationUITests
 //
 //  Created by Danil Lahtin on 09.08.2021.
@@ -11,7 +11,7 @@ import XCTestHelpersiOS
 import RegistrationPresentation
 import RegistrationUI
 
-final class RegistrationFormViewControllerTests: XCTestCase {
+final class UsernamePasswordFormViewControllerTests: XCTestCase {
     func test_loadView_displaysEmptyUsername() {
         let (sut, _) = makeSut()
 
@@ -171,17 +171,13 @@ final class RegistrationFormViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.isPasswordDoneButtonEnabled, true)
     }
 
-    func test_givenPasswordIsActive_whenToolbarDoneButtonTapped_thenRegistrationIsRequestedWithUsernameAndPassword() {
+    func test_doneButtonTapped_notifiesDelegate() {
         let (sut, services) = makeSut()
 
-        sut.simulateUsernameInput("some username")
-        sut.simulatePasswordInput("some password")
-        sut.simulatePasswordIsActiveInput()
-
-        XCTAssertEqual(services.registerButtonTappedCount, 0)
+        XCTAssertEqual(services.doneButtonTappedCount, 0)
         sut.simulatePasswordToolbarDoneButtonTapped()
 
-        XCTAssertEqual(services.registerButtonTappedCount, 1)
+        XCTAssertEqual(services.doneButtonTappedCount, 1)
     }
 
     // MARK: - Helpers
@@ -285,20 +281,20 @@ private extension UsernamePasswordFormViewController {
     }
 }
 
-private final class Services: RegistrationFormViewControllerDelegate {
+private final class Services: UsernamePasswordFormViewControllerDelegate {
     enum Message: Equatable {
-        case onRegisterButtonTapped
+        case onDoneButtonTapped
         case didUpdate(username: String?, password: String?)
     }
 
     private var messages: [Message] = []
 
-    var registerButtonTappedCount: Int {
-        messages.filter({ $0 == .onRegisterButtonTapped }).count
+    var doneButtonTappedCount: Int {
+        messages.filter({ $0 == .onDoneButtonTapped }).count
     }
 
-    func onRegisterButtonTapped() {
-        messages.append(.onRegisterButtonTapped)
+    func onDoneButtonTapped() {
+        messages.append(.onDoneButtonTapped)
     }
 
     func didUpdate(username: String?, password: String?) {

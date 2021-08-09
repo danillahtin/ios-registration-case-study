@@ -29,15 +29,4 @@ final class RegistrationViewLayoutSnapshotTests: XCTestCase {
 
         return sut
     }
-
-    private func makeView(name: String, color: UIColor, height: CGFloat? = nil) -> UIView {
-        let label = UILabel()
-        label.backgroundColor = color
-        label.text = name
-        label.textAlignment = .center
-        label.textColor = .black
-        height.map({ label.heightAnchor.constraint(equalToConstant: $0).isActive = true })
-
-        return label
-    }
 }

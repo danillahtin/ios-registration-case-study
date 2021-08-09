@@ -1,5 +1,5 @@
 //
-//  RegistrationFormViewControllerSnapshotTests.swift
+//  UsernamePasswordFormViewControllerSnapshotTests.swift
 //  RegistrationUITests
 //
 //  Created by Danil Lahtin on 09.08.2021.
@@ -9,7 +9,7 @@ import XCTest
 import SnapshotTesting
 import RegistrationUI
 
-final class RegistrationFormViewControllerSnapshotTests: XCTestCase {
+final class UsernamePasswordFormViewControllerSnapshotTests: XCTestCase {
     func test_initialState() {
         assertSnapshot()
     }
@@ -78,7 +78,7 @@ private extension UsernamePasswordFormViewController {
     }
 }
 
-private final class Services: RegistrationFormViewControllerDelegate {
+private final class Services: UsernamePasswordFormViewControllerDelegate {
     func didUpdate(username: String?, password: String?) {}
-    func onRegisterButtonTapped() {}
+    func onDoneButtonTapped() {}
 }

@@ -26,7 +26,7 @@ final class ViewController: UIViewController {
         view.addGestureRecognizer(tapRecognizer)
         tapRecognizer.isEnabled = false
 
-        registerButton.addTarget(self, action: #selector(onRegisterButtonTapped), for: .touchUpInside)
+        registerButton.addTarget(self, action: #selector(onDoneButtonTapped), for: .touchUpInside)
         display(isLoading: false)
     }
 

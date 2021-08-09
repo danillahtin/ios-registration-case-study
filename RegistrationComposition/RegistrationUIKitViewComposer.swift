@@ -38,7 +38,7 @@ public enum RegistrationUIKitViewComposer {
 
         let errorViewController = ErrorViewController.make(animator: animator)
         let buttonViewController = ButtonViewController.make()
-        buttonViewController.onButtonTappedBlock = adapter.onRegisterButtonTapped
+        buttonViewController.onButtonTappedBlock = adapter.onDoneButtonTapped
 
         let vc = RegistrationViewController.make(
             tapGestureRecognizerFactory: tapGestureRecognizerFactory,
@@ -71,7 +71,7 @@ public enum RegistrationUIKitViewComposer {
     }
 }
 
-private final class Adapter: RegistrationViewControllerDelegate, RegistrationFormViewControllerDelegate {
+private final class Adapter: RegistrationViewControllerDelegate, UsernamePasswordFormViewControllerDelegate {
     private let registrationService: RegistrationService
     private let uiScheduler: Scheduler
     private let serviceScheduler: Scheduler
@@ -108,7 +108,7 @@ private final class Adapter: RegistrationViewControllerDelegate, RegistrationFor
         request = RegistrationRequest(username: username, password: password)
     }
 
-    func onRegisterButtonTapped() {
+    func onDoneButtonTapped() {
         presenter?.didStartRegistration()
 
         serviceScheduler.schedule { [weak self, request] in
