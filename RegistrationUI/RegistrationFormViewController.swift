@@ -8,6 +8,11 @@
 import UIKit
 import RegistrationPresentation
 
+public protocol RegistrationFormViewControllerDelegate {
+    func onRegisterButtonTapped()
+    func didUpdate(username: String?, password: String?)
+}
+
 public final class RegistrationFormViewController: UIViewController {
     public typealias TextFieldFactory = () -> UITextField
 
@@ -16,16 +21,16 @@ public final class RegistrationFormViewController: UIViewController {
     public private(set) var passwordDoneButton: UIBarButtonItem?
 
     private var textFieldFactory: TextFieldFactory!
-
-    var didUpdate: (String?, String?) -> () = { _, _ in }
-    var didRegister: () -> () = {}
+    private var delegate: RegistrationFormViewControllerDelegate!
 
     public static func make(
-        textFieldFactory: @escaping TextFieldFactory = UITextField.init
+        textFieldFactory: @escaping TextFieldFactory = UITextField.init,
+        delegate: RegistrationFormViewControllerDelegate
     ) -> RegistrationFormViewController {
         let vc = RegistrationFormViewController()
 
         vc.textFieldFactory = textFieldFactory
+        vc.delegate = delegate
 
         return vc
     }
@@ -85,7 +90,10 @@ public final class RegistrationFormViewController: UIViewController {
     }
 
     private func notifyTextFieldUpdated() {
-        didUpdate(usernameTextField.text, passwordTextField.text)
+        delegate.didUpdate(
+            username: usernameTextField.text,
+            password: passwordTextField.text
+        )
     }
 
     @objc
@@ -150,6 +158,6 @@ extension RegistrationFormViewController: RegistrationView {
     @objc
     private func onPasswordDoneButtonTapped() {
         passwordTextField.resignFirstResponder()
-        didRegister()
+        delegate.onRegisterButtonTapped()
     }
 }

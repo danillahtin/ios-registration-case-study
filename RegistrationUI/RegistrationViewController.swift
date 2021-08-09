@@ -33,10 +33,10 @@ public final class RegistrationViewController: UIViewController {
     private var formViewController: RegistrationFormViewController!
 
     public static func make(
-        textFieldFactory: @escaping TextFieldFactory = UITextField.init,
         tapGestureRecognizerFactory: @escaping TapGestureRecognizerFactory = UITapGestureRecognizer.init,
         animator: Animator,
-        delegate: RegistrationViewControllerDelegate
+        delegate: RegistrationViewControllerDelegate,
+        formViewController: RegistrationFormViewController
     ) -> RegistrationViewController {
         let storyboard = UIStoryboard(
             name: "RegistrationViewController",
@@ -47,9 +47,7 @@ public final class RegistrationViewController: UIViewController {
         vc.tapGestureRecognizerFactory = tapGestureRecognizerFactory
         vc.delegate = delegate
         vc.animator = animator
-        vc.formViewController = RegistrationFormViewController.make(textFieldFactory: textFieldFactory)
-        vc.formViewController.didUpdate = delegate.didUpdate
-        vc.formViewController.didRegister = delegate.onRegisterButtonTapped
+        vc.formViewController = formViewController
 
         return vc
     }

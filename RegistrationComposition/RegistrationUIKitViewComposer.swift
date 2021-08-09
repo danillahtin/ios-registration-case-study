@@ -31,11 +31,16 @@ public enum RegistrationUIKitViewComposer {
             onRegister: onRegister
         )
 
-        let vc = RegistrationViewController.make(
+        let formViewController = RegistrationFormViewController.make(
             textFieldFactory: textFieldFactory,
+            delegate: adapter
+        )
+
+        let vc = RegistrationViewController.make(
             tapGestureRecognizerFactory: tapGestureRecognizerFactory,
             animator: animator,
-            delegate: adapter
+            delegate: adapter,
+            formViewController: formViewController
         )
 
         adapter.presenter = RegistrationPresenter(
@@ -52,7 +57,7 @@ public enum RegistrationUIKitViewComposer {
     }
 }
 
-private final class Adapter: RegistrationViewControllerDelegate {
+private final class Adapter: RegistrationViewControllerDelegate, RegistrationFormViewControllerDelegate {
     private let registrationService: RegistrationService
     private let uiScheduler: Scheduler
     private let serviceScheduler: Scheduler

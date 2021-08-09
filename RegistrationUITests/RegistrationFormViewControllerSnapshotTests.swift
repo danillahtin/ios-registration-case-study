@@ -49,7 +49,8 @@ final class RegistrationFormViewControllerSnapshotTests: XCTestCase {
         password: String?,
         prepare block: (RegistrationFormViewController) -> ()
     ) -> UIViewController {
-        let sut = RegistrationFormViewController.make()
+        let services = Services()
+        let sut = RegistrationFormViewController.make(delegate: services)
 
         sut.loadViewIfNeeded()
 
@@ -91,4 +92,9 @@ private extension RegistrationFormViewController {
             )
         )
     }
+}
+
+private final class Services: RegistrationFormViewControllerDelegate {
+    func didUpdate(username: String?, password: String?) {}
+    func onRegisterButtonTapped() {}
 }

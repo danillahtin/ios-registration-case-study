@@ -78,7 +78,8 @@ final class RegistrationViewControllerSnapshotTests: XCTestCase {
         let services = Services()
         let sut = RegistrationViewController.make(
             animator: services,
-            delegate: services
+            delegate: services,
+            formViewController: RegistrationFormViewController.make(delegate: services)
         )
 
         sut.loadViewIfNeeded()
@@ -133,7 +134,7 @@ private extension RegistrationViewController {
     }
 }
 
-private final class Services: Animator, RegistrationViewControllerDelegate {
+private final class Services: Animator, RegistrationViewControllerDelegate, RegistrationFormViewControllerDelegate {
     func onViewDidLoad() {}
     func onRegisterButtonTapped() {}
     func didUpdate(username: String?, password: String?) {}
