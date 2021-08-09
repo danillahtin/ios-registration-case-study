@@ -1,5 +1,5 @@
 //
-//  RegistrationViewComposerTests.swift
+//  RegistrationUIKitViewComposerTests.swift
 //  CompositionTests
 //
 //  Created by Danil Lahtin on 07.08.2021.
@@ -13,7 +13,7 @@ import RegistrationPresentation
 import RegistrationUI
 import RegistrationComposition
 
-final class RegistrationViewComposerTests: XCTestCase {
+final class RegistrationUIKitViewComposerTests: XCTestCase {
     func test_loadView_setsCorrectTitle() {
         let (sut, _) = makeSut()
 
