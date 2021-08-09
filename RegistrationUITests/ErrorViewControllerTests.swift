@@ -73,10 +73,3 @@ private extension ErrorViewController {
         errorView.simulateTap()
     }
 }
-
-private final class ImmediateAnimator: Animator {
-    func animate(_ animations: @escaping () -> (), completion: (() -> ())?) {
-        animations()
-        completion?()
-    }
-}
