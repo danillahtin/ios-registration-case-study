@@ -135,6 +135,15 @@ private extension RegistrationViewController {
         display(viewModel: .init(title: "Register", isEnabled: false))
         display(viewModel: .init(title: "Registration"))
         display(viewModel: .init(message: nil))
+        display(
+            viewModel: .init(
+                cancelTitle: "Cancel",
+                nextTitle: "Next",
+                doneTitle: "Done",
+                usernamePlaceholder: "Username",
+                passwordPlaceholder: "Password"
+            )
+        )
     }
 
     func displayLoadingState() {

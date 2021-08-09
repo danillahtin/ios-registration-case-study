@@ -62,7 +62,6 @@ final class RegistrationFormViewController: UIViewController {
         textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         textField.delegate = self
         textField.returnKeyType = .next
-        textField.placeholder = "Username"
 
         return textField
     }
@@ -72,7 +71,6 @@ final class RegistrationFormViewController: UIViewController {
         textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         textField.isSecureTextEntry = true
         textField.returnKeyType = .done
-        textField.placeholder = "Password"
 
         return textField
     }
@@ -108,6 +106,7 @@ extension RegistrationFormViewController: ButtonView {
 
 extension RegistrationFormViewController: RegistrationView {
     public func display(viewModel: RegistrationViewModel) {
+        usernameTextField.placeholder = viewModel.usernamePlaceholder
         usernameTextField.inputAccessoryView = makeToolbar(items: [
             UIBarButtonItem(title: viewModel.cancelTitle, style: .plain, target: self, action: #selector(onCancelButtonTapped)),
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
@@ -116,6 +115,7 @@ extension RegistrationFormViewController: RegistrationView {
 
         passwordDoneButton = UIBarButtonItem(title: viewModel.doneTitle, style: .plain, target: self, action: #selector(onPasswordDoneButtonTapped))
 
+        passwordTextField.placeholder = viewModel.passwordPlaceholder
         passwordTextField.inputAccessoryView = makeToolbar(items: [
             UIBarButtonItem(title: viewModel.cancelTitle, style: .plain, target: self, action: #selector(onCancelButtonTapped)),
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),

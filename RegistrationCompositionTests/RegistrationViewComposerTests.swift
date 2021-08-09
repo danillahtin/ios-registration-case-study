@@ -70,6 +70,15 @@ final class RegistrationViewComposerTests: XCTestCase {
         )
     }
 
+    func test_loadView_displaysCorrectUsernamePlaceholder() {
+        let (sut, _) = makeSut()
+
+        XCTAssertEqual(
+            sut.usernameTextField.placeholder,
+            "REGISTRATION_USERNAME_PLACEHOLDER_LOCALIZED"
+        )
+    }
+
     func test_loadView_displaysCorrectPasswordReturnButton() {
         let (sut, _) = makeSut()
 
@@ -91,6 +100,15 @@ final class RegistrationViewComposerTests: XCTestCase {
         XCTAssertEqual(
             sut.passwordTextField.toolbarItems?.last?.title,
             "REGISTRATION_DONE_TITLE_LOCALIZED"
+        )
+    }
+
+    func test_loadView_displaysCorrectPasswordPlaceholder() {
+        let (sut, _) = makeSut()
+
+        XCTAssertEqual(
+            sut.passwordTextField.placeholder,
+            "REGISTRATION_PASSWORD_PLACEHOLDER_LOCALIZED"
         )
     }
 

@@ -41,7 +41,9 @@ public final class RegistrationPresenter {
             viewModel: .init(
                 cancelTitle: localizationProvider.cancel,
                 nextTitle: localizationProvider.next,
-                doneTitle: localizationProvider.done
+                doneTitle: localizationProvider.done,
+                usernamePlaceholder: localizationProvider.usernamePlaceholder,
+                passwordPlaceholder: localizationProvider.passwordPlaceholder
             )
         )
     }
@@ -97,5 +99,13 @@ private extension LocalizationProvider {
 
     var register: String {
         string(for: "REGISTRATION_REGISTER_BUTTON_TITLE")
+    }
+
+    var usernamePlaceholder: String {
+        string(for: "REGISTRATION_USERNAME_PLACEHOLDER")
+    }
+
+    var passwordPlaceholder: String {
+        string(for: "REGISTRATION_PASSWORD_PLACEHOLDER")
     }
 }

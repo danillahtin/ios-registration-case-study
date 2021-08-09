@@ -38,7 +38,9 @@ final class RegistrationPresenterTests: XCTestCase {
             .init(
                 cancelTitle: "REGISTRATION_CANCEL_TITLE_LOCALIZED",
                 nextTitle: "REGISTRATION_NEXT_TITLE_LOCALIZED",
-                doneTitle: "REGISTRATION_DONE_TITLE_LOCALIZED"
+                doneTitle: "REGISTRATION_DONE_TITLE_LOCALIZED",
+                usernamePlaceholder: "REGISTRATION_USERNAME_PLACEHOLDER_LOCALIZED",
+                passwordPlaceholder: "REGISTRATION_PASSWORD_PLACEHOLDER_LOCALIZED"
             )
         ])
     }
