@@ -11,7 +11,7 @@ import RegistrationPresentation
 public protocol RegistrationViewControllerDelegate {
     func onViewDidLoad()
     func onRegisterButtonTapped()
-    func didUpdate(username: String?, password: String?)
+    func didCancelInput()
 }
 
 public final class RegistrationViewController: UIViewController {
@@ -67,7 +67,7 @@ public final class RegistrationViewController: UIViewController {
 
         formViewController.didMove(toParent: self)
 
-        let cancelInputTapRecognizer = tapGestureRecognizerFactory(formViewController, #selector(formViewController.endEditing))
+        let cancelInputTapRecognizer = tapGestureRecognizerFactory(self, #selector(onCancelInputRecongnizerRecognized))
 
         errorView.titleLabel?.textAlignment = .center
 
@@ -88,6 +88,11 @@ public final class RegistrationViewController: UIViewController {
     @IBAction
     private func onErrorViewTapped() {
         hideErrorView()
+    }
+
+    @objc
+    private func onCancelInputRecongnizerRecognized() {
+        delegate?.didCancelInput()
     }
 
     private func hideErrorView() {

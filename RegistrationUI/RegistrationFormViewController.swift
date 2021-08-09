@@ -96,8 +96,7 @@ public final class RegistrationFormViewController: UIViewController {
         )
     }
 
-    @objc
-    func endEditing() {
+    public func endEditing() {
         onCancelButtonTapped()
     }
 }

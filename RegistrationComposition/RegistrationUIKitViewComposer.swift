@@ -43,6 +43,7 @@ public enum RegistrationUIKitViewComposer {
             formViewController: formViewController
         )
 
+        adapter.formViewController = formViewController
         adapter.presenter = RegistrationPresenter(
             loadingView: Weak(vc),
             buttonView: ButtonViewComposite([
@@ -66,6 +67,7 @@ private final class Adapter: RegistrationViewControllerDelegate, RegistrationFor
     private let serviceScheduler: Scheduler
     private let onRegister: () -> ()
 
+    weak var formViewController: RegistrationFormViewController?
     var presenter: RegistrationPresenter?
     var request: RegistrationRequest = .init(username: "", password: "")
 
@@ -83,6 +85,10 @@ private final class Adapter: RegistrationViewControllerDelegate, RegistrationFor
 
     func onViewDidLoad() {
         presenter?.didLoadView()
+    }
+
+    func didCancelInput() {
+        formViewController?.endEditing()
     }
 
     func didUpdate(username: String?, password: String?) {
