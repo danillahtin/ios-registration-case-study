@@ -14,6 +14,52 @@ public protocol RegistrationViewControllerDelegate {
     func didCancelInput()
 }
 
+public final class ErrorViewController: UIViewController {
+    weak var errorView: UIButton! {
+        didSet {
+            errorView.addTarget(self, action: #selector(onErrorViewTapped), for: .touchUpInside)
+            errorView.titleLabel?.textAlignment = .center
+        }
+    }
+
+    private var animator: Animator!
+
+    static func make(animator: Animator) -> ErrorViewController {
+        let vc = ErrorViewController()
+        vc.animator = animator
+
+        return vc
+    }
+
+    @objc
+    private func onErrorViewTapped() {
+        hideErrorView()
+    }
+
+    private func hideErrorView() {
+        animator.animate { [weak self] in
+            self?.errorView.alpha = 0
+        }
+    }
+
+    private func showErrorView(message: String) {
+        errorView.setTitle(message, for: .normal)
+        animator.animate { [weak self] in
+            self?.errorView.alpha = 1
+        }
+    }
+}
+
+extension ErrorViewController: ErrorView {
+    public func display(viewModel: ErrorViewModel) {
+        if let message = viewModel.message {
+            showErrorView(message: message)
+        } else {
+            hideErrorView()
+        }
+    }
+}
+
 public final class RegistrationViewController: UIViewController {
     public typealias TapGestureRecognizerFactory = (_ target: Any?, _ action: Selector?) -> UITapGestureRecognizer
 
@@ -24,9 +70,9 @@ public final class RegistrationViewController: UIViewController {
 
     private var tapGestureRecognizerFactory: TapGestureRecognizerFactory!
     private var delegate: RegistrationViewControllerDelegate!
-    private var animator: Animator!
 
     private var formViewController: UIViewController!
+    private var errorViewController: ErrorViewController!
 
     public static func make(
         tapGestureRecognizerFactory: @escaping TapGestureRecognizerFactory = UITapGestureRecognizer.init,
@@ -42,8 +88,8 @@ public final class RegistrationViewController: UIViewController {
 
         vc.tapGestureRecognizerFactory = tapGestureRecognizerFactory
         vc.delegate = delegate
-        vc.animator = animator
         vc.formViewController = formViewController
+        vc.errorViewController = ErrorViewController.make(animator: animator)
 
         return vc
     }
@@ -51,11 +97,11 @@ public final class RegistrationViewController: UIViewController {
     public override func loadView() {
         super.loadView()
 
+        errorViewController.errorView = errorView
+
         addFormViewController()
 
         let cancelInputTapRecognizer = tapGestureRecognizerFactory(self, #selector(onCancelInputRecongnizerRecognized))
-
-        errorView.titleLabel?.textAlignment = .center
 
         view.addGestureRecognizer(cancelInputTapRecognizer)
     }
@@ -85,27 +131,9 @@ public final class RegistrationViewController: UIViewController {
         delegate?.onRegisterButtonTapped()
     }
 
-    @IBAction
-    private func onErrorViewTapped() {
-        hideErrorView()
-    }
-
     @objc
     private func onCancelInputRecongnizerRecognized() {
         delegate?.didCancelInput()
-    }
-
-    private func hideErrorView() {
-        animator.animate { [weak self] in
-            self?.errorView.alpha = 0
-        }
-    }
-
-    private func showErrorView(message: String) {
-        errorView.setTitle(message, for: .normal)
-        animator.animate { [weak self] in
-            self?.errorView.alpha = 1
-        }
     }
 }
 
@@ -139,10 +167,6 @@ extension RegistrationViewController: TitleView {
 
 extension RegistrationViewController: ErrorView {
     public func display(viewModel: ErrorViewModel) {
-        if let message = viewModel.message {
-            showErrorView(message: message)
-        } else {
-            hideErrorView()
-        }
+        errorViewController.display(viewModel: viewModel)
     }
 }
