@@ -27,13 +27,13 @@ public final class RegistrationViewController: UIViewController {
     private var delegate: RegistrationViewControllerDelegate!
     private var animator: Animator!
 
-    private var formViewController: RegistrationFormViewController!
+    private var formViewController: UIViewController!
 
     public static func make(
         tapGestureRecognizerFactory: @escaping TapGestureRecognizerFactory = UITapGestureRecognizer.init,
         animator: Animator,
         delegate: RegistrationViewControllerDelegate,
-        formViewController: RegistrationFormViewController
+        formViewController: UIViewController
     ) -> RegistrationViewController {
         let storyboard = UIStoryboard(
             name: "RegistrationViewController",
@@ -52,6 +52,16 @@ public final class RegistrationViewController: UIViewController {
     public override func loadView() {
         super.loadView()
 
+        addFormViewController()
+
+        let cancelInputTapRecognizer = tapGestureRecognizerFactory(self, #selector(onCancelInputRecongnizerRecognized))
+
+        errorView.titleLabel?.textAlignment = .center
+
+        view.addGestureRecognizer(cancelInputTapRecognizer)
+    }
+
+    private func addFormViewController() {
         addChild(formViewController)
         view.insertSubview(formViewController.view, belowSubview: errorView)
         formViewController.view.translatesAutoresizingMaskIntoConstraints = false
@@ -63,12 +73,6 @@ public final class RegistrationViewController: UIViewController {
         ])
 
         formViewController.didMove(toParent: self)
-
-        let cancelInputTapRecognizer = tapGestureRecognizerFactory(self, #selector(onCancelInputRecongnizerRecognized))
-
-        errorView.titleLabel?.textAlignment = .center
-
-        view.addGestureRecognizer(cancelInputTapRecognizer)
     }
 
     public override func viewDidLoad() {
