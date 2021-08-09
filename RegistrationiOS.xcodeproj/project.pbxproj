@@ -10,8 +10,6 @@
 		8B75653B26BDEBEE00D2F90E /* RegistrationUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B75653126BDEBED00D2F90E /* RegistrationUI.framework */; };
 		8B75655926BDED0900D2F90E /* RegistrationComposition.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B75655026BDED0900D2F90E /* RegistrationComposition.framework */; };
 		8B75656826BDED2F00D2F90E /* RegistrationUIKitViewComposerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75656726BDED2F00D2F90E /* RegistrationUIKitViewComposerTests.swift */; };
-		8B83961226C1A16F00D837E9 /* RegistrationFormViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83961126C1A16F00D837E9 /* RegistrationFormViewControllerSnapshotTests.swift */; };
-		8B83961426C1A65E00D837E9 /* XCTestCase+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83961326C1A65E00D837E9 /* XCTestCase+Helpers.swift */; };
 		8B83961626C1BDC800D837E9 /* RegistrationFormViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83961526C1BDC800D837E9 /* RegistrationFormViewControllerTests.swift */; };
 		8BC29E3626C1C48D00D2774A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC29E3526C1C48D00D2774A /* XCTest.framework */; platformFilter = ios; };
 		8BC29E3E26C1C49900D2774A /* UIControl+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E3C26C1C49900D2774A /* UIControl+Helpers.swift */; };
@@ -23,30 +21,32 @@
 		8BC29E4426C1C4DD00D2774A /* XCTestHelpersiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC29E2D26C1C48500D2774A /* XCTestHelpersiOS.framework */; };
 		8BC29E4626C1CD9400D2774A /* ErrorViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E4526C1CD9400D2774A /* ErrorViewControllerTests.swift */; };
 		8BC29E4B26C1CE7900D2774A /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E4A26C1CE7900D2774A /* ErrorViewController.swift */; };
-		8BC29E4D26C1D09100D2774A /* ErrorViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E4C26C1D09100D2774A /* ErrorViewControllerSnapshotTests.swift */; };
-		8BC29E5026C1D1EC00D2774A /* ImmediateAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E4F26C1D1EC00D2774A /* ImmediateAnimator.swift */; };
-		8BC29E5226C1D29D00D2774A /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E5126C1D29D00D2774A /* UIViewController+Helpers.swift */; };
 		8BC29E5426C1D85400D2774A /* ButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E5326C1D85400D2774A /* ButtonViewController.swift */; };
 		8BC29E5626C1D8FE00D2774A /* ButtonViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E5526C1D8FE00D2774A /* ButtonViewControllerTests.swift */; };
 		8BC29E5826C1DA6A00D2774A /* ButtonViewModel+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E5726C1DA6A00D2774A /* ButtonViewModel+Helpers.swift */; };
-		8BC29E5A26C1DB2100D2774A /* ButtonViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E5926C1DB2100D2774A /* ButtonViewControllerSnapshotTests.swift */; };
 		8BC29E5C26C1DD7600D2774A /* XCTestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC29E5B26C1DD7600D2774A /* XCTestHelpers.framework */; };
-		8BC29E5E26C1E12A00D2774A /* RegistrationViewLayoutSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E5D26C1E12A00D2774A /* RegistrationViewLayoutSnapshotTests.swift */; };
 		8BC29E6026C1EB7200D2774A /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E5F26C1EB7200D2774A /* Layout.swift */; };
 		8BC29E6226C1EB8000D2774A /* ErrorViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E6126C1EB8000D2774A /* ErrorViewLayout.swift */; };
 		8BC29E6426C1EB9800D2774A /* BottomButtonLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E6326C1EB9800D2774A /* BottomButtonLayout.swift */; };
 		8BC29E6626C1EBA700D2774A /* FormViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E6526C1EBA700D2774A /* FormViewLayout.swift */; };
 		8BC29E6A26C1EBD400D2774A /* RegistrationViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E6926C1EBD400D2774A /* RegistrationViewLayout.swift */; };
-		8BC29E6C26C1EC6B00D2774A /* ErrorViewLayoutSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E6B26C1EC6B00D2774A /* ErrorViewLayoutSnapshotTests.swift */; };
-		8BC29E6E26C1ECB300D2774A /* FormViewLayoutSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E6D26C1ECB300D2774A /* FormViewLayoutSnapshotTests.swift */; };
-		8BC29E7026C1ED0000D2774A /* BottomButtonLayoutSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E6F26C1ED0000D2774A /* BottomButtonLayoutSnapshotTests.swift */; };
+		8BC29E7A26C1ED7900D2774A /* RegistrationUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B75653126BDEBED00D2F90E /* RegistrationUI.framework */; };
+		8BC29E8126C1ED8800D2774A /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 8BC29E8026C1ED8800D2774A /* SnapshotTesting */; };
+		8BC29E8226C1EEB400D2774A /* FormViewLayoutSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E6D26C1ECB300D2774A /* FormViewLayoutSnapshotTests.swift */; };
+		8BC29E8326C1EEB400D2774A /* ButtonViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E5926C1DB2100D2774A /* ButtonViewControllerSnapshotTests.swift */; };
+		8BC29E8426C1EEB400D2774A /* ErrorViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E4C26C1D09100D2774A /* ErrorViewControllerSnapshotTests.swift */; };
+		8BC29E8526C1EEB400D2774A /* RegistrationViewLayoutSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E5D26C1E12A00D2774A /* RegistrationViewLayoutSnapshotTests.swift */; };
+		8BC29E8626C1EEB400D2774A /* BottomButtonLayoutSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E6F26C1ED0000D2774A /* BottomButtonLayoutSnapshotTests.swift */; };
+		8BC29E8726C1EEB400D2774A /* ErrorViewLayoutSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E6B26C1EC6B00D2774A /* ErrorViewLayoutSnapshotTests.swift */; };
+		8BC29E8826C1EEB400D2774A /* RegistrationFormViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83961126C1A16F00D837E9 /* RegistrationFormViewControllerSnapshotTests.swift */; };
+		8BC29E8926C1EEE100D2774A /* XCTestCase+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83961326C1A65E00D837E9 /* XCTestCase+Helpers.swift */; };
+		8BC29E8A26C1EF1000D2774A /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E5126C1D29D00D2774A /* UIViewController+Helpers.swift */; };
 		8BD163E226BF4F2000C2E126 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163E126BF4F2000C2E126 /* RegistrationViewController.swift */; };
 		8BD163ED26BF503F00C2E126 /* RegistrationUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B75653126BDEBED00D2F90E /* RegistrationUI.framework */; };
 		8BD163F726BF517100C2E126 /* RegistrationUIKitViewComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163F626BF517100C2E126 /* RegistrationUIKitViewComposer.swift */; };
 		8BD163F926BF51CC00C2E126 /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163F826BF51CC00C2E126 /* Weak.swift */; };
 		8BD1640226BFF90C00C2E126 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD1640126BFF90C00C2E126 /* Animator.swift */; };
 		8BD1640326BFFAD200C2E126 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163C926BF4D3900C2E126 /* Scheduler.swift */; };
-		8BD1641826C00ED200C2E126 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 8BD1641726C00ED200C2E126 /* SnapshotTesting */; };
 		8BD1642226C0116100C2E126 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD1642126C0116100C2E126 /* AppDelegate.swift */; };
 		8BD1642426C0116100C2E126 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD1642326C0116100C2E126 /* SceneDelegate.swift */; };
 		8BD1642B26C0116300C2E126 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BD1642A26C0116300C2E126 /* Assets.xcassets */; };
@@ -64,7 +64,7 @@
 		8BD1645226C042EC00C2E126 /* RegistrationPresentation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD1644E26C042EC00C2E126 /* RegistrationPresentation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8BD1646A26C06A3B00C2E126 /* XCTestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD1646926C06A3B00C2E126 /* XCTestHelpers.framework */; };
 		8BD1647826C0811500C2E126 /* RegistrationFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD1647726C0811500C2E126 /* RegistrationFormViewController.swift */; };
-		8BD1647A26C0814000C2E126 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD1647926C0814000C2E126 /* Helpers.swift */; };
+		8BD1647A26C0814000C2E126 /* UIView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD1647926C0814000C2E126 /* UIView+Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +81,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8B75654F26BDED0900D2F90E;
 			remoteInfo = Composition;
+		};
+		8BC29E7B26C1ED7900D2774A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8B75652826BDEBED00D2F90E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8B75653026BDEBED00D2F90E;
+			remoteInfo = RegistrationUI;
 		};
 		8BD163EF26BF503F00C2E126 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -146,7 +153,6 @@
 		8BC29E4526C1CD9400D2774A /* ErrorViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewControllerTests.swift; sourceTree = "<group>"; };
 		8BC29E4A26C1CE7900D2774A /* ErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
 		8BC29E4C26C1D09100D2774A /* ErrorViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
-		8BC29E4F26C1D1EC00D2774A /* ImmediateAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmediateAnimator.swift; sourceTree = "<group>"; };
 		8BC29E5126C1D29D00D2774A /* UIViewController+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helpers.swift"; sourceTree = "<group>"; };
 		8BC29E5326C1D85400D2774A /* ButtonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonViewController.swift; sourceTree = "<group>"; };
 		8BC29E5526C1D8FE00D2774A /* ButtonViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonViewControllerTests.swift; sourceTree = "<group>"; };
@@ -162,6 +168,8 @@
 		8BC29E6B26C1EC6B00D2774A /* ErrorViewLayoutSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewLayoutSnapshotTests.swift; sourceTree = "<group>"; };
 		8BC29E6D26C1ECB300D2774A /* FormViewLayoutSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewLayoutSnapshotTests.swift; sourceTree = "<group>"; };
 		8BC29E6F26C1ED0000D2774A /* BottomButtonLayoutSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomButtonLayoutSnapshotTests.swift; sourceTree = "<group>"; };
+		8BC29E7526C1ED7900D2774A /* RegistrationSnapshotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RegistrationSnapshotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BC29E7926C1ED7900D2774A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8BD163BE26BF2B6100C2E126 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BD163C526BF2BE800C2E126 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BD163C926BF4D3900C2E126 /* Scheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
@@ -187,7 +195,7 @@
 		8BD1644E26C042EC00C2E126 /* RegistrationPresentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RegistrationPresentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BD1646926C06A3B00C2E126 /* XCTestHelpers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = XCTestHelpers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BD1647726C0811500C2E126 /* RegistrationFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFormViewController.swift; sourceTree = "<group>"; };
-		8BD1647926C0814000C2E126 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		8BD1647926C0814000C2E126 /* UIView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Helpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,7 +214,6 @@
 				8BC29E5C26C1DD7600D2774A /* XCTestHelpers.framework in Frameworks */,
 				8BC29E4326C1C4D500D2774A /* XCTestHelpersiOS.framework in Frameworks */,
 				8B75653B26BDEBEE00D2F90E /* RegistrationUI.framework in Frameworks */,
-				8BD1641826C00ED200C2E126 /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,6 +245,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8BC29E7226C1ED7900D2774A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8BC29E7A26C1ED7900D2774A /* RegistrationUI.framework in Frameworks */,
+				8BC29E8126C1ED8800D2774A /* SnapshotTesting in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8BD1641C26C0116100C2E126 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -261,6 +277,7 @@
 				8B75655C26BDED0900D2F90E /* RegistrationCompositionTests */,
 				8BD1642026C0116100C2E126 /* RegistrationDemo */,
 				8BC29E2E26C1C48500D2774A /* XCTestHelpersiOS */,
+				8BC29E7626C1ED7900D2774A /* RegistrationSnapshotTests */,
 				8B75653226BDEBED00D2F90E /* Products */,
 				8BD163BD26BF2B6100C2E126 /* Frameworks */,
 			);
@@ -275,6 +292,7 @@
 				8B75655826BDED0900D2F90E /* RegistrationCompositionTests.xctest */,
 				8BD1641F26C0116100C2E126 /* RegistrationDemo.app */,
 				8BC29E2D26C1C48500D2774A /* XCTestHelpersiOS.framework */,
+				8BC29E7526C1ED7900D2774A /* RegistrationSnapshotTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -283,17 +301,10 @@
 			isa = PBXGroup;
 			children = (
 				8B75653526BDEBED00D2F90E /* Info.plist */,
-				8BD163E126BF4F2000C2E126 /* RegistrationViewController.swift */,
-				8BD1647726C0811500C2E126 /* RegistrationFormViewController.swift */,
+				8BC29E8F26C1EFB600D2774A /* Controllers */,
 				8BD1640126BFF90C00C2E126 /* Animator.swift */,
-				8BD1647926C0814000C2E126 /* Helpers.swift */,
-				8BC29E4A26C1CE7900D2774A /* ErrorViewController.swift */,
-				8BC29E5326C1D85400D2774A /* ButtonViewController.swift */,
-				8BC29E5F26C1EB7200D2774A /* Layout.swift */,
-				8BC29E6126C1EB8000D2774A /* ErrorViewLayout.swift */,
-				8BC29E6326C1EB9800D2774A /* BottomButtonLayout.swift */,
-				8BC29E6526C1EBA700D2774A /* FormViewLayout.swift */,
-				8BC29E6926C1EBD400D2774A /* RegistrationViewLayout.swift */,
+				8BC29E9026C1EFC700D2774A /* Helpers */,
+				8BC29E8E26C1EFAD00D2774A /* Layouts */,
 			);
 			path = RegistrationUI;
 			sourceTree = "<group>";
@@ -303,17 +314,9 @@
 			children = (
 				8BC29E4E26C1D1E300D2774A /* Helpers */,
 				8B75654126BDEBEE00D2F90E /* Info.plist */,
-				8B83961126C1A16F00D837E9 /* RegistrationFormViewControllerSnapshotTests.swift */,
-				8B83961326C1A65E00D837E9 /* XCTestCase+Helpers.swift */,
 				8B83961526C1BDC800D837E9 /* RegistrationFormViewControllerTests.swift */,
 				8BC29E4526C1CD9400D2774A /* ErrorViewControllerTests.swift */,
-				8BC29E4C26C1D09100D2774A /* ErrorViewControllerSnapshotTests.swift */,
 				8BC29E5526C1D8FE00D2774A /* ButtonViewControllerTests.swift */,
-				8BC29E5926C1DB2100D2774A /* ButtonViewControllerSnapshotTests.swift */,
-				8BC29E5D26C1E12A00D2774A /* RegistrationViewLayoutSnapshotTests.swift */,
-				8BC29E6B26C1EC6B00D2774A /* ErrorViewLayoutSnapshotTests.swift */,
-				8BC29E6D26C1ECB300D2774A /* FormViewLayoutSnapshotTests.swift */,
-				8BC29E6F26C1ED0000D2774A /* BottomButtonLayoutSnapshotTests.swift */,
 			);
 			path = RegistrationUITests;
 			sourceTree = "<group>";
@@ -354,9 +357,79 @@
 		8BC29E4E26C1D1E300D2774A /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				8BC29E4F26C1D1EC00D2774A /* ImmediateAnimator.swift */,
-				8BC29E5126C1D29D00D2774A /* UIViewController+Helpers.swift */,
 				8BC29E5726C1DA6A00D2774A /* ButtonViewModel+Helpers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		8BC29E7626C1ED7900D2774A /* RegistrationSnapshotTests */ = {
+			isa = PBXGroup;
+			children = (
+				8BC29E8B26C1EF4700D2774A /* Helpers */,
+				8BC29E8D26C1EF6B00D2774A /* Controllers */,
+				8BC29E8C26C1EF6500D2774A /* Layouts */,
+				8BC29E7926C1ED7900D2774A /* Info.plist */,
+			);
+			path = RegistrationSnapshotTests;
+			sourceTree = "<group>";
+		};
+		8BC29E8B26C1EF4700D2774A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8BC29E5126C1D29D00D2774A /* UIViewController+Helpers.swift */,
+				8B83961326C1A65E00D837E9 /* XCTestCase+Helpers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		8BC29E8C26C1EF6500D2774A /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				8BC29E5D26C1E12A00D2774A /* RegistrationViewLayoutSnapshotTests.swift */,
+				8BC29E6B26C1EC6B00D2774A /* ErrorViewLayoutSnapshotTests.swift */,
+				8BC29E6D26C1ECB300D2774A /* FormViewLayoutSnapshotTests.swift */,
+				8BC29E6F26C1ED0000D2774A /* BottomButtonLayoutSnapshotTests.swift */,
+			);
+			path = Layouts;
+			sourceTree = "<group>";
+		};
+		8BC29E8D26C1EF6B00D2774A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8B83961126C1A16F00D837E9 /* RegistrationFormViewControllerSnapshotTests.swift */,
+				8BC29E4C26C1D09100D2774A /* ErrorViewControllerSnapshotTests.swift */,
+				8BC29E5926C1DB2100D2774A /* ButtonViewControllerSnapshotTests.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		8BC29E8E26C1EFAD00D2774A /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				8BC29E5F26C1EB7200D2774A /* Layout.swift */,
+				8BC29E6126C1EB8000D2774A /* ErrorViewLayout.swift */,
+				8BC29E6326C1EB9800D2774A /* BottomButtonLayout.swift */,
+				8BC29E6526C1EBA700D2774A /* FormViewLayout.swift */,
+				8BC29E6926C1EBD400D2774A /* RegistrationViewLayout.swift */,
+			);
+			path = Layouts;
+			sourceTree = "<group>";
+		};
+		8BC29E8F26C1EFB600D2774A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8BD163E126BF4F2000C2E126 /* RegistrationViewController.swift */,
+				8BD1647726C0811500C2E126 /* RegistrationFormViewController.swift */,
+				8BC29E4A26C1CE7900D2774A /* ErrorViewController.swift */,
+				8BC29E5326C1D85400D2774A /* ButtonViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		8BC29E9026C1EFC700D2774A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8BD1647926C0814000C2E126 /* UIView+Helpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -455,7 +528,6 @@
 			);
 			name = RegistrationUITests;
 			packageProductDependencies = (
-				8BD1641726C00ED200C2E126 /* SnapshotTesting */,
 			);
 			productName = UITests;
 			productReference = 8B75653A26BDEBEE00D2F90E /* RegistrationUITests.xctest */;
@@ -516,6 +588,27 @@
 			productReference = 8BC29E2D26C1C48500D2774A /* XCTestHelpersiOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		8BC29E7426C1ED7900D2774A /* RegistrationSnapshotTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8BC29E7D26C1ED7900D2774A /* Build configuration list for PBXNativeTarget "RegistrationSnapshotTests" */;
+			buildPhases = (
+				8BC29E7126C1ED7900D2774A /* Sources */,
+				8BC29E7226C1ED7900D2774A /* Frameworks */,
+				8BC29E7326C1ED7900D2774A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8BC29E7C26C1ED7900D2774A /* PBXTargetDependency */,
+			);
+			name = RegistrationSnapshotTests;
+			packageProductDependencies = (
+				8BC29E8026C1ED8800D2774A /* SnapshotTesting */,
+			);
+			productName = RegistrationSnapshotTests;
+			productReference = 8BC29E7526C1ED7900D2774A /* RegistrationSnapshotTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		8BD1641E26C0116100C2E126 /* RegistrationDemo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8BD1643026C0116300C2E126 /* Build configuration list for PBXNativeTarget "RegistrationDemo" */;
@@ -562,6 +655,9 @@
 					8BC29E2C26C1C48500D2774A = {
 						CreatedOnToolsVersion = 12.5;
 					};
+					8BC29E7426C1ED7900D2774A = {
+						CreatedOnToolsVersion = 12.5;
+					};
 					8BD1641E26C0116100C2E126 = {
 						CreatedOnToolsVersion = 12.5;
 					};
@@ -589,6 +685,7 @@
 				8B75655726BDED0900D2F90E /* RegistrationCompositionTests */,
 				8BD1641E26C0116100C2E126 /* RegistrationDemo */,
 				8BC29E2C26C1C48500D2774A /* XCTestHelpersiOS */,
+				8BC29E7426C1ED7900D2774A /* RegistrationSnapshotTests */,
 			);
 		};
 /* End PBXProject section */
@@ -629,6 +726,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8BC29E7326C1ED7900D2774A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8BD1641D26C0116100C2E126 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -654,7 +758,7 @@
 				8BD1640226BFF90C00C2E126 /* Animator.swift in Sources */,
 				8BC29E6026C1EB7200D2774A /* Layout.swift in Sources */,
 				8BC29E5426C1D85400D2774A /* ButtonViewController.swift in Sources */,
-				8BD1647A26C0814000C2E126 /* Helpers.swift in Sources */,
+				8BD1647A26C0814000C2E126 /* UIView+Helpers.swift in Sources */,
 				8BC29E6A26C1EBD400D2774A /* RegistrationViewLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -663,19 +767,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BC29E5E26C1E12A00D2774A /* RegistrationViewLayoutSnapshotTests.swift in Sources */,
-				8B83961426C1A65E00D837E9 /* XCTestCase+Helpers.swift in Sources */,
 				8BC29E4626C1CD9400D2774A /* ErrorViewControllerTests.swift in Sources */,
-				8BC29E6C26C1EC6B00D2774A /* ErrorViewLayoutSnapshotTests.swift in Sources */,
-				8BC29E5026C1D1EC00D2774A /* ImmediateAnimator.swift in Sources */,
-				8BC29E6E26C1ECB300D2774A /* FormViewLayoutSnapshotTests.swift in Sources */,
 				8B83961626C1BDC800D837E9 /* RegistrationFormViewControllerTests.swift in Sources */,
-				8BC29E5226C1D29D00D2774A /* UIViewController+Helpers.swift in Sources */,
 				8BC29E5826C1DA6A00D2774A /* ButtonViewModel+Helpers.swift in Sources */,
-				8BC29E5A26C1DB2100D2774A /* ButtonViewControllerSnapshotTests.swift in Sources */,
-				8B83961226C1A16F00D837E9 /* RegistrationFormViewControllerSnapshotTests.swift in Sources */,
-				8BC29E4D26C1D09100D2774A /* ErrorViewControllerSnapshotTests.swift in Sources */,
-				8BC29E7026C1ED0000D2774A /* BottomButtonLayoutSnapshotTests.swift in Sources */,
 				8BC29E5626C1D8FE00D2774A /* ButtonViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -710,6 +804,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8BC29E7126C1ED7900D2774A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8BC29E8926C1EEE100D2774A /* XCTestCase+Helpers.swift in Sources */,
+				8BC29E8326C1EEB400D2774A /* ButtonViewControllerSnapshotTests.swift in Sources */,
+				8BC29E8226C1EEB400D2774A /* FormViewLayoutSnapshotTests.swift in Sources */,
+				8BC29E8426C1EEB400D2774A /* ErrorViewControllerSnapshotTests.swift in Sources */,
+				8BC29E8A26C1EF1000D2774A /* UIViewController+Helpers.swift in Sources */,
+				8BC29E8726C1EEB400D2774A /* ErrorViewLayoutSnapshotTests.swift in Sources */,
+				8BC29E8826C1EEB400D2774A /* RegistrationFormViewControllerSnapshotTests.swift in Sources */,
+				8BC29E8626C1EEB400D2774A /* BottomButtonLayoutSnapshotTests.swift in Sources */,
+				8BC29E8526C1EEB400D2774A /* RegistrationViewLayoutSnapshotTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8BD1641B26C0116100C2E126 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -731,6 +841,11 @@
 			isa = PBXTargetDependency;
 			target = 8B75654F26BDED0900D2F90E /* RegistrationComposition */;
 			targetProxy = 8B75655A26BDED0900D2F90E /* PBXContainerItemProxy */;
+		};
+		8BC29E7C26C1ED7900D2774A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8B75653026BDEBED00D2F90E /* RegistrationUI */;
+			targetProxy = 8BC29E7B26C1ED7900D2774A /* PBXContainerItemProxy */;
 		};
 		8BD163F026BF503F00C2E126 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1099,6 +1214,40 @@
 			};
 			name = Release;
 		};
+		8BC29E7E26C1ED7900D2774A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = RegistrationSnapshotTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.danillakhtin.registration.RegistrationSnapshotTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8BC29E7F26C1ED7900D2774A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = RegistrationSnapshotTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.danillakhtin.registration.RegistrationSnapshotTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		8BD1643126C0116300C2E126 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1192,6 +1341,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		8BC29E7D26C1ED7900D2774A /* Build configuration list for PBXNativeTarget "RegistrationSnapshotTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8BC29E7E26C1ED7900D2774A /* Debug */,
+				8BC29E7F26C1ED7900D2774A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8BD1643026C0116300C2E126 /* Build configuration list for PBXNativeTarget "RegistrationDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1215,7 +1373,7 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		8BD1641726C00ED200C2E126 /* SnapshotTesting */ = {
+		8BC29E8026C1ED8800D2774A /* SnapshotTesting */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8BD1641626C00ED200C2E126 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
 			productName = SnapshotTesting;

@@ -48,3 +48,10 @@ final class ErrorViewControllerSnapshotTests: XCTestCase {
         return sut.wrappedInDemoContainer()
     }
 }
+
+private final class ImmediateAnimator: Animator {
+    func animate(_ animations: @escaping () -> (), completion: (() -> ())?) {
+        animations()
+        completion?()
+    }
+}

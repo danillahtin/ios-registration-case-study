@@ -20,6 +20,20 @@
                ReferencedContainer = "container:RegistrationiOS.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8BC29E7426C1ED7900D2774A"
+               BuildableName = "RegistrationSnapshotTests.xctest"
+               BlueprintName = "RegistrationSnapshotTests"
+               ReferencedContainer = "container:RegistrationiOS.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -35,6 +49,16 @@
                BlueprintIdentifier = "8B75653926BDEBEE00D2F90E"
                BuildableName = "RegistrationUITests.xctest"
                BlueprintName = "RegistrationUITests"
+               ReferencedContainer = "container:RegistrationiOS.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8BC29E7426C1ED7900D2774A"
+               BuildableName = "RegistrationSnapshotTests.xctest"
+               BlueprintName = "RegistrationSnapshotTests"
                ReferencedContainer = "container:RegistrationiOS.xcodeproj">
             </BuildableReference>
          </TestableReference>

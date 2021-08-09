@@ -77,6 +77,17 @@
                ReferencedContainer = "container:Registration.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8BC29E7426C1ED7900D2774A"
+               BuildableName = "RegistrationSnapshotTests.xctest"
+               BlueprintName = "RegistrationSnapshotTests"
+               ReferencedContainer = "container:RegistrationiOS.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
