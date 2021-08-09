@@ -45,7 +45,10 @@ public enum RegistrationUIKitViewComposer {
 
         adapter.presenter = RegistrationPresenter(
             loadingView: Weak(vc),
-            buttonView: Weak(vc),
+            buttonView: ButtonViewComposite([
+                Weak(vc),
+                Weak(formViewController),
+            ]),
             titleView: Weak(vc),
             registrationView: Weak(formViewController),
             errorView: Weak(vc),
@@ -147,5 +150,17 @@ extension DispatchQueue: DeferredScheduler {
         self.asyncAfter(deadline: .now() + .milliseconds(Int(after * 1000)), execute: work)
 
         return work
+    }
+}
+
+private final class ButtonViewComposite: ButtonView {
+    private let components: [ButtonView]
+
+    init(_ components: [ButtonView]) {
+        self.components = components
+    }
+
+    func display(viewModel: ButtonViewModel) {
+        components.forEach({ $0.display(viewModel: viewModel) })
     }
 }

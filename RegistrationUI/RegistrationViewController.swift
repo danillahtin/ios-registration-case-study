@@ -118,7 +118,6 @@ extension RegistrationViewController: LoadingView {
 
 extension RegistrationViewController: ButtonView {
     public func display(viewModel: ButtonViewModel) {
-        formViewController.display(viewModel: viewModel)
         registerButton.setTitle(viewModel.title, for: .normal)
         registerButton.isEnabled = viewModel.isEnabled
         registerButtonContainerView.backgroundColor = viewModel.isEnabled
