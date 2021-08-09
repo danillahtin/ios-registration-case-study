@@ -196,7 +196,7 @@ final class RegistrationFormViewControllerTests: XCTestCase {
         )
 
         sut.loadViewIfNeeded()
-        sut.display(viewModel: .make())
+        sut.display(viewModel: RegistrationViewModel.make())
 
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(services, file: file, line: line)
