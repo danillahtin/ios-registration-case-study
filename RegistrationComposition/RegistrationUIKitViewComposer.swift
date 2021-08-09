@@ -47,7 +47,7 @@ public enum RegistrationUIKitViewComposer {
             loadingView: Weak(vc),
             buttonView: Weak(vc),
             titleView: Weak(vc),
-            registrationView: Weak(vc),
+            registrationView: Weak(formViewController),
             errorView: Weak(vc),
             scheduler: deferredUiScheduler,
             localizationProvider: localizationProvider

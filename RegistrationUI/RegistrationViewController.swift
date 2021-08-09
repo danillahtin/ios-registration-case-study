@@ -133,12 +133,6 @@ extension RegistrationViewController: TitleView {
     }
 }
 
-extension RegistrationViewController: RegistrationView {
-    public func display(viewModel: RegistrationViewModel) {
-        formViewController.display(viewModel: viewModel)
-    }
-}
-
 extension RegistrationViewController: ErrorView {
     public func display(viewModel: ErrorViewModel) {
         if let message = viewModel.message {
