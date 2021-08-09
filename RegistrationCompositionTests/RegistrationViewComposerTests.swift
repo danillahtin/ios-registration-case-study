@@ -478,6 +478,22 @@ final class RegistrationViewComposerTests: XCTestCase {
 }
 
 private extension RegistrationViewController {
+    private var formViewController: RegistrationFormViewController {
+        children.compactMap({ $0 as? RegistrationFormViewController }).first!
+    }
+
+    var usernameTextField: UITextField {
+        formViewController.usernameTextField
+    }
+
+    var passwordTextField: UITextField {
+        formViewController.passwordTextField
+    }
+
+    var passwordDoneButton: UIBarButtonItem? {
+        formViewController.passwordDoneButton
+    }
+
     var username: String? {
         usernameTextField.text
     }

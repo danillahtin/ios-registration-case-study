@@ -22,9 +22,6 @@ public final class RegistrationViewController: UIViewController {
     @IBOutlet public private(set) weak var registerActivityIndicator: UIActivityIndicatorView!
     @IBOutlet public private(set) weak var errorView: UIButton!
     @IBOutlet private weak var registerButtonContainerView: UIView!
-    public var usernameTextField: UITextField! { formViewController.usernameTextField }
-    public var passwordTextField: UITextField! { formViewController.passwordTextField }
-    public var passwordDoneButton: UIBarButtonItem? { formViewController.passwordDoneButton }
 
     private var tapGestureRecognizerFactory: TapGestureRecognizerFactory!
     private var delegate: RegistrationViewControllerDelegate!
