@@ -35,7 +35,7 @@ final class RegistrationFormViewControllerSnapshotTests: XCTestCase {
     private func assertSnapshot(
         username: String? = nil,
         password: String? = nil,
-        prepare block: (RegistrationFormViewController) -> () = { _ in },
+        prepare block: (UsernamePasswordFormViewController) -> () = { _ in },
         file: StaticString = #file,
         testName: String = #function,
         line: UInt = #line
@@ -47,10 +47,10 @@ final class RegistrationFormViewControllerSnapshotTests: XCTestCase {
     private func makeSut(
         username: String?,
         password: String?,
-        prepare block: (RegistrationFormViewController) -> ()
+        prepare block: (UsernamePasswordFormViewController) -> ()
     ) -> UIViewController {
         let services = Services()
-        let sut = RegistrationFormViewController.make(delegate: services)
+        let sut = UsernamePasswordFormViewController.make(delegate: services)
 
         sut.loadViewIfNeeded()
 
@@ -64,7 +64,7 @@ final class RegistrationFormViewControllerSnapshotTests: XCTestCase {
     }
 }
 
-private extension RegistrationFormViewController {
+private extension UsernamePasswordFormViewController {
     func displayInitialState() {
         display(
             viewModel: .init(

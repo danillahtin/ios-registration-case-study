@@ -188,9 +188,9 @@ final class RegistrationFormViewControllerTests: XCTestCase {
     private func makeSut(
         file: StaticString = #file,
         line: UInt = #line
-    ) -> (sut: RegistrationFormViewController, services: Services) {
+    ) -> (sut: UsernamePasswordFormViewController, services: Services) {
         let services = Services()
-        let sut = RegistrationFormViewController.make(
+        let sut = UsernamePasswordFormViewController.make(
             textFieldFactory: TextFieldMock.init,
             delegate: services
         )
@@ -205,7 +205,7 @@ final class RegistrationFormViewControllerTests: XCTestCase {
     }
 }
 
-private extension RegistrationFormViewController {
+private extension UsernamePasswordFormViewController {
     var username: String? {
         usernameTextField.text
     }

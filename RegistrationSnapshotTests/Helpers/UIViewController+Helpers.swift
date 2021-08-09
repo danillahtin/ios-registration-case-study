@@ -27,5 +27,11 @@ extension UIViewController {
 
         return container
     }
+
+    convenience init(view: UIView) {
+        self.init()
+
+        self.view = view
+    }
 }
 

@@ -1,5 +1,5 @@
 //
-//  RegistrationFormViewController.swift
+//  UsernamePasswordFormViewController.swift
 //  RegistrationUI
 //
 //  Created by Danil Lahtin on 09.08.2021.
@@ -13,7 +13,7 @@ public protocol RegistrationFormViewControllerDelegate {
     func didUpdate(username: String?, password: String?)
 }
 
-public final class RegistrationFormViewController: UIViewController {
+public final class UsernamePasswordFormViewController: UIViewController {
     public typealias TextFieldFactory = () -> UITextField
 
     public private(set) weak var usernameTextField: UITextField!
@@ -26,8 +26,8 @@ public final class RegistrationFormViewController: UIViewController {
     public static func make(
         textFieldFactory: @escaping TextFieldFactory = UITextField.init,
         delegate: RegistrationFormViewControllerDelegate
-    ) -> RegistrationFormViewController {
-        let vc = RegistrationFormViewController()
+    ) -> UsernamePasswordFormViewController {
+        let vc = UsernamePasswordFormViewController()
 
         vc.textFieldFactory = textFieldFactory
         vc.delegate = delegate
@@ -101,7 +101,7 @@ public final class RegistrationFormViewController: UIViewController {
     }
 }
 
-extension RegistrationFormViewController: UITextFieldDelegate {
+extension UsernamePasswordFormViewController: UITextFieldDelegate {
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
 
@@ -109,13 +109,13 @@ extension RegistrationFormViewController: UITextFieldDelegate {
     }
 }
 
-extension RegistrationFormViewController: ButtonView {
+extension UsernamePasswordFormViewController: ButtonView {
     public func display(viewModel: ButtonViewModel) {
         passwordDoneButton?.isEnabled = viewModel.isEnabled
     }
 }
 
-extension RegistrationFormViewController: RegistrationView {
+extension UsernamePasswordFormViewController: RegistrationView {
     public func display(viewModel: RegistrationViewModel) {
         usernameTextField.placeholder = viewModel.usernamePlaceholder
         usernameTextField.inputAccessoryView = makeToolbar(items: [

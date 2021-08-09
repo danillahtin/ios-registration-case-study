@@ -14,7 +14,7 @@ public enum RegistrationUIKitViewComposer {
     public typealias OnRegisterBlock = () -> ()
 
     public static func composed(
-        textFieldFactory: @escaping RegistrationFormViewController.TextFieldFactory = UITextField.init,
+        textFieldFactory: @escaping UsernamePasswordFormViewController.TextFieldFactory = UITextField.init,
         tapGestureRecognizerFactory: @escaping RegistrationViewController.TapGestureRecognizerFactory = UITapGestureRecognizer.init,
         registrationService: RegistrationService,
         localizationProvider: LocalizationProvider = DefaultLocalizationProvider(),
@@ -31,7 +31,7 @@ public enum RegistrationUIKitViewComposer {
             onRegister: onRegister
         )
 
-        let formViewController = RegistrationFormViewController.make(
+        let formViewController = UsernamePasswordFormViewController.make(
             textFieldFactory: textFieldFactory,
             delegate: adapter
         )
@@ -77,7 +77,7 @@ private final class Adapter: RegistrationViewControllerDelegate, RegistrationFor
     private let serviceScheduler: Scheduler
     private let onRegister: () -> ()
 
-    weak var formViewController: RegistrationFormViewController?
+    weak var formViewController: UsernamePasswordFormViewController?
     var presenter: RegistrationPresenter?
     var request: RegistrationRequest = .init(username: "", password: "")
     var viewDidLoad: () -> () = {}

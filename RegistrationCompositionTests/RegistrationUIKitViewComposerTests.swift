@@ -483,7 +483,7 @@ private extension RegistrationViewController {
         children.compactMap({ $0 as? ViewController }).first!
     }
 
-    private var formViewController: RegistrationFormViewController! {
+    private var formViewController: UsernamePasswordFormViewController! {
         findController()
     }
 
