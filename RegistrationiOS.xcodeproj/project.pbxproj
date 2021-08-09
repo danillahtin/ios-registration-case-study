@@ -32,6 +32,11 @@
 		8BC29E5A26C1DB2100D2774A /* ButtonViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E5926C1DB2100D2774A /* ButtonViewControllerSnapshotTests.swift */; };
 		8BC29E5C26C1DD7600D2774A /* XCTestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC29E5B26C1DD7600D2774A /* XCTestHelpers.framework */; };
 		8BC29E5E26C1E12A00D2774A /* RegistrationViewLayoutSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E5D26C1E12A00D2774A /* RegistrationViewLayoutSnapshotTests.swift */; };
+		8BC29E6026C1EB7200D2774A /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E5F26C1EB7200D2774A /* Layout.swift */; };
+		8BC29E6226C1EB8000D2774A /* ErrorViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E6126C1EB8000D2774A /* ErrorViewLayout.swift */; };
+		8BC29E6426C1EB9800D2774A /* BottomButtonLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E6326C1EB9800D2774A /* BottomButtonLayout.swift */; };
+		8BC29E6626C1EBA700D2774A /* FormViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E6526C1EBA700D2774A /* FormViewLayout.swift */; };
+		8BC29E6A26C1EBD400D2774A /* RegistrationViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC29E6926C1EBD400D2774A /* RegistrationViewLayout.swift */; };
 		8BD163E226BF4F2000C2E126 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163E126BF4F2000C2E126 /* RegistrationViewController.swift */; };
 		8BD163ED26BF503F00C2E126 /* RegistrationUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B75653126BDEBED00D2F90E /* RegistrationUI.framework */; };
 		8BD163F726BF517100C2E126 /* RegistrationUIKitViewComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163F626BF517100C2E126 /* RegistrationUIKitViewComposer.swift */; };
@@ -146,6 +151,11 @@
 		8BC29E5926C1DB2100D2774A /* ButtonViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		8BC29E5B26C1DD7600D2774A /* XCTestHelpers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = XCTestHelpers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BC29E5D26C1E12A00D2774A /* RegistrationViewLayoutSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewLayoutSnapshotTests.swift; sourceTree = "<group>"; };
+		8BC29E5F26C1EB7200D2774A /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
+		8BC29E6126C1EB8000D2774A /* ErrorViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewLayout.swift; sourceTree = "<group>"; };
+		8BC29E6326C1EB9800D2774A /* BottomButtonLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomButtonLayout.swift; sourceTree = "<group>"; };
+		8BC29E6526C1EBA700D2774A /* FormViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewLayout.swift; sourceTree = "<group>"; };
+		8BC29E6926C1EBD400D2774A /* RegistrationViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewLayout.swift; sourceTree = "<group>"; };
 		8BD163BE26BF2B6100C2E126 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BD163C526BF2BE800C2E126 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BD163C926BF4D3900C2E126 /* Scheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
@@ -273,6 +283,11 @@
 				8BD1647926C0814000C2E126 /* Helpers.swift */,
 				8BC29E4A26C1CE7900D2774A /* ErrorViewController.swift */,
 				8BC29E5326C1D85400D2774A /* ButtonViewController.swift */,
+				8BC29E5F26C1EB7200D2774A /* Layout.swift */,
+				8BC29E6126C1EB8000D2774A /* ErrorViewLayout.swift */,
+				8BC29E6326C1EB9800D2774A /* BottomButtonLayout.swift */,
+				8BC29E6526C1EBA700D2774A /* FormViewLayout.swift */,
+				8BC29E6926C1EBD400D2774A /* RegistrationViewLayout.swift */,
 			);
 			path = RegistrationUI;
 			sourceTree = "<group>";
@@ -621,12 +636,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BC29E6626C1EBA700D2774A /* FormViewLayout.swift in Sources */,
+				8BC29E6426C1EB9800D2774A /* BottomButtonLayout.swift in Sources */,
 				8BD163E226BF4F2000C2E126 /* RegistrationViewController.swift in Sources */,
 				8BD1647826C0811500C2E126 /* RegistrationFormViewController.swift in Sources */,
 				8BC29E4B26C1CE7900D2774A /* ErrorViewController.swift in Sources */,
+				8BC29E6226C1EB8000D2774A /* ErrorViewLayout.swift in Sources */,
 				8BD1640226BFF90C00C2E126 /* Animator.swift in Sources */,
+				8BC29E6026C1EB7200D2774A /* Layout.swift in Sources */,
 				8BC29E5426C1D85400D2774A /* ButtonViewController.swift in Sources */,
 				8BD1647A26C0814000C2E126 /* Helpers.swift in Sources */,
+				8BC29E6A26C1EBD400D2774A /* RegistrationViewLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
