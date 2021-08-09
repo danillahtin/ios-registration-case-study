@@ -67,40 +67,7 @@ final class RegistrationViewControllerSnapshotTests: XCTestCase {
         line: UInt = #line
     ) {
         let sut = makeSut(username: username, password: password, prepare: block)
-
-        SnapshotTesting.assertSnapshot(
-            matching: sut,
-            as: .image(on: .iPhoneSe),
-            file: file,
-            testName: testName,
-            line: line
-        )
-
-        SnapshotTesting.assertSnapshot(
-            matching: sut,
-            as: .image(on: .iPhoneX),
-            file: file,
-            testName: testName,
-            line: line
-        )
-
-        sut.overrideUserInterfaceStyle = .dark
-
-        SnapshotTesting.assertSnapshot(
-            matching: sut,
-            as: .image(on: .iPhoneSe),
-            file: file,
-            testName: testName,
-            line: line
-        )
-
-        SnapshotTesting.assertSnapshot(
-            matching: sut,
-            as: .image(on: .iPhoneX),
-            file: file,
-            testName: testName,
-            line: line
-        )
+        assertSnapshot(sut: sut, file: file, testName: testName, line: line)
     }
 
     private func makeSut(

@@ -8,7 +8,7 @@
 import UIKit
 import RegistrationPresentation
 
-final class RegistrationFormViewController: UIViewController {
+public final class RegistrationFormViewController: UIViewController {
     public typealias TextFieldFactory = () -> UITextField
 
     public private(set) weak var usernameTextField: UITextField!
@@ -20,13 +20,17 @@ final class RegistrationFormViewController: UIViewController {
     var didUpdate: (String?, String?) -> () = { _, _ in }
     var didRegister: () -> () = {}
 
-    convenience init(textFieldFactory: @escaping TextFieldFactory) {
-        self.init()
+    public static func make(
+        textFieldFactory: @escaping TextFieldFactory = UITextField.init
+    ) -> RegistrationFormViewController {
+        let vc = RegistrationFormViewController()
 
-        self.textFieldFactory = textFieldFactory
+        vc.textFieldFactory = textFieldFactory
+
+        return vc
     }
 
-    override func loadView() {
+    public override func loadView() {
         let usernameTextField = makeUsernameTextField()
         let passwordTextField = makePasswordTextField()
         usernameTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -51,7 +55,7 @@ final class RegistrationFormViewController: UIViewController {
         self.view = view
     }
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
 
         notifyTextFieldUpdated()

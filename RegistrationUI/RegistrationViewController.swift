@@ -47,7 +47,7 @@ public final class RegistrationViewController: UIViewController {
         vc.tapGestureRecognizerFactory = tapGestureRecognizerFactory
         vc.delegate = delegate
         vc.animator = animator
-        vc.formViewController = RegistrationFormViewController(textFieldFactory: textFieldFactory)
+        vc.formViewController = RegistrationFormViewController.make(textFieldFactory: textFieldFactory)
         vc.formViewController.didUpdate = delegate.didUpdate
         vc.formViewController.didRegister = delegate.onRegisterButtonTapped
 
