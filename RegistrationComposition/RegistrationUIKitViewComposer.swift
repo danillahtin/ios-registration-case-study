@@ -14,7 +14,7 @@ public enum RegistrationUIKitViewComposer {
     public typealias OnRegisterBlock = () -> ()
 
     public static func composed(
-        textFieldFactory: @escaping RegistrationViewController.TextFieldFactory = UITextField.init,
+        textFieldFactory: @escaping RegistrationFormViewController.TextFieldFactory = UITextField.init,
         tapGestureRecognizerFactory: @escaping RegistrationViewController.TapGestureRecognizerFactory = UITapGestureRecognizer.init,
         registrationService: RegistrationService,
         localizationProvider: LocalizationProvider = DefaultLocalizationProvider(),

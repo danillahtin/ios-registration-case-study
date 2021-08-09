@@ -15,7 +15,6 @@ public protocol RegistrationViewControllerDelegate {
 }
 
 public final class RegistrationViewController: UIViewController {
-    public typealias TextFieldFactory = () -> UITextField
     public typealias TapGestureRecognizerFactory = (_ target: Any?, _ action: Selector?) -> UITapGestureRecognizer
 
     @IBOutlet public private(set) weak var registerButton: UIButton!
