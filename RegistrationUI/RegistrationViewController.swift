@@ -14,21 +14,47 @@ public protocol RegistrationViewControllerDelegate {
     func didCancelInput()
 }
 
-final class ButtonViewController: UIViewController {
-    public weak var registerButton: UIButton! {
-        didSet {
-            registerButton.addTarget(self, action: #selector(onButtonTapped), for: .touchUpInside)
-        }
+public final class ButtonViewController: UIViewController {
+    public private(set) weak var button: UIButton!
+    public private(set) weak var activityIndicator: UIActivityIndicatorView!
+
+    public var onButtonTappedBlock: (() -> ())?
+
+    public static func make() -> ButtonViewController {
+        ButtonViewController()
     }
-    public weak var registerActivityIndicator: UIActivityIndicatorView!
-    weak var registerButtonContainerView: UIView!
+    
+    public override func loadView() {
+        let view = UIView()
+        view.backgroundColor = .systemIndigo
 
-    var onButtonTappedBlock: (() -> ())?
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(onButtonTapped), for: .touchUpInside)
+        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .title2)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .clear
 
-    static func make() -> ButtonViewController {
-        let vc = ButtonViewController()
+        let activityIndicator = UIActivityIndicatorView(style: .medium)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.color = .white
 
-        return vc
+        view.addSubview(button)
+        view.addSubview(activityIndicator)
+
+        NSLayoutConstraint.activate([
+            button.leftAnchor.constraint(equalTo: view.leftAnchor),
+            button.rightAnchor.constraint(equalTo: view.rightAnchor),
+            button.topAnchor.constraint(equalTo: view.topAnchor),
+            button.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            button.heightAnchor.constraint(equalToConstant: 60),
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+        ])
+
+        self.button = button
+        self.activityIndicator = activityIndicator
+        self.view = view
     }
 
     @objc
@@ -40,31 +66,27 @@ final class ButtonViewController: UIViewController {
 extension ButtonViewController: LoadingView {
     public func display(viewModel: LoadingViewModel) {
         if viewModel.isLoading {
-            registerActivityIndicator.startAnimating()
-            registerButton.isHidden = true
+            activityIndicator.startAnimating()
+            button.isHidden = true
         } else {
-            registerActivityIndicator.stopAnimating()
-            registerButton.isHidden = false
+            activityIndicator.stopAnimating()
+            button.isHidden = false
         }
     }
 }
 
 extension ButtonViewController: ButtonView {
     public func display(viewModel: ButtonViewModel) {
-        registerButton.setTitle(viewModel.title, for: .normal)
-        registerButton.isEnabled = viewModel.isEnabled
-        registerButtonContainerView.backgroundColor = viewModel.isEnabled
-            ? registerButtonContainerView.backgroundColor?.withAlphaComponent(1)
-            : registerButtonContainerView.backgroundColor?.withAlphaComponent(0.4)
+        button.setTitle(viewModel.title, for: .normal)
+        button.isEnabled = viewModel.isEnabled
+        view.backgroundColor = viewModel.isEnabled
+            ? view.backgroundColor?.withAlphaComponent(1)
+            : view.backgroundColor?.withAlphaComponent(0.4)
     }
 }
 
 public final class RegistrationViewController: UIViewController {
     public typealias TapGestureRecognizerFactory = (_ target: Any?, _ action: Selector?) -> UITapGestureRecognizer
-
-    @IBOutlet public private(set) weak var registerButton: UIButton!
-    @IBOutlet public private(set) weak var registerActivityIndicator: UIActivityIndicatorView!
-    @IBOutlet private weak var registerButtonContainerView: UIView!
 
     private var tapGestureRecognizerFactory: TapGestureRecognizerFactory!
     private var delegate: RegistrationViewControllerDelegate!
@@ -102,10 +124,7 @@ public final class RegistrationViewController: UIViewController {
     public override func loadView() {
         super.loadView()
 
-        buttonViewController.registerButton = registerButton
-        buttonViewController.registerActivityIndicator = registerActivityIndicator
-        buttonViewController.registerButtonContainerView = registerButtonContainerView
-
+        addButtonViewController()
         addFormViewController()
         addErrorViewController()
 
@@ -123,6 +142,16 @@ public final class RegistrationViewController: UIViewController {
         child.view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(childLayoutBuilder(child.view))
         child.didMove(toParent: self)
+    }
+
+    private func addButtonViewController() {
+        addChild(buttonViewController) {
+            [
+                view.layoutMarginsGuide.leftAnchor.constraint(equalTo: $0.leftAnchor),
+                view.layoutMarginsGuide.rightAnchor.constraint(equalTo: $0.rightAnchor),
+                view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: $0.bottomAnchor, constant: 44),
+            ]
+        }
     }
 
     private func addFormViewController() {

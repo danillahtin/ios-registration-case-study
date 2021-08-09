@@ -491,6 +491,18 @@ private extension RegistrationViewController {
         findController()
     }
 
+    private var buttonViewController: ButtonViewController {
+        children.compactMap({ $0 as? ButtonViewController }).first!
+    }
+
+    var registerButton: UIButton! {
+        buttonViewController.button
+    }
+
+    var registerActivityIndicator: UIActivityIndicatorView! {
+        buttonViewController.activityIndicator
+    }
+
     var usernameTextField: UITextField {
         formViewController.usernameTextField
     }
