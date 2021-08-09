@@ -37,19 +37,22 @@ public enum RegistrationUIKitViewComposer {
         )
 
         let errorViewController = ErrorViewController.make(animator: animator)
+        let buttonViewController = ButtonViewController.make()
+        buttonViewController.onButtonTappedBlock = adapter.onRegisterButtonTapped
 
         let vc = RegistrationViewController.make(
             tapGestureRecognizerFactory: tapGestureRecognizerFactory,
             delegate: adapter,
             formViewController: formViewController,
-            errorViewController: errorViewController
+            errorViewController: errorViewController,
+            buttonViewController: buttonViewController
         )
 
         adapter.formViewController = formViewController
         adapter.presenter = RegistrationPresenter(
-            loadingView: Weak(vc),
+            loadingView: Weak(buttonViewController),
             buttonView: ButtonViewComposite([
-                Weak(vc),
+                Weak(buttonViewController),
                 Weak(formViewController),
             ]),
             titleView: Weak(vc),

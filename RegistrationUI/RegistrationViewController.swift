@@ -10,7 +10,6 @@ import RegistrationPresentation
 
 public protocol RegistrationViewControllerDelegate {
     func onViewDidLoad()
-    func onRegisterButtonTapped()
     func didCancelInput()
 }
 
@@ -22,13 +21,14 @@ public final class RegistrationViewController: UIViewController {
 
     private var formViewController: UIViewController!
     private var errorViewController: UIViewController!
-    private var buttonViewController: ButtonViewController!
+    private var buttonViewController: UIViewController!
 
     public static func make(
         tapGestureRecognizerFactory: @escaping TapGestureRecognizerFactory = UITapGestureRecognizer.init,
         delegate: RegistrationViewControllerDelegate,
         formViewController: UIViewController,
-        errorViewController: UIViewController
+        errorViewController: UIViewController,
+        buttonViewController: UIViewController
     ) -> RegistrationViewController {
         let vc = RegistrationViewController()
 
@@ -36,12 +36,7 @@ public final class RegistrationViewController: UIViewController {
         vc.delegate = delegate
         vc.formViewController = formViewController
         vc.errorViewController = errorViewController
-
-        let buttonViewController = ButtonViewController.make()
-        buttonViewController.onButtonTappedBlock = delegate.onRegisterButtonTapped
-
         vc.buttonViewController = buttonViewController
-
 
         return vc
     }
@@ -111,18 +106,6 @@ public final class RegistrationViewController: UIViewController {
     @objc
     private func onCancelInputRecongnizerRecognized() {
         delegate?.didCancelInput()
-    }
-}
-
-extension RegistrationViewController: LoadingView {
-    public func display(viewModel: LoadingViewModel) {
-        buttonViewController.display(viewModel: viewModel)
-    }
-}
-
-extension RegistrationViewController: ButtonView {
-    public func display(viewModel: ButtonViewModel) {
-        buttonViewController.display(viewModel: viewModel)
     }
 }
 

@@ -38,7 +38,6 @@
 		8BD1640226BFF90C00C2E126 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD1640126BFF90C00C2E126 /* Animator.swift */; };
 		8BD1640326BFFAD200C2E126 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163C926BF4D3900C2E126 /* Scheduler.swift */; };
 		8BD1641826C00ED200C2E126 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 8BD1641726C00ED200C2E126 /* SnapshotTesting */; };
-		8BD1641A26C00F0400C2E126 /* RegistrationViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD1641926C00F0400C2E126 /* RegistrationViewControllerSnapshotTests.swift */; };
 		8BD1642226C0116100C2E126 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD1642126C0116100C2E126 /* AppDelegate.swift */; };
 		8BD1642426C0116100C2E126 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD1642326C0116100C2E126 /* SceneDelegate.swift */; };
 		8BD1642B26C0116300C2E126 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BD1642A26C0116300C2E126 /* Assets.xcassets */; };
@@ -155,7 +154,6 @@
 		8BD163F626BF517100C2E126 /* RegistrationUIKitViewComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationUIKitViewComposer.swift; sourceTree = "<group>"; };
 		8BD163F826BF51CC00C2E126 /* Weak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weak.swift; sourceTree = "<group>"; };
 		8BD1640126BFF90C00C2E126 /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
-		8BD1641926C00F0400C2E126 /* RegistrationViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		8BD1641F26C0116100C2E126 /* RegistrationDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RegistrationDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BD1642126C0116100C2E126 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8BD1642326C0116100C2E126 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -282,7 +280,6 @@
 			children = (
 				8BC29E4E26C1D1E300D2774A /* Helpers */,
 				8B75654126BDEBEE00D2F90E /* Info.plist */,
-				8BD1641926C00F0400C2E126 /* RegistrationViewControllerSnapshotTests.swift */,
 				8B83961126C1A16F00D837E9 /* RegistrationFormViewControllerSnapshotTests.swift */,
 				8B83961326C1A65E00D837E9 /* XCTestCase+Helpers.swift */,
 				8B83961526C1BDC800D837E9 /* RegistrationFormViewControllerTests.swift */,
@@ -639,7 +636,6 @@
 				8BC29E5026C1D1EC00D2774A /* ImmediateAnimator.swift in Sources */,
 				8B83961626C1BDC800D837E9 /* RegistrationFormViewControllerTests.swift in Sources */,
 				8BC29E5226C1D29D00D2774A /* UIViewController+Helpers.swift in Sources */,
-				8BD1641A26C00F0400C2E126 /* RegistrationViewControllerSnapshotTests.swift in Sources */,
 				8BC29E5826C1DA6A00D2774A /* ButtonViewModel+Helpers.swift in Sources */,
 				8BC29E5A26C1DB2100D2774A /* ButtonViewControllerSnapshotTests.swift in Sources */,
 				8B83961226C1A16F00D837E9 /* RegistrationFormViewControllerSnapshotTests.swift in Sources */,
