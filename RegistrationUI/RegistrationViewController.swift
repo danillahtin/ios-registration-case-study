@@ -14,6 +14,51 @@ public protocol RegistrationViewControllerDelegate {
     func didCancelInput()
 }
 
+final class ButtonViewController: UIViewController {
+    public weak var registerButton: UIButton! {
+        didSet {
+            registerButton.addTarget(self, action: #selector(onButtonTapped), for: .touchUpInside)
+        }
+    }
+    public weak var registerActivityIndicator: UIActivityIndicatorView!
+    weak var registerButtonContainerView: UIView!
+
+    var onButtonTappedBlock: (() -> ())?
+
+    static func make() -> ButtonViewController {
+        let vc = ButtonViewController()
+
+        return vc
+    }
+
+    @objc
+    private func onButtonTapped() {
+        onButtonTappedBlock?()
+    }
+}
+
+extension ButtonViewController: LoadingView {
+    public func display(viewModel: LoadingViewModel) {
+        if viewModel.isLoading {
+            registerActivityIndicator.startAnimating()
+            registerButton.isHidden = true
+        } else {
+            registerActivityIndicator.stopAnimating()
+            registerButton.isHidden = false
+        }
+    }
+}
+
+extension ButtonViewController: ButtonView {
+    public func display(viewModel: ButtonViewModel) {
+        registerButton.setTitle(viewModel.title, for: .normal)
+        registerButton.isEnabled = viewModel.isEnabled
+        registerButtonContainerView.backgroundColor = viewModel.isEnabled
+            ? registerButtonContainerView.backgroundColor?.withAlphaComponent(1)
+            : registerButtonContainerView.backgroundColor?.withAlphaComponent(0.4)
+    }
+}
+
 public final class RegistrationViewController: UIViewController {
     public typealias TapGestureRecognizerFactory = (_ target: Any?, _ action: Selector?) -> UITapGestureRecognizer
 
@@ -26,6 +71,7 @@ public final class RegistrationViewController: UIViewController {
 
     private var formViewController: UIViewController!
     private var errorViewController: UIViewController!
+    private var buttonViewController: ButtonViewController!
 
     public static func make(
         tapGestureRecognizerFactory: @escaping TapGestureRecognizerFactory = UITapGestureRecognizer.init,
@@ -44,11 +90,21 @@ public final class RegistrationViewController: UIViewController {
         vc.formViewController = formViewController
         vc.errorViewController = errorViewController
 
+        let buttonViewController = ButtonViewController.make()
+        buttonViewController.onButtonTappedBlock = delegate.onRegisterButtonTapped
+
+        vc.buttonViewController = buttonViewController
+
+
         return vc
     }
 
     public override func loadView() {
         super.loadView()
+
+        buttonViewController.registerButton = registerButton
+        buttonViewController.registerActivityIndicator = registerActivityIndicator
+        buttonViewController.registerButtonContainerView = registerButtonContainerView
 
         addFormViewController()
         addErrorViewController()
@@ -95,11 +151,6 @@ public final class RegistrationViewController: UIViewController {
         delegate?.onViewDidLoad()
     }
 
-    @IBAction
-    private func onRegisterButtonTapped() {
-        delegate?.onRegisterButtonTapped()
-    }
-
     @objc
     private func onCancelInputRecongnizerRecognized() {
         delegate?.didCancelInput()
@@ -108,23 +159,13 @@ public final class RegistrationViewController: UIViewController {
 
 extension RegistrationViewController: LoadingView {
     public func display(viewModel: LoadingViewModel) {
-        if viewModel.isLoading {
-            registerActivityIndicator.startAnimating()
-            registerButton.isHidden = true
-        } else {
-            registerActivityIndicator.stopAnimating()
-            registerButton.isHidden = false
-        }
+        buttonViewController.display(viewModel: viewModel)
     }
 }
 
 extension RegistrationViewController: ButtonView {
     public func display(viewModel: ButtonViewModel) {
-        registerButton.setTitle(viewModel.title, for: .normal)
-        registerButton.isEnabled = viewModel.isEnabled
-        registerButtonContainerView.backgroundColor = viewModel.isEnabled
-            ? registerButtonContainerView.backgroundColor?.withAlphaComponent(1)
-            : registerButtonContainerView.backgroundColor?.withAlphaComponent(0.4)
+        buttonViewController.display(viewModel: viewModel)
     }
 }
 
