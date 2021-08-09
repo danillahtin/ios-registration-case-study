@@ -75,17 +75,27 @@ final class RegistrationViewControllerSnapshotTests: XCTestCase {
         password: String?,
         prepare block: (RegistrationViewController) -> ()
     ) -> UINavigationController {
+        let label = UILabel()
+        label.backgroundColor = UIColor.blue.withAlphaComponent(0.5)
+        label.textColor = UIColor(dynamicProvider: {
+            $0.userInterfaceStyle == .dark ? .white : .black
+        })
+        label.text = "Form"
+        label.heightAnchor.constraint(equalToConstant: 160).isActive = true
+        label.textAlignment = .center
+
+        let formViewController = UIViewController()
+        formViewController.view = label
+
         let services = Services()
         let sut = RegistrationViewController.make(
             animator: services,
             delegate: services,
-            formViewController: RegistrationFormViewController.make(delegate: services)
+            formViewController: formViewController
         )
 
         sut.loadViewIfNeeded()
 
-        sut.usernameTextField.text = username
-        sut.passwordTextField.text = password
         sut.displayInitialState()
 
         block(sut)
@@ -103,27 +113,14 @@ private extension RegistrationViewController {
         display(viewModel: .init(title: "Register", isEnabled: false))
         display(viewModel: .init(title: "Registration"))
         display(viewModel: .init(message: nil))
-        display(
-            viewModel: .init(
-                cancelTitle: "Cancel",
-                nextTitle: "Next",
-                doneTitle: "Done",
-                usernamePlaceholder: "Username",
-                passwordPlaceholder: "Password"
-            )
-        )
     }
 
     func displayLoadingState() {
-        usernameTextField.text = "my_login"
-        passwordTextField.text = "password"
         display(viewModel: .init(title: "Register", isEnabled: true))
         display(viewModel: .init(isLoading: true))
     }
 
     func displayErrorState(message: String) {
-        usernameTextField.text = "my_login"
-        passwordTextField.text = "password"
         display(viewModel: .init(isLoading: false))
         display(viewModel: .init(title: "Register", isEnabled: true))
         display(viewModel: .init(message: message))
@@ -134,10 +131,10 @@ private extension RegistrationViewController {
     }
 }
 
-private final class Services: Animator, RegistrationViewControllerDelegate, RegistrationFormViewControllerDelegate {
+private final class Services: Animator, RegistrationViewControllerDelegate {
     func onViewDidLoad() {}
     func onRegisterButtonTapped() {}
-    func didUpdate(username: String?, password: String?) {}
+    func didCancelInput() {}
 
     func animate(_ animations: @escaping () -> (), completion: (() -> ())?) {
         animations()

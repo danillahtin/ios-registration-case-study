@@ -12,6 +12,12 @@
 		8B75656826BDED2F00D2F90E /* RegistrationViewComposerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75656726BDED2F00D2F90E /* RegistrationViewComposerTests.swift */; };
 		8B83961226C1A16F00D837E9 /* RegistrationFormViewControllerSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83961126C1A16F00D837E9 /* RegistrationFormViewControllerSnapshotTests.swift */; };
 		8B83961426C1A65E00D837E9 /* XCTestCase+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83961326C1A65E00D837E9 /* XCTestCase+Helpers.swift */; };
+		8B83961626C1BDC800D837E9 /* RegistrationFormViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83961526C1BDC800D837E9 /* RegistrationFormViewControllerTests.swift */; };
+		8B83961D26C1BF8E00D837E9 /* TextFieldMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83961A26C1BF8E00D837E9 /* TextFieldMock.swift */; };
+		8B83961E26C1BF8E00D837E9 /* UIBarButtonItem+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83961C26C1BF8E00D837E9 /* UIBarButtonItem+Helpers.swift */; };
+		8B83961F26C1BF8E00D837E9 /* TapGestureRecognizerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83961B26C1BF8E00D837E9 /* TapGestureRecognizerMock.swift */; };
+		8B83962026C1BF8E00D837E9 /* UIControl+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83961926C1BF8E00D837E9 /* UIControl+Helpers.swift */; };
+		8B83962126C1BF8E00D837E9 /* UIView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83961826C1BF8E00D837E9 /* UIView+Helpers.swift */; };
 		8BD163B426BF293800C2E126 /* UIBarButtonItem+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163B326BF293800C2E126 /* UIBarButtonItem+Helpers.swift */; };
 		8BD163B626BF294B00C2E126 /* UIControl+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163B526BF294B00C2E126 /* UIControl+Helpers.swift */; };
 		8BD163B826BF296800C2E126 /* UIView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD163B726BF296800C2E126 /* UIView+Helpers.swift */; };
@@ -113,6 +119,12 @@
 		8B75656726BDED2F00D2F90E /* RegistrationViewComposerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewComposerTests.swift; sourceTree = "<group>"; };
 		8B83961126C1A16F00D837E9 /* RegistrationFormViewControllerSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFormViewControllerSnapshotTests.swift; sourceTree = "<group>"; };
 		8B83961326C1A65E00D837E9 /* XCTestCase+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Helpers.swift"; sourceTree = "<group>"; };
+		8B83961526C1BDC800D837E9 /* RegistrationFormViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFormViewControllerTests.swift; sourceTree = "<group>"; };
+		8B83961826C1BF8E00D837E9 /* UIView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Helpers.swift"; sourceTree = "<group>"; };
+		8B83961926C1BF8E00D837E9 /* UIControl+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+Helpers.swift"; sourceTree = "<group>"; };
+		8B83961A26C1BF8E00D837E9 /* TextFieldMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldMock.swift; sourceTree = "<group>"; };
+		8B83961B26C1BF8E00D837E9 /* TapGestureRecognizerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapGestureRecognizerMock.swift; sourceTree = "<group>"; };
+		8B83961C26C1BF8E00D837E9 /* UIBarButtonItem+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Helpers.swift"; sourceTree = "<group>"; };
 		8BD163B326BF293800C2E126 /* UIBarButtonItem+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Helpers.swift"; sourceTree = "<group>"; };
 		8BD163B526BF294B00C2E126 /* UIControl+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+Helpers.swift"; sourceTree = "<group>"; };
 		8BD163B726BF296800C2E126 /* UIView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Helpers.swift"; sourceTree = "<group>"; };
@@ -240,10 +252,12 @@
 		8B75653E26BDEBEE00D2F90E /* RegistrationUITests */ = {
 			isa = PBXGroup;
 			children = (
+				8B83961726C1BF8E00D837E9 /* Helpers */,
 				8B75654126BDEBEE00D2F90E /* Info.plist */,
 				8BD1641926C00F0400C2E126 /* RegistrationViewControllerSnapshotTests.swift */,
 				8B83961126C1A16F00D837E9 /* RegistrationFormViewControllerSnapshotTests.swift */,
 				8B83961326C1A65E00D837E9 /* XCTestCase+Helpers.swift */,
+				8B83961526C1BDC800D837E9 /* RegistrationFormViewControllerTests.swift */,
 			);
 			path = RegistrationUITests;
 			sourceTree = "<group>";
@@ -267,6 +281,18 @@
 				8B75656726BDED2F00D2F90E /* RegistrationViewComposerTests.swift */,
 			);
 			path = RegistrationCompositionTests;
+			sourceTree = "<group>";
+		};
+		8B83961726C1BF8E00D837E9 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8B83961C26C1BF8E00D837E9 /* UIBarButtonItem+Helpers.swift */,
+				8B83961926C1BF8E00D837E9 /* UIControl+Helpers.swift */,
+				8B83961826C1BF8E00D837E9 /* UIView+Helpers.swift */,
+				8B83961B26C1BF8E00D837E9 /* TapGestureRecognizerMock.swift */,
+				8B83961A26C1BF8E00D837E9 /* TextFieldMock.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		8BD163B226BF292000C2E126 /* Helpers */ = {
@@ -539,9 +565,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B83961E26C1BF8E00D837E9 /* UIBarButtonItem+Helpers.swift in Sources */,
+				8B83961F26C1BF8E00D837E9 /* TapGestureRecognizerMock.swift in Sources */,
 				8B83961426C1A65E00D837E9 /* XCTestCase+Helpers.swift in Sources */,
+				8B83961626C1BDC800D837E9 /* RegistrationFormViewControllerTests.swift in Sources */,
+				8B83962126C1BF8E00D837E9 /* UIView+Helpers.swift in Sources */,
 				8BD1641A26C00F0400C2E126 /* RegistrationViewControllerSnapshotTests.swift in Sources */,
 				8B83961226C1A16F00D837E9 /* RegistrationFormViewControllerSnapshotTests.swift in Sources */,
+				8B83961D26C1BF8E00D837E9 /* TextFieldMock.swift in Sources */,
+				8B83962026C1BF8E00D837E9 /* UIControl+Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
