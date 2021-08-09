@@ -479,8 +479,16 @@ final class RegistrationUIKitViewComposerTests: XCTestCase {
 }
 
 private extension RegistrationViewController {
-    private var formViewController: RegistrationFormViewController {
-        children.compactMap({ $0 as? RegistrationFormViewController }).first!
+    private func findController<ViewController>() -> ViewController? {
+        children.compactMap({ $0 as? ViewController }).first!
+    }
+
+    private var formViewController: RegistrationFormViewController! {
+        findController()
+    }
+
+    private var errorViewController: ErrorViewController! {
+        findController()
     }
 
     var usernameTextField: UITextField {
@@ -493,6 +501,10 @@ private extension RegistrationViewController {
 
     var passwordDoneButton: UIBarButtonItem? {
         formViewController.passwordDoneButton
+    }
+
+    var errorView: UIButton {
+        errorViewController.errorView
     }
 
     var username: String? {

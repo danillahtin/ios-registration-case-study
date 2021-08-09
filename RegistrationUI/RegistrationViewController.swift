@@ -19,20 +19,19 @@ public final class RegistrationViewController: UIViewController {
 
     @IBOutlet public private(set) weak var registerButton: UIButton!
     @IBOutlet public private(set) weak var registerActivityIndicator: UIActivityIndicatorView!
-    public weak var errorView: UIButton! { errorViewController.errorView }
     @IBOutlet private weak var registerButtonContainerView: UIView!
 
     private var tapGestureRecognizerFactory: TapGestureRecognizerFactory!
     private var delegate: RegistrationViewControllerDelegate!
 
     private var formViewController: UIViewController!
-    private var errorViewController: ErrorViewController!
+    private var errorViewController: UIViewController!
 
     public static func make(
         tapGestureRecognizerFactory: @escaping TapGestureRecognizerFactory = UITapGestureRecognizer.init,
         delegate: RegistrationViewControllerDelegate,
         formViewController: UIViewController,
-        errorViewController: ErrorViewController
+        errorViewController: UIViewController
     ) -> RegistrationViewController {
         let storyboard = UIStoryboard(
             name: "RegistrationViewController",

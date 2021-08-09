@@ -71,14 +71,12 @@ final class RegistrationViewControllerSnapshotTests: XCTestCase {
         prepare block: (RegistrationViewController) -> ()
     ) -> UINavigationController {
         let services = Services()
-        let errorViewController = ErrorViewController.make(animator: services)
         let sut = RegistrationViewController.make(
             delegate: services,
             formViewController: makeViewController(text: "Form", height: 160, backgroundColor: .blue),
-            errorViewController: errorViewController
+            errorViewController: UIViewController()
         )
 
-        errorViewController.view.isHidden = true
         sut.loadViewIfNeeded()
 
         sut.displayInitialState()
