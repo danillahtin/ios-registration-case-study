@@ -36,7 +36,15 @@ public enum RegistrationUIKitViewComposer {
             delegate: adapter
         )
 
-        let errorViewController = ErrorViewController.make(animator: animator)
+        weak var weakErrorViewController: UIViewController?
+        let errorViewController = ErrorViewController.make(
+            animator: IfAttachedToWindowAnimatorDecorator(
+                decoratee: animator,
+                isAttachedToWindow: { weakErrorViewController?.viewIfLoaded?.window != nil }
+            )
+        )
+        weakErrorViewController = errorViewController
+
         let buttonViewController = ButtonViewController.make()
         buttonViewController.onButtonTappedBlock = adapter.onDoneButtonTapped
 

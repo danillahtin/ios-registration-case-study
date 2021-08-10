@@ -35,5 +35,23 @@ public struct UIKitAnimator: Animator {
             completion: completion.map({ completion in { _ in completion() } })
         )
     }
+}
 
+public final class IfAttachedToWindowAnimatorDecorator: Animator {
+    private let decoratee: Animator
+    private let isAttachedToWindow: () -> Bool
+
+    public init(decoratee: Animator, isAttachedToWindow: @escaping () -> Bool) {
+        self.decoratee = decoratee
+        self.isAttachedToWindow = isAttachedToWindow
+    }
+
+    public func animate(_ animations: @escaping () -> (), completion: (() -> ())?) {
+        if isAttachedToWindow() {
+            return decoratee.animate(animations, completion: completion)
+        }
+
+        animations()
+        completion?()
+    }
 }
