@@ -447,12 +447,42 @@ final class RegistrationUIKitViewComposerTests: XCTestCase {
         XCTAssertEqual(services.onRegisterCallCount, 1)
     }
 
+    func test_givenSutIsNotAttachedToWindow_thenErrorViewUpdatedWithoutAnimation() {
+        let (sut, services) = makeSut(shouldPreformAnimationsImmediately: false)
+
+        XCTAssertEqual(sut.isErrorViewHidden, true)
+
+        sut.simulateRegistration()
+        services.completeRegistration(with: .failure(makeError()))
+        services.performUIWorks()
+
+        XCTAssertEqual(sut.isErrorViewHidden, false)
+    }
+
+    func test_givenSutIsAttachedToWindow_thenErrorViewUpdatedWithAnimation() {
+        let (sut, services) = makeSut(shouldPreformAnimationsImmediately: false)
+
+        let window = UIWindow(frame: .init(x: 0, y: 0, width: 375, height: 668))
+        window.rootViewController = sut
+        window.makeKeyAndVisible()
+        RunLoop.current.run(until: Date())
+
+        sut.simulateRegistration()
+        services.completeRegistration(with: .failure(makeError()))
+        services.performUIWorks()
+        XCTAssertEqual(sut.isErrorViewHidden, true)
+
+        services.performAnimations()
+        XCTAssertEqual(sut.isErrorViewHidden, false)
+    }
+
     // MARK: - Helpers
     private func makeSut(
+        shouldPreformAnimationsImmediately: Bool = true,
         file: StaticString = #file,
         line: UInt = #line
     ) -> (sut: RegistrationViewController, services: Services) {
-        let services = Services()
+        let services = Services(shouldPreformAnimationsImmediately: shouldPreformAnimationsImmediately)
         let sut = RegistrationUIKitViewComposer.composed(
             textFieldFactory: TextFieldMock.init,
             tapGestureRecognizerFactory: TapGestureRecognizerMock.init,
@@ -461,7 +491,7 @@ final class RegistrationUIKitViewComposerTests: XCTestCase {
             uiScheduler: services.uiScheduler,
             deferredUiScheduler: NeverScheduler(),
             serviceScheduler: services.servicesScheduler,
-            animator: ImmediateAnimator(),
+            animator: services,
             onRegister: services.onRegister
         )
 
@@ -642,7 +672,7 @@ private extension RegistrationViewController {
     }
 }
 
-private final class Services: RegistrationService, LocalizationProvider {
+private final class Services: RegistrationService, LocalizationProvider, Animator {
     final class SchedulerSpy: Scheduler {
         private var works: [() -> ()] = []
 
@@ -654,6 +684,10 @@ private final class Services: RegistrationService, LocalizationProvider {
             works.forEach({ $0() })
             works = []
         }
+    }
+
+    init(shouldPreformAnimationsImmediately: Bool) {
+        self.shouldPreformAnimationsImmediately = shouldPreformAnimationsImmediately
     }
 
     private(set) var requests: [RegistrationRequest] = []
@@ -690,12 +724,25 @@ private final class Services: RegistrationService, LocalizationProvider {
     func string(for key: String) -> String {
         key + "_LOCALIZED"
     }
-}
 
-private struct ImmediateAnimator: Animator {
+    let shouldPreformAnimationsImmediately: Bool
+    private typealias VoidBlock = () -> ()
+    private var animateMessages: [(animations: VoidBlock, completion: VoidBlock?)] = []
+
     func animate(_ animations: @escaping () -> (), completion: (() -> ())?) {
+        guard shouldPreformAnimationsImmediately else {
+            return animateMessages.append((animations, completion))
+        }
+
         animations()
         completion?()
+    }
+
+    func performAnimations() {
+        animateMessages.forEach {
+            $0.animations()
+            $0.completion?()
+        }
     }
 }
 

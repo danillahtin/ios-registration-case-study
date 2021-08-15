@@ -36,14 +36,12 @@ public enum RegistrationUIKitViewComposer {
             delegate: adapter
         )
 
-        weak var weakErrorViewController: UIViewController?
-        let errorViewController = ErrorViewController.make(
-            animator: IfAttachedToWindowAnimatorDecorator(
-                decoratee: animator,
-                isAttachedToWindow: { weakErrorViewController?.viewIfLoaded?.window != nil }
-            )
+        let animator = IfAttachedToWindowAnimatorDecorator(
+            decoratee: animator,
+            isAttachedToWindow: adapter.isAttachedToWindow
         )
-        weakErrorViewController = errorViewController
+
+        let errorViewController = ErrorViewController.make(animator: animator)
 
         let buttonViewController = ButtonViewController.make()
         buttonViewController.onButtonTappedBlock = adapter.onDoneButtonTapped
@@ -64,6 +62,7 @@ public enum RegistrationUIKitViewComposer {
         )
 
         adapter.viewDidLoad = buttonView.viewLoaded
+        adapter.viewController = vc
         adapter.formViewController = formViewController
         adapter.presenter = RegistrationPresenter(
             loadingView: Weak(buttonViewController),
@@ -85,6 +84,7 @@ private final class Adapter: RegistrationViewControllerDelegate, UsernamePasswor
     private let serviceScheduler: Scheduler
     private let onRegister: () -> ()
 
+    weak var viewController: RegistrationViewController?
     weak var formViewController: UsernamePasswordFormViewController?
     var presenter: RegistrationPresenter?
     var request: RegistrationRequest = .init(username: "", password: "")
@@ -134,6 +134,10 @@ private final class Adapter: RegistrationViewControllerDelegate, UsernamePasswor
                 break
             }
         }
+    }
+
+    func isAttachedToWindow() -> Bool {
+        viewController?.viewIfLoaded?.window != nil
     }
 }
 
