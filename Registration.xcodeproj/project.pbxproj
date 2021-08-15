@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B196A7B26C9120200F149C0 /* RegisterWithAppleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B196A7A26C9120200F149C0 /* RegisterWithAppleService.swift */; };
 		8B7564E126BDDA3D00D2F90E /* RegistrationCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B7564D726BDDA3D00D2F90E /* RegistrationCore.framework */; };
 		8B7564FB26BDDB0300D2F90E /* RegistrationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7564FA26BDDB0300D2F90E /* RegistrationRequest.swift */; };
 		8B7564FD26BDDB5A00D2F90E /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7564FC26BDDB5A00D2F90E /* RegistrationService.swift */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B196A7A26C9120200F149C0 /* RegisterWithAppleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterWithAppleService.swift; sourceTree = "<group>"; };
 		8B7564D726BDDA3D00D2F90E /* RegistrationCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RegistrationCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B7564DB26BDDA3D00D2F90E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B7564E026BDDA3D00D2F90E /* RegistrationCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RegistrationCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +156,7 @@
 				8B7564DB26BDDA3D00D2F90E /* Info.plist */,
 				8B7564FA26BDDB0300D2F90E /* RegistrationRequest.swift */,
 				8B7564FC26BDDB5A00D2F90E /* RegistrationService.swift */,
+				8B196A7A26C9120200F149C0 /* RegisterWithAppleService.swift */,
 				8B75650526BDE82000D2F90E /* RequestValidationError.swift */,
 				8B75650726BDE84000D2F90E /* RequestValidatingDecorator.swift */,
 			);
@@ -428,6 +431,7 @@
 				8B75650626BDE82000D2F90E /* RequestValidationError.swift in Sources */,
 				8B7564FD26BDDB5A00D2F90E /* RegistrationService.swift in Sources */,
 				8B7564FB26BDDB0300D2F90E /* RegistrationRequest.swift in Sources */,
+				8B196A7B26C9120200F149C0 /* RegisterWithAppleService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,6 +17,7 @@ public enum RegistrationUIKitViewComposer {
         textFieldFactory: @escaping UsernamePasswordFormViewController.TextFieldFactory = UITextField.init,
         tapGestureRecognizerFactory: @escaping RegistrationViewController.TapGestureRecognizerFactory = UITapGestureRecognizer.init,
         registrationService: RegistrationService,
+        registerWithAppleService: RegisterWithAppleService,
         localizationProvider: LocalizationProvider = DefaultLocalizationProvider(),
         uiScheduler: Scheduler = DispatchQueue.main,
         deferredUiScheduler: DeferredScheduler = DispatchQueue.main,
@@ -73,6 +74,8 @@ public enum RegistrationUIKitViewComposer {
             scheduler: deferredUiScheduler,
             localizationProvider: localizationProvider
         )
+
+        vc.registerWithApple = registerWithAppleService.register
 
         return vc
     }

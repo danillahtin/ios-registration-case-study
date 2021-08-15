@@ -476,6 +476,15 @@ final class RegistrationUIKitViewComposerTests: XCTestCase {
         XCTAssertEqual(sut.isErrorViewHidden, false)
     }
 
+    func test_registerWithAppleButtonTap_startsRegistrationWithApple() {
+        let (sut, services) = makeSut()
+
+        XCTAssertEqual(services.loginWithAppleCallCount, 0)
+
+        sut.simulateLoginWithAppleButtonTap()
+        XCTAssertEqual(services.loginWithAppleCallCount, 1)
+    }
+
     // MARK: - Helpers
     private func makeSut(
         shouldPreformAnimationsImmediately: Bool = true,
@@ -487,6 +496,7 @@ final class RegistrationUIKitViewComposerTests: XCTestCase {
             textFieldFactory: TextFieldMock.init,
             tapGestureRecognizerFactory: TapGestureRecognizerMock.init,
             registrationService: services,
+            registerWithAppleService: services,
             localizationProvider: services,
             uiScheduler: services.uiScheduler,
             deferredUiScheduler: NeverScheduler(),
@@ -670,9 +680,13 @@ private extension RegistrationViewController {
     func simulateErrorViewTapped() {
         errorView.simulateTap()
     }
+
+    func simulateLoginWithAppleButtonTap() {
+        registerWithAppleButton.simulateTap()
+    }
 }
 
-private final class Services: RegistrationService, LocalizationProvider, Animator {
+private final class Services: RegistrationService, RegisterWithAppleService, LocalizationProvider, Animator {
     final class SchedulerSpy: Scheduler {
         private var works: [() -> ()] = []
 
@@ -743,6 +757,12 @@ private final class Services: RegistrationService, LocalizationProvider, Animato
             $0.animations()
             $0.completion?()
         }
+    }
+
+    var loginWithAppleCallCount = 0
+
+    func register() {
+        loginWithAppleCallCount += 1
     }
 }
 

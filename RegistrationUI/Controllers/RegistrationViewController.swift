@@ -22,6 +22,8 @@ public final class RegistrationViewController: UIViewController {
     private var formViewController: UIViewController!
     private var errorViewController: UIViewController!
     private var buttonViewController: UIViewController!
+    public private(set) var registerWithAppleButton: UIButton = .init()
+    public var registerWithApple: () -> () = {}
 
     public static func make(
         tapGestureRecognizerFactory: @escaping TapGestureRecognizerFactory = UITapGestureRecognizer.init,
@@ -67,6 +69,8 @@ public final class RegistrationViewController: UIViewController {
         view.backgroundColor = UIColor(dynamicProvider: {
             $0.userInterfaceStyle == .dark ? .black : .white
         })
+
+        registerWithAppleButton.addTarget(self, action: #selector(onSignInWithAppleButtonTapped), for: .touchUpInside)
     }
 
     public override func viewDidLoad() {
@@ -78,6 +82,11 @@ public final class RegistrationViewController: UIViewController {
     @objc
     private func onCancelInputRecongnizerRecognized() {
         delegate?.didCancelInput()
+    }
+
+    @objc
+    private func onSignInWithAppleButtonTapped() {
+        registerWithApple()
     }
 }
 
