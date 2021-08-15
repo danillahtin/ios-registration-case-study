@@ -13,6 +13,23 @@ public protocol RegistrationViewControllerDelegate {
     func didCancelInput()
 }
 
+public final class SocialsPickerViewController: UIViewController {
+    public private(set) var apple: UIButton = .init()
+
+    public var didTapAppleButton: () -> () = {}
+
+    public override func loadView() {
+        apple.addTarget(self, action: #selector(onAppleButtonTapped), for: .touchUpInside)
+        
+        view = UIView()
+    }
+
+    @objc
+    private func onAppleButtonTapped() {
+        didTapAppleButton()
+    }
+}
+
 public final class RegistrationViewController: UIViewController {
     public typealias TapGestureRecognizerFactory = (_ target: Any?, _ action: Selector?) -> UITapGestureRecognizer
 
@@ -22,8 +39,21 @@ public final class RegistrationViewController: UIViewController {
     private var formViewController: UIViewController!
     private var errorViewController: UIViewController!
     private var buttonViewController: UIViewController!
-    public private(set) var registerWithAppleButton: UIButton = .init()
-    public var registerWithApple: () -> () = {}
+    private var socialsRegistrationViewController: SocialsPickerViewController!
+
+    public var registerWithAppleButton: UIButton {
+        socialsRegistrationViewController.apple
+    }
+
+    public var registerWithApple: () -> () {
+        set {
+            socialsRegistrationViewController.didTapAppleButton = newValue
+        }
+
+        get {
+            socialsRegistrationViewController.didTapAppleButton
+        }
+    }
 
     public static func make(
         tapGestureRecognizerFactory: @escaping TapGestureRecognizerFactory = UITapGestureRecognizer.init,
@@ -39,6 +69,7 @@ public final class RegistrationViewController: UIViewController {
         vc.formViewController = formViewController
         vc.errorViewController = errorViewController
         vc.buttonViewController = buttonViewController
+        vc.socialsRegistrationViewController = SocialsPickerViewController()
 
         return vc
     }
@@ -48,6 +79,7 @@ public final class RegistrationViewController: UIViewController {
 
         let controllers: [UIViewController] = [
             formViewController!,
+            socialsRegistrationViewController!,
             buttonViewController!,
             errorViewController!,
         ]
@@ -60,6 +92,7 @@ public final class RegistrationViewController: UIViewController {
             button: buttonViewController.view,
             error: errorViewController.view
         ).apply()
+        socialsRegistrationViewController.loadViewIfNeeded()
 
         controllers.forEach({ $0.didMove(toParent: self) })
 
@@ -69,8 +102,6 @@ public final class RegistrationViewController: UIViewController {
         view.backgroundColor = UIColor(dynamicProvider: {
             $0.userInterfaceStyle == .dark ? .black : .white
         })
-
-        registerWithAppleButton.addTarget(self, action: #selector(onSignInWithAppleButtonTapped), for: .touchUpInside)
     }
 
     public override func viewDidLoad() {
@@ -82,11 +113,6 @@ public final class RegistrationViewController: UIViewController {
     @objc
     private func onCancelInputRecongnizerRecognized() {
         delegate?.didCancelInput()
-    }
-
-    @objc
-    private func onSignInWithAppleButtonTapped() {
-        registerWithApple()
     }
 }
 
