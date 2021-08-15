@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8B196A7D26C9153A00F149C0 /* SocialsPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B196A7C26C9153A00F149C0 /* SocialsPickerViewController.swift */; };
+		8B196A7F26C918A600F149C0 /* SocialsPickerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B196A7E26C918A600F149C0 /* SocialsPickerViewControllerTests.swift */; };
 		8B75653B26BDEBEE00D2F90E /* RegistrationUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B75653126BDEBED00D2F90E /* RegistrationUI.framework */; };
 		8B75655926BDED0900D2F90E /* RegistrationComposition.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B75655026BDED0900D2F90E /* RegistrationComposition.framework */; };
 		8B75656826BDED2F00D2F90E /* RegistrationUIKitViewComposerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75656726BDED2F00D2F90E /* RegistrationUIKitViewComposerTests.swift */; };
@@ -134,6 +135,7 @@
 
 /* Begin PBXFileReference section */
 		8B196A7C26C9153A00F149C0 /* SocialsPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialsPickerViewController.swift; sourceTree = "<group>"; };
+		8B196A7E26C918A600F149C0 /* SocialsPickerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialsPickerViewControllerTests.swift; sourceTree = "<group>"; };
 		8B75653126BDEBED00D2F90E /* RegistrationUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RegistrationUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B75653526BDEBED00D2F90E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B75653A26BDEBEE00D2F90E /* RegistrationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RegistrationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -323,6 +325,7 @@
 				8B83961526C1BDC800D837E9 /* UsernamePasswordFormViewControllerTests.swift */,
 				8BC29E4526C1CD9400D2774A /* ErrorViewControllerTests.swift */,
 				8BC29E5526C1D8FE00D2774A /* ButtonViewControllerTests.swift */,
+				8B196A7E26C918A600F149C0 /* SocialsPickerViewControllerTests.swift */,
 			);
 			path = RegistrationUITests;
 			sourceTree = "<group>";
@@ -781,6 +784,7 @@
 				8B83961626C1BDC800D837E9 /* UsernamePasswordFormViewControllerTests.swift in Sources */,
 				8BC29E5826C1DA6A00D2774A /* ButtonViewModel+Helpers.swift in Sources */,
 				8BC29E5626C1D8FE00D2774A /* ButtonViewControllerTests.swift in Sources */,
+				8B196A7F26C918A600F149C0 /* SocialsPickerViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
