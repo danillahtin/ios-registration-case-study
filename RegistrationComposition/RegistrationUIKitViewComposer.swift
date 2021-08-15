@@ -47,12 +47,16 @@ public enum RegistrationUIKitViewComposer {
         let buttonViewController = ButtonViewController.make()
         buttonViewController.onButtonTappedBlock = adapter.onDoneButtonTapped
 
+        let socialsPickerViewController = SocialsPickerViewController()
+        socialsPickerViewController.didTapAppleButton = registerWithAppleService.register
+
         let vc = RegistrationViewController.make(
             tapGestureRecognizerFactory: tapGestureRecognizerFactory,
             delegate: adapter,
             formViewController: formViewController,
             errorViewController: errorViewController,
-            buttonViewController: buttonViewController
+            buttonViewController: buttonViewController,
+            socialsPickerViewController: socialsPickerViewController
         )
 
         let buttonView = ButtonViewWhenViewLoadedDecorator(
@@ -74,8 +78,6 @@ public enum RegistrationUIKitViewComposer {
             scheduler: deferredUiScheduler,
             localizationProvider: localizationProvider
         )
-
-        vc.registerWithApple = registerWithAppleService.register
 
         return vc
     }

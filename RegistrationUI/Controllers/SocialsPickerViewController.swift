@@ -9,7 +9,6 @@ import UIKit
 
 public final class SocialsPickerViewController: UIViewController {
     public private(set) var apple: UIButton = .init()
-
     public var didTapAppleButton: () -> () = {}
 
     public override func loadView() {

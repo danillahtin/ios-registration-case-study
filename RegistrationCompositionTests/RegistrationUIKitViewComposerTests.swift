@@ -531,8 +531,12 @@ private extension RegistrationViewController {
         findController()
     }
 
-    private var buttonViewController: ButtonViewController {
-        children.compactMap({ $0 as? ButtonViewController }).first!
+    private var buttonViewController: ButtonViewController! {
+        findController()
+    }
+
+    private var socialsPickerViewController: SocialsPickerViewController! {
+        findController()
     }
 
     var registerButton: UIButton! {
@@ -682,7 +686,7 @@ private extension RegistrationViewController {
     }
 
     func simulateLoginWithAppleButtonTap() {
-        registerWithAppleButton.simulateTap()
+        socialsPickerViewController.apple.simulateTap()
     }
 }
 

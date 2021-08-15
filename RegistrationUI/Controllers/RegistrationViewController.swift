@@ -22,28 +22,15 @@ public final class RegistrationViewController: UIViewController {
     private var formViewController: UIViewController!
     private var errorViewController: UIViewController!
     private var buttonViewController: UIViewController!
-    private var socialsRegistrationViewController: SocialsPickerViewController!
-
-    public var registerWithAppleButton: UIButton {
-        socialsRegistrationViewController.apple
-    }
-
-    public var registerWithApple: () -> () {
-        set {
-            socialsRegistrationViewController.didTapAppleButton = newValue
-        }
-
-        get {
-            socialsRegistrationViewController.didTapAppleButton
-        }
-    }
+    private var socialsPickerViewController: UIViewController!
 
     public static func make(
         tapGestureRecognizerFactory: @escaping TapGestureRecognizerFactory = UITapGestureRecognizer.init,
         delegate: RegistrationViewControllerDelegate,
         formViewController: UIViewController,
         errorViewController: UIViewController,
-        buttonViewController: UIViewController
+        buttonViewController: UIViewController,
+        socialsPickerViewController: UIViewController
     ) -> RegistrationViewController {
         let vc = RegistrationViewController()
 
@@ -52,7 +39,7 @@ public final class RegistrationViewController: UIViewController {
         vc.formViewController = formViewController
         vc.errorViewController = errorViewController
         vc.buttonViewController = buttonViewController
-        vc.socialsRegistrationViewController = SocialsPickerViewController()
+        vc.socialsPickerViewController = socialsPickerViewController
 
         return vc
     }
@@ -62,7 +49,7 @@ public final class RegistrationViewController: UIViewController {
 
         let controllers: [UIViewController] = [
             formViewController!,
-            socialsRegistrationViewController!,
+            socialsPickerViewController!,
             buttonViewController!,
             errorViewController!,
         ]
@@ -75,7 +62,7 @@ public final class RegistrationViewController: UIViewController {
             button: buttonViewController.view,
             error: errorViewController.view
         ).apply()
-        socialsRegistrationViewController.loadViewIfNeeded()
+        socialsPickerViewController.loadViewIfNeeded()
 
         controllers.forEach({ $0.didMove(toParent: self) })
 

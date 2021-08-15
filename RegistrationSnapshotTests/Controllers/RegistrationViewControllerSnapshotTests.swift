@@ -21,7 +21,8 @@ final class RegistrationViewControllerSnapshotTests: XCTestCase {
             delegate: Services(),
             formViewController: .init(view: makeView(name: "Form", color: .blue, height: 300)),
             errorViewController: .init(view: makeView(name: "Error", color: .red, height: 120)),
-            buttonViewController: .init(view: makeView(name: "Button", color: .systemIndigo, height: 60))
+            buttonViewController: .init(view: makeView(name: "Button", color: .systemIndigo, height: 60)),
+            socialsPickerViewController: UIViewController()
         )
 
         sut.loadViewIfNeeded()

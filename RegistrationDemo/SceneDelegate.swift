@@ -18,14 +18,13 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let nc = UINavigationController()
         nc.navigationBar.prefersLargeTitles = true
 
+        let alertPresenter = AlertPresenter(presentingViewController: nc)
+
         let vc = RegistrationUIKitViewComposer.composed(
             registrationService: DemoRegistrationService(),
+            registerWithAppleService: alertPresenter,
             serviceScheduler: DispatchQueue.global(qos: .userInitiated),
-            onRegister: {
-                DispatchQueue.main.async {
-                    self.showAlert(message: "You registered!", from: nc)
-                }
-            }
+            onRegister: { alertPresenter.showAlert(message: "You registered!") }
         )
 
         nc.viewControllers = [vc]
@@ -34,12 +33,24 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = nc
         window?.makeKeyAndVisible()
     }
+}
 
-    private func showAlert(message: String, from vc: UIViewController) {
+struct AlertPresenter: RegisterWithAppleService {
+    let presentingViewController: UIViewController
+
+    func showAlert(message: String) {
+        guard Thread.isMainThread else {
+            return DispatchQueue.main.async { self.showAlert(message: message) }
+        }
+
         let alertVc = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         alertVc.addAction(.init(title: "Ok", style: .default, handler: nil))
 
-        vc.present(alertVc, animated: true, completion: nil)
+        presentingViewController.present(alertVc, animated: true, completion: nil)
+    }
+
+    func register() {
+        showAlert(message: "Registered with apple")
     }
 }
 
