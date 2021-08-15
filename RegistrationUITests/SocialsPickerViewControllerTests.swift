@@ -43,6 +43,6 @@ final class SocialsPickerViewControllerTests: XCTestCase {
 
 private extension SocialsPickerViewController {
     func simulateAppleButtonTapped() {
-        apple.simulateTap()
+        appleButton.simulateTap()
     }
 }

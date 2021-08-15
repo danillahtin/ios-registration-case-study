@@ -6,15 +6,37 @@
 //
 
 import UIKit
+import AuthenticationServices
 
 public final class SocialsPickerViewController: UIViewController {
-    public private(set) var apple: UIButton = .init()
+    public private(set) var appleButton: UIButton = .init()
     public var didTapAppleButton: () -> () = {}
 
     public override func loadView() {
-        apple.addTarget(self, action: #selector(onAppleButtonTapped), for: .touchUpInside)
+        let appleButton = UIButton(type: .system)
+        appleButton.translatesAutoresizingMaskIntoConstraints = false
+        appleButton.setImage(UIImage(named: "apple", in: Bundle(for: Self.self), compatibleWith: nil), for: .normal)
+        appleButton.addTarget(self, action: #selector(onAppleButtonTapped), for: .touchUpInside)
 
-        view = UIView()
+        self.appleButton = appleButton
+
+        let stackView = UIStackView(arrangedSubviews: [appleButton])
+        stackView.axis = .horizontal
+        stackView.distribution = .equalCentering
+        stackView.alignment = .center
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+
+        let view = UIView()
+        view.addSubview(stackView)
+
+        NSLayoutConstraint.activate([
+            stackView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            stackView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            stackView.topAnchor.constraint(equalTo: view.topAnchor),
+            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
+
+        self.view = view
     }
 
     @objc

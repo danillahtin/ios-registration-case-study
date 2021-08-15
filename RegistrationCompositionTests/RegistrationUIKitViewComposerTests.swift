@@ -686,7 +686,7 @@ private extension RegistrationViewController {
     }
 
     func simulateLoginWithAppleButtonTap() {
-        socialsPickerViewController.apple.simulateTap()
+        socialsPickerViewController.appleButton.simulateTap()
     }
 }
 
