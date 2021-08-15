@@ -11,9 +11,7 @@ import RegistrationUI
 
 final class SocialsPickerViewControllerSnapshotTests: XCTestCase {
     func test() {
-        isRecording = true
         assertSnapshot(sut: makeSut())
-        isRecording = false
     }
 
     // MARK: - Helpers

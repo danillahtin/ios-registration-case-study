@@ -60,9 +60,9 @@ public final class RegistrationViewController: UIViewController {
             container: view,
             form: formViewController.view,
             button: buttonViewController.view,
+            socials: socialsPickerViewController.view,
             error: errorViewController.view
         ).apply()
-        socialsPickerViewController.loadViewIfNeeded()
 
         controllers.forEach({ $0.didMove(toParent: self) })
 

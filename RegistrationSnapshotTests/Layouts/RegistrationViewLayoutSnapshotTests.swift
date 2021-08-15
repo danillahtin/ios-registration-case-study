@@ -19,10 +19,17 @@ final class RegistrationViewLayoutSnapshotTests: XCTestCase {
     private func makeSut() -> UIViewController {
         let container = makeView(name: "container", color: .white)
         let form = makeView(name: "form", color: .blue, height: 300)
+        let socials = makeView(name: "socials", color: .green, height: 44)
         let button = makeView(name: "button", color: .systemIndigo, height: 60)
         let error = makeView(name: "error", color: .red, height: 100)
 
-        RegistrationViewLayout(container: container, form: form, button: button, error: error).apply()
+        RegistrationViewLayout(
+            container: container,
+            form: form,
+            button: button,
+            socials: socials,
+            error: error
+        ).apply()
 
         let sut = UIViewController()
         sut.view = container
