@@ -13,23 +13,6 @@ public protocol RegistrationViewControllerDelegate {
     func didCancelInput()
 }
 
-public final class SocialsPickerViewController: UIViewController {
-    public private(set) var apple: UIButton = .init()
-
-    public var didTapAppleButton: () -> () = {}
-
-    public override func loadView() {
-        apple.addTarget(self, action: #selector(onAppleButtonTapped), for: .touchUpInside)
-        
-        view = UIView()
-    }
-
-    @objc
-    private func onAppleButtonTapped() {
-        didTapAppleButton()
-    }
-}
-
 public final class RegistrationViewController: UIViewController {
     public typealias TapGestureRecognizerFactory = (_ target: Any?, _ action: Selector?) -> UITapGestureRecognizer
 

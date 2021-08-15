@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B196A7D26C9153A00F149C0 /* SocialsPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B196A7C26C9153A00F149C0 /* SocialsPickerViewController.swift */; };
 		8B75653B26BDEBEE00D2F90E /* RegistrationUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B75653126BDEBED00D2F90E /* RegistrationUI.framework */; };
 		8B75655926BDED0900D2F90E /* RegistrationComposition.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B75655026BDED0900D2F90E /* RegistrationComposition.framework */; };
 		8B75656826BDED2F00D2F90E /* RegistrationUIKitViewComposerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75656726BDED2F00D2F90E /* RegistrationUIKitViewComposerTests.swift */; };
@@ -132,6 +133,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8B196A7C26C9153A00F149C0 /* SocialsPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialsPickerViewController.swift; sourceTree = "<group>"; };
 		8B75653126BDEBED00D2F90E /* RegistrationUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RegistrationUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B75653526BDEBED00D2F90E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B75653A26BDEBEE00D2F90E /* RegistrationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RegistrationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -428,6 +430,7 @@
 				8BD1647726C0811500C2E126 /* UsernamePasswordFormViewController.swift */,
 				8BC29E4A26C1CE7900D2774A /* ErrorViewController.swift */,
 				8BC29E5326C1D85400D2774A /* ButtonViewController.swift */,
+				8B196A7C26C9153A00F149C0 /* SocialsPickerViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -764,6 +767,7 @@
 				8BD1640226BFF90C00C2E126 /* Animator.swift in Sources */,
 				8BC29E6026C1EB7200D2774A /* Layout.swift in Sources */,
 				8BC29E5426C1D85400D2774A /* ButtonViewController.swift in Sources */,
+				8B196A7D26C9153A00F149C0 /* SocialsPickerViewController.swift in Sources */,
 				8BD1647A26C0814000C2E126 /* UIView+Helpers.swift in Sources */,
 				8BC29E6A26C1EBD400D2774A /* RegistrationViewLayout.swift in Sources */,
 			);
